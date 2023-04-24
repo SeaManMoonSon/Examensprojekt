@@ -4,11 +4,10 @@
 Den här applikationen ska användas i matsalen på Glimåkra Folkhögskola, för att ersätta matkupongerna. Tanken är att besökarna i matsalen ska kunna skriva in sig redan i kön för att på så sätt notera sin närvaro och betalning. Matpersonalen ska också kunna se vilka som har betalat, eller ska betala, för dagens mat. Applikationen ska också visa veckans meny, dagens meny och ha en funktion för att betygsätta dagens mat.
 
 ## Tekniker och programspråk
+- MongoDB
+- Express
 - React
-- JavaScript
-- Scss
-- PHP
-- Databas: MongoDB 
+- Node.js
 
 ## Samarbeten
 Simon Månsson och Veronica Selenwall ska arbeta tillsammans i grupp med detta projekt, i nära samarbete med Glimåkra Folkhögskola. Simon kommer att fokusera på backend och Veronica på frontend. Vi kommer samarbeta och hjälpa varandra med alla delar av projektet.
