@@ -20,7 +20,7 @@ Den här punkten kan komma att utvecklas efter ett möte med köksansvarig på G
    - Personalen ska kunna se namnen på de som har registrerat sig men inte resterande information
 - Visa veckans matsedel
 - Betygsättning av dagens mat
-   - Göra det möjligt för besökarna att betygsätta dagens mat på vägen ut 
+   - Göra det möjligt för besökarna att betygsätta dagens mat på vägen ut?
 
 
 
