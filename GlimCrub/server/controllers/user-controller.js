@@ -21,12 +21,12 @@ async function login(req, res) {
     }
 
     if(user.role === "admin") {
-      console.log("Hello Admin!");
+      console.log(`Logged in with ${user.role}-role`);
     } else if (user.role === "deltagare") {
-      console.log("Hello, Deltagare!");
+      console.log(`Logged in with ${user.role}-role`);
     }
 
-    return res.redirect("/rättTest");
+    return res.redirect("/menu");
   } catch (error) {
     console.error(error);
 
