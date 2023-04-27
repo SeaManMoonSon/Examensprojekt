@@ -1,11 +1,10 @@
-import mongoose from 'mongoose';
-import express from 'express';
-// import session from 'express-session';
+import mongoose from "mongoose";
+import express from "express";
 import dotenv from "dotenv";
 import path from "path";
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 
-import userRoute from './routes/user-route.js'
+import userRoute from "./routes/user-route.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,35 +15,29 @@ const app = express();
 const PORT = process.env.PORT;
 const dburi = process.env.MONGODB_URI;
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
-// app.use(session({
-//     secret: process.env.SESSION_SECRET || "secret",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: { maxAge: 3000000}
-// }));
-
-app.use(express.static('./public'));
-
+// Middleware
+app.use(express.static("./public"));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-
-app.use(userRoute);
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-    res.status(404).send("Sry - nothing to display");
-    next();
+  res.status(404).send("Sry - nothing to display");
+  next();
 });
 
 app.use((err, req, res, next) => {
-    
-    console.error(err); 
+  console.error(err);
 
-    res.status(500).send("Server error - please return later");
-    next();
+  res.status(500).send("Server error - please return later");
+  next();
 });
 
+// Routes
+app.use("/api/users", userRoute);
+
+// DB connection
 mongoose
   .connect(dburi, {
     useNewUrlParser: true,

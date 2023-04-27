@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import ProductModel from "../models/product-model.js";
 import UserModel from "../models/user-model.js";
+import MenuModel from "../models/menu-model.js";
 
 
 async function getMenu(req, res) {
-    const menu = await ProductModel.find();
+    const menu = await MenuModel.find();
     res.render("menu", { menu });
 }
 
