@@ -1,18 +1,21 @@
 import express from "express";
-import userController from "../controllers/user-controller.js";
-import menuController from "../controllers/menu-controller.js";
+import UserController from "../controllers/user-controller.js";
 
 const router = express.Router();
 
-// router.get("/", userController.getLandingPage);
+// Add new user
+router.post('/', UserController.createUser);
 
-// router.get("/login", userController.getLogin);
-// router.post("/login", userController.login);
+// Get all users
+router.get('/', UserController.getUsers);
 
-// router.get("/register", userController.getRegister);
+// Get one user
+router.get('/:id', UserController.getUser);
 
-// router.get("/menu", menuController.getMenu);
+// Delete a user
+router.delete('/:id', UserController.deleteUser);
 
-router.post('/', userController.login);
+// Update a user
+router.patch('/:id', UserController.updateUser);
 
 export default router;

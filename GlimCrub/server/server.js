@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import userRoute from "./routes/user-route.js";
+import UserRoute from "./routes/user-route.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,27 +15,16 @@ const app = express();
 const PORT = process.env.PORT;
 const dburi = process.env.MONGODB_URI;
 
-app.set("view engine", "ejs");
-
 // Middleware
-app.use(express.static("./public"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-  res.status(404).send("Sry - nothing to display");
-  next();
-});
-
-app.use((err, req, res, next) => {
-  console.error(err);
-
-  res.status(500).send("Server error - please return later");
+  console.log(req.path, req.method);
   next();
 });
 
 // Routes
-app.use("/api/users", userRoute);
+app.use("/api/users", UserRoute);
 
 // DB connection
 mongoose
@@ -45,11 +34,11 @@ mongoose
   })
   .then(() => {
     console.log("Connected to database");
+    // Listen
     app.listen(PORT, () => {
       console.log(`Server started on port: ${PORT}`);
     });
   })
-  .catch((err) => {
-    console.log(dburi);
-    console.error("Database connection error: ", err);
+  .catch((error) => {
+    console.log("Database connection error: ", error);
   });
