@@ -85,7 +85,10 @@ const updateUser = async (req, res) => {
 //       throw new Error("Invalid ssn or password");
 //     } else {
 //       console.log(`Hello ${user.role} ${user.name}`);
-//       return res.redirect("/menu");
+//     }
+
+//     if (user.password === "000") {
+//       console.log("hej");
 //     }
 
 //   } catch (error) {
