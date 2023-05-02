@@ -1,9 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+// Pages
+// import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, Categories, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserSaldo } from './components';
 
-// Pages & Components
+// Components
+// import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserSaldo } from './components';
+
 import Start from './pages/users/Start'
-import Categories from './pages/users/Categories'
+import Categories from './pages/users/UserLanding'
 // import Navbar from './components/Navbar'
 
 function App() {
