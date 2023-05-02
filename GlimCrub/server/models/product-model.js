@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const menuSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   menu: {
     breakfast: {
       type: String,
@@ -36,8 +36,8 @@ const menuSchema = new mongoose.Schema({
       required: true
     }
   }
-}, { collection: 'Menu' });
+});
 
-const MenuModel = mongoose.model('Menu', menuSchema);
+const ProductModel = mongoose.model('Product', productSchema);
 
-export default MenuModel;
+export default ProductModel;
