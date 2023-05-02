@@ -1,5 +1,5 @@
 
-const Categories = () => {
+const UserLanding = () => {
     return (
         <div className="categories">
                 <h2>Welcome, username!</h2>
@@ -8,4 +8,4 @@ const Categories = () => {
     )
 }
 
-export default Categories
+export default UserLanding

@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // Pages
-// import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, Categories, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserSaldo } from './components';
+import { Dashboard, AdminProducts, AdminStart, Users, Fika, UserStart, UserLanding } from './pages';
 
 // Components
-// import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserSaldo } from './components';
+import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, Categories, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserSaldo } from './components';
 
-import Start from './pages/users/Start'
-import Categories from './pages/users/UserLanding'
+// import Start from './pages/users/Start'
+// import Categories from './pages/users/UserLanding'
 // import Navbar from './components/Navbar'
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
           <Routes>
             <Route 
               path="/"
-              element={<Start />}
+              element={<UserStart />}
             />
             <Route
               path="/categories"
