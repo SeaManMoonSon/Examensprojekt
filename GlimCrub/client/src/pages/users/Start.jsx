@@ -18,6 +18,9 @@ const Start = () => {
     //     fetchUser()
     // }, [])
 
+    // {products && products.map((product) => (
+//     <p key={product._id}>{product.menu.snack[0].name}</p>
+// ))}
 
     const [products, setProducts] = useState(null)
 
@@ -31,16 +34,22 @@ const Start = () => {
             }
         }
 
+        
+
         fetchMenu()
+       
     }, [])
+
 
     return (
         <div className="start">
                 <h2>Glimcrub</h2>
                 <h3>Component for login</h3>
-            <div className="users">
-                {products && products.map((product) => (
-                    <p key={product._id}>{product}</p>
+                <div className="users">
+                    {products && products.map((product) => (
+                        product.menu && product.menu.snack.map((item) => (
+                        <p key={item._id}>{item.name}</p>
+                    ))
                 ))}
             </div>
         </div>
