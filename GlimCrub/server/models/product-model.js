@@ -9,24 +9,18 @@ const productSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    snack: {
-      kaffe: {
-        type: Boolean,
-        default: false
-      },
-      smorgas: {
-        type: Boolean,
-        default: false
-      },
-      frukt: {
-        type: Boolean,
-        default: false
-      },
-      godis: {
-        type: Boolean,
-        default: false
+    snack: [
+      {
+        name: {
+          type: String,
+          required: true
+        },
+        available: {
+          type: Boolean,
+          required: true
+        }
       }
-    },
+    ],
     lunch: {
       type: String,
       required: true

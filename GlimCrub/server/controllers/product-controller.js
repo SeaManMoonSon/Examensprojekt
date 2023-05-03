@@ -30,7 +30,11 @@ const createProduct = async (req, res) => {
   const {
     menu: {
       breakfast,
-      snack: { kaffe, smorgas, frukt, godis },
+      snack: [
+        { name: kaffe, available: kaffeAvailable }, 
+        { name: macka, available: mackaAvailable }, 
+        { name: frukt, available: fruktAvailable }, 
+        { name: godis, available: godisAvailable }],
       lunch,
       dinner,
     },
@@ -41,7 +45,11 @@ const createProduct = async (req, res) => {
     const product = await Product.create({
       menu: {
         breakfast,
-        snack: { kaffe, smorgas, frukt, godis },
+        snack: [
+          { name: kaffe, available: kaffeAvailable }, 
+          { name: macka, available: mackaAvailable }, 
+          { name: frukt, available: fruktAvailable }, 
+          { name: godis, available: godisAvailable }],
         lunch,
         dinner,
       },
