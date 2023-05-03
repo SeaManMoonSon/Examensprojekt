@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
 
+// components
+import UserLogin from '../../components/users/UserLogin'
+
 
 
 const UserStart = () => {
@@ -38,6 +41,11 @@ const UserStart = () => {
         <div className="start">
                 <h2>Glimcrub</h2>
                 <h3>Component for login</h3>
+
+            <div className="login">
+                <UserLogin />
+            </div>
+
             <div className="users">
                 {products && products.map((product) => (
                     <p key={product._id}>{product.menu.breakfast}</p>
