@@ -21,6 +21,7 @@ function App() {
             <Route path="/fika" element={<Fika />} />
           </Routes>
         </Router>
+        
     </div>
     
   );
