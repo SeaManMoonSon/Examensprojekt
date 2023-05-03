@@ -10,12 +10,12 @@ router.post('/', ProductController.createProduct);
 router.get('/', ProductController.getProducts);
 
 // Get one user
-// router.get('/:id', UserController.getUser);
+router.get('/:id', ProductController.getProduct);
 
 // Delete a user
-// router.delete('/:id', UserController.deleteUser);
+router.delete('/:id', ProductController.deleteProduct);
 
 // Update a user
-// router.patch('/:id', UserController.updateUser);
+router.patch('/:id', ProductController.updateProduct);
 
 export default router;
