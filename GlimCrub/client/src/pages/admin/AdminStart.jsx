@@ -2,12 +2,12 @@ import React from 'react';
 
 // styles
 
-const Fika = () => {
+const AdminStart = () => {
     return (
         <div>
-            <h1>Fika</h1>
+            <h1>AdminStart</h1>
         </div>
     )
 }
 
-export default Fika
+export default AdminStart
