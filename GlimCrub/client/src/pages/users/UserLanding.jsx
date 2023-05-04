@@ -2,6 +2,7 @@
 import Categories from '../../components/misc/Categories'
 
 const UserLanding = () => {
+    
     return (
         <div className="categories-container">
 
