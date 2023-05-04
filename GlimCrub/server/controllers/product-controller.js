@@ -29,14 +29,14 @@ const getProduct = async (req, res) => {
 const createProduct = async (req, res) => {
   const {
     menu: {
-      breakfast,
+      breakfast: { name: breakfastName, available: breakfastAvailable },
       snack: [
         { name: kaffe, available: kaffeAvailable }, 
         { name: macka, available: mackaAvailable }, 
         { name: frukt, available: fruktAvailable }, 
         { name: godis, available: godisAvailable }],
-      lunch,
-      dinner,
+      lunch: { name: lunchName, available: lunchAvailable },
+      dinner: { name: dinnerName, available: dinnerAvailable }
     },
   } = req.body;
 
@@ -44,14 +44,14 @@ const createProduct = async (req, res) => {
   try {
     const product = await Product.create({
       menu: {
-        breakfast,
+        breakfast: { name: breakfastName, available: breakfastAvailable },
         snack: [
           { name: kaffe, available: kaffeAvailable }, 
           { name: macka, available: mackaAvailable }, 
           { name: frukt, available: fruktAvailable }, 
           { name: godis, available: godisAvailable }],
-        lunch,
-        dinner,
+        lunch: { name: lunchName, available: lunchAvailable },
+        dinner: { name: dinnerName, available: dinnerAvailable }
       },
     });
     res.status(200).json(product);
@@ -85,7 +85,7 @@ const updateProduct = async (req, res) => {
     return res.status(404).json({ error: "No product found" });
   }
 
-  const product = await User.findByIdAndUpdate({ _id: id }, { ...req.body });
+  const product = await Product.findByIdAndUpdate({ _id: id }, { ...req.body });
 
   if (!product) {
     return res.status(404).json({ error: "No product found" });

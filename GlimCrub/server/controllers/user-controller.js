@@ -72,30 +72,31 @@ const updateUser = async (req, res) => {
   res.status(200).json(user);
 };
 
-// async function login(req, res) {
-//   try {
-//     const { ssn } = req.body;
-//     const user = await UserModel.findOne({ ssn });
+async function login(req, res) {
+  try {
+    const { ssn } = req.body;
+    const user = await UserModel.findOne({ ssn });
 
-//     if (!ssn) {
-//       throw new Error("Missing ssn in request body");
-//     }
+    if (!ssn) {
+      throw new Error("Missing ssn in request body");
+    }
 
-//     if (!user) {
-//       throw new Error("Invalid ssn or password");
-//     } else {
-//       console.log(`Hello ${user.role} ${user.name}`);
-//     }
+    if (!user) {
+      throw new Error("Invalid ssn or password");
+    } else {
+      console.log(`Hello ${user.role} ${user.name}`);
+      res.redirect('/landing');
+    }
 
-//     if (user.password === "000") {
-//       console.log("hej");
-//     }
+    // if (user.password === "000") {
+    //   console.log("hej");
+    // }
 
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(400).send({ error: error.message });
-//   }
-// }
+  } catch (error) {
+    console.error(error);
+    return res.status(400).send({ error: error.message });
+  }
+}
 
 // async function getRegister(req, res) {
 //     res.render("register");
@@ -128,4 +129,4 @@ const updateUser = async (req, res) => {
 //   }
 // }
 
-export default { getUsers, getUser, createUser, deleteUser, updateUser };
+export default { getUsers, getUser, createUser, deleteUser, updateUser, login };

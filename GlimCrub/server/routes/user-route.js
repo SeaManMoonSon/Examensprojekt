@@ -1,5 +1,6 @@
 import express from "express";
 import UserController from "../controllers/user-controller.js";
+import userController from "../controllers/user-controller.js";
 
 const router = express.Router();
 
@@ -17,5 +18,8 @@ router.delete('/:id', UserController.deleteUser);
 
 // Update a user
 router.patch('/:id', UserController.updateUser);
+
+// Login user
+router.post('/login', UserController.login);
 
 export default router;
