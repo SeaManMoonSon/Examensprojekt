@@ -1,35 +1,31 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React from 'react';
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Pages
-// import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, Categories, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserSaldo } from './components';
+import { Dashboard, AdminProducts, AdminStart, Users, Fika, UserStart, UserLanding } from './pages';
 
 // Components
-// import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserSaldo } from './components';
-
-import Start from './pages/users/Start'
-import Categories from './pages/users/UserLanding'
-// import Navbar from './components/Navbar'
+import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, Categories, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserSaldo } from './components';
 
 function App() {
+
   return (
+  
     <div className="App">
-      <BrowserRouter>
-        {/* <Navbar /> */}
-        <div className="pages">
+
+        <Router>
           <Routes>
-            <Route 
-              path="/"
-              element={<Start />}
-            />
-            <Route
-              path="/categories"
-              element={<Categories />}
-            />
+            <Route path="/" element={<UserStart />} />
+            <Route path="/landing" element={<UserLanding />} />
+            <Route path="/fika" element={<Fika />} />
           </Routes>
-        </div>
-      </BrowserRouter>
+        </Router>
+        
     </div>
+    
   );
 }
 
 export default App;
+

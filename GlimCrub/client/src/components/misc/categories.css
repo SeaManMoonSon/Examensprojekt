@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-container {
+    background-color: green;
+}
+
+.categories-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    padding: 5rem;
+    text-align: center;
+}
+
+.categories__left {
+    background-color: deeppink;
+}
+
+.categories__right {
+    background-color: brown;
+}
