@@ -3,7 +3,7 @@ import Product from "../models/product-model.js";
 
 // Get all products
 const getProducts = async (req, res) => {
-  const products = await Product.find({}).sort({ name: "asc" });
+  const products = await Product.find({});
 
   res.status(200).json(products);
 };
@@ -21,39 +21,17 @@ const getProduct = async (req, res) => {
   if (!product) {
     return res.status(404).json({ error: "No product found" });
   }
-
+ 
   res.status(200).json(product);
 };
 
 // Create new product
 const createProduct = async (req, res) => {
-  const {
-    menu: {
-      breakfast: { name: breakfastName, available: breakfastAvailable },
-      snack: [
-        { name: kaffe, available: kaffeAvailable }, 
-        { name: macka, available: mackaAvailable }, 
-        { name: frukt, available: fruktAvailable }, 
-        { name: godis, available: godisAvailable }],
-      lunch: { name: lunchName, available: lunchAvailable },
-      dinner: { name: dinnerName, available: dinnerAvailable }
-    },
-  } = req.body;
+  const { name, price, category, role } = req.body;
 
   // Add document to database
   try {
-    const product = await Product.create({
-      menu: {
-        breakfast: { name: breakfastName, available: breakfastAvailable },
-        snack: [
-          { name: kaffe, available: kaffeAvailable }, 
-          { name: macka, available: mackaAvailable }, 
-          { name: frukt, available: fruktAvailable }, 
-          { name: godis, available: godisAvailable }],
-        lunch: { name: lunchName, available: lunchAvailable },
-        dinner: { name: dinnerName, available: dinnerAvailable }
-      },
-    });
+    const product = await Product.create({ name, price, category, role });
     res.status(200).json(product);
   } catch (error) {
     res.status(400).json({ error: error.message });

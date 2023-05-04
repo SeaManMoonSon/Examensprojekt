@@ -4,50 +4,23 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const productSchema = new mongoose.Schema({
-  menu: {
-    breakfast: {
-      name: {
-        type: String,
-        required: true
-      },
-      available: {
-        type: Boolean,
-        required: true
-      }
+      // namn, pris, kategori, roll
+    name: {
+      type: String,
+      required: true
     },
-    snack: [
-      {
-        name: {
-          type: String,
-          required: true
-        },
-        available: {
-          type: Boolean,
-          required: true
-        }
-      }
-    ],
-    lunch: {
-      name: {
+    price: {
         type: String,
-        required: true
-      },
-      available: {
-        type: Boolean,
-        required: true
-      }
+        required: true,
     },
-    dinner: {
-      name: {
+    category: {
         type: String,
-        required: true
-      },
-      available: {
+        required: true,
+    },
+    role: {
         type: Boolean,
         required: true
-      }
     }
-  }
 });
 
 const ProductModel = mongoose.model('Product', productSchema);

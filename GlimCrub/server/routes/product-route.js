@@ -6,7 +6,7 @@ const router = express.Router();
 // Add new product
 router.post('/', ProductController.createProduct);
 
-// Get all users
+// Get all products
 router.get('/', ProductController.getProducts);
 
 // Get one user
