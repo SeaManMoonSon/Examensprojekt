@@ -6,8 +6,14 @@ dotenv.config();
 const productSchema = new mongoose.Schema({
   menu: {
     breakfast: {
-      type: String,
-      required: true
+      name: {
+        type: String,
+        required: true
+      },
+      available: {
+        type: Boolean,
+        required: true
+      }
     },
     snack: [
       {
@@ -22,12 +28,24 @@ const productSchema = new mongoose.Schema({
       }
     ],
     lunch: {
-      type: String,
-      required: true
+      name: {
+        type: String,
+        required: true
+      },
+      available: {
+        type: Boolean,
+        required: true
+      }
     },
     dinner: {
-      type: String,
-      required: true
+      name: {
+        type: String,
+        required: true
+      },
+      available: {
+        type: Boolean,
+        required: true
+      }
     }
   }
 });
