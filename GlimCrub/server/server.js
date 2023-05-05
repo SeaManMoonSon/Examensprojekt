@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 
 import UserRoute from "./routes/user-route.js";
 import ProductRoute from "./routes/product-route.js";
+import PurchaseRoute from "./routes/purchase-route.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 // Routes
 app.use("/api/users", UserRoute);
 app.use("/api/products", ProductRoute);
+app.use("/api/purchases", PurchaseRoute);
 
 // DB connection
 mongoose
