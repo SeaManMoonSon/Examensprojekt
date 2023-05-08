@@ -36,18 +36,14 @@ const UserStart = () => {
 
   return (
     <div className="start">
-      <h2>Glimcrub</h2>
-      <h3>Component for login</h3>
-      <div className="users">
-        {products &&
-          products.map(
-            (product) =>
-              product.menu &&
-              product.menu.snack.map((item) => (
+      <UserLogin />
+      {/* <div className="users">
+        {products && products.map((product) => 
+        product.menu && product.menu.snack.map((item) => (
                 <p key={item._id}>{item.name}</p>
               ))
           )}
-      </div>
+      </div> */}
     </div>
   );
 };

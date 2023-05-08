@@ -16,10 +16,10 @@
     text-align: center;
 }
 
-.categories__left {
+.categories__user {
     background-color: deeppink;
 }
 
-.categories__right {
+.categories__menu {
     background-color: brown;
 }
