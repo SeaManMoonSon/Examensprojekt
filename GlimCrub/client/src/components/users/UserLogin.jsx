@@ -11,13 +11,13 @@ const UserLogin = () => {
         <div>
             <h1>Welcome</h1>
             <h2>Log in here</h2>
-            <form action="" method="POST">
+            <form action="/api/users/login" method="POST">
                 
             <SSNInput />
             <input type="password" maxLength={4} minLength={4} placeholder="PIN"/>
 
             
-                <input type="submit" value="Log in" />
+                <input onSubmit={console.log()} type="submit" value="Log in" />
                 {/* <button>Log in</button> */}
             
             </form>
