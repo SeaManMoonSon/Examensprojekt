@@ -88,17 +88,13 @@ const loginUser = async(req, res) => {
 
   try {
     const user = await User.findOne({ ssn, password });
-    console.log(user);
+    // console.log(user);
 
     if (!user) {
-      throw new Error("Fel personnummer");
+      throw new Error("Fel personnummer eller PIN-kod");
     }
 
     // const match = await bcrypt.compare(ssn, user.ssn);
-
-    if (!password === user.password) {
-      throw new Error("Fel PIN-kod");
-    }
 
     // Create token
     const token = createToken(user._id);
