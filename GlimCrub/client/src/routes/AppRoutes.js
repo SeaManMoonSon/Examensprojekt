@@ -2,8 +2,12 @@ import { UserStart, UserLanding, Fika } from '../pages';
 
 export const routes = [
   {
-    path: '/',
+    path: '/login',
     exact: true,
+    component: UserStart
+  },
+  {
+    path: '/',
     component: UserStart
   },
   {

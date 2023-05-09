@@ -11,15 +11,15 @@ const UserLogin = () => {
         <div>
             <h1>Welcome</h1>
             <h2>Log in here</h2>
-            <form method="POST">
+            <form action="" method="POST">
                 
             <SSNInput />
             <input type="password" maxLength={4} minLength={4} placeholder="PIN"/>
 
-            <Link to="/landing">
-                {/* <input type="submit">Log in</input> */}
-                <button>Log in</button>
-            </Link>
+            
+                <input type="submit" value="Log in" />
+                {/* <button>Log in</button> */}
+            
             </form>
         </div>
     )
