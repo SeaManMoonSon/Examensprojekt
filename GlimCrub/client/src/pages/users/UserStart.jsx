@@ -1,51 +1,37 @@
-import { useEffect, useState } from "react";
-
-// components
-import UserLogin from "../../components/users/UserLogin";
+import { useState } from 'react'
+import { useLogin } from '../../hooks/useLogin'
 
 const UserStart = () => {
-  // const [users, setUsers] = useState(null)
+  const [users, setUsers] = useState ('')
+  const [password, setPassword] = useState ('')
+  const {login, error, isLoading} = useLogin()
 
-  // useEffect(() =>  {
-  //     const fetchUser = async () => {
-  //         const response = await fetch('/api/users')
-  //         const json = await response.json()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-  //         if (response.ok) {
-  //             setUsers(json)
-  //         }
-  //     }
-
-  //     fetchUser()
-  // }, [])
-
-  const [products, setProducts] = useState(null);
-
-  useEffect(() => {
-    const fetchMenu = async () => {
-      const response = await fetch("/api/products");
-      const json = await response.json();
-
-      if (response.ok) {
-        setProducts(json);
-      }
-    };
-
-    fetchMenu();
-  }, []);
+    //console.log(users, password);
+    await login(users, password);
+  }
 
   return (
-    <div className="start">
-      <UserLogin />
-      {/* <div className="users">
-        {products && products.map((product) => 
-        product.menu && product.menu.snack.map((item) => (
-                <p key={item._id}>{item.name}</p>
-              ))
-          )}
-      </div> */}
-    </div>
-  );
-};
+    <form className="login" onSubmit={handleSubmit}>
+      <h3>Logga in</h3>
 
-export default UserStart;
+      <label>Personnummer:</label>
+      <input type="text" 
+            onChange={(e) => setUsers(e.target.value)}
+            value={users}
+      />
+      <label>PIN</label>
+      <input type="password" 
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+      />
+
+      <button>Logga in</button>
+      { error && <div className="error">{error}</div>}
+    </form>
+  )
+}
+
+export default UserStart
