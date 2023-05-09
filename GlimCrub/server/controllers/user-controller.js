@@ -1,5 +1,12 @@
 import mongoose from "mongoose";
 import User from "../models/user-model.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
+// Create token
+const createToken = (_id) => {
+  return jwt.sign({_id}, process.env.SECRET);
+}
 
 // Get all users
 const getUsers = async (req, res) => {
@@ -29,10 +36,14 @@ const getUser = async (req, res) => {
 const createUser = async (req, res) => {
   const { name, ssn, password, balance, role } = req.body;
 
+  // Hash SSN
+  // const hashedSSN = await bcrypt.hash(ssn, 10);
+
   // Add document to database
   try {
     const user = await User.create({ name, ssn, password, balance, role });
-    res.status(200).json(user);
+
+    res.status(200).json({ user });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -72,61 +83,30 @@ const updateUser = async (req, res) => {
   res.status(200).json(user);
 };
 
-async function login(req, res) {
-  try {
-    const { ssn } = req.body;
-    const user = await UserModel.findOne({ ssn });
+const loginUser = async(req, res) => {
+  const { ssn, password } = req.body;
 
-    if (!ssn) {
-      throw new Error("Missing ssn in request body");
-    }
+  try {
+    const user = await User.findOne({ ssn, password });
+    console.log(user);
 
     if (!user) {
-      throw new Error("Invalid ssn or password");
-    } else {
-      console.log(`Hello ${user.role} ${user.name}`);
-      res.redirect('/landing');
+      throw new Error("Fel personnummer");
     }
 
-    // if (user.password === "000") {
-    //   console.log("hej");
-    // }
+    // const match = await bcrypt.compare(ssn, user.ssn);
 
+    if (!password === user.password) {
+      throw new Error("Fel PIN-kod");
+    }
+
+    // Create token
+    const token = createToken(user._id);
+
+    res.status(200).json({user, token});
   } catch (error) {
-    console.error(error);
-    return res.status(400).send({ error: error.message });
+    res.status(400).json({error: error.message});
   }
-}
+};
 
-// async function getRegister(req, res) {
-//     res.render("register");
-// }
-
-// async function register(req, res) {
-//   let queryString = null;
-
-//   try {
-//     const { ssn, password } = req.body;
-//     const userDocument = new UserModel({ ssn, password });
-
-//     if (ssn.value === "" || password.value === "") {
-//       throw new Error("Incorrent info given");
-//     }
-
-//     userDocument.save();
-
-//     queryString = new URLSearchParams({
-//       message: "Welcome!",
-//     }).toString();
-
-//     return res.redirect(`/login?${queryString}`);
-//   } catch (error) {
-//     console.error(error);
-//     queryString = new URLSearchParams({
-//       message: error.message,
-//     }).toString();
-//     res.redirect(`/login/register?${queryString}`);
-//   }
-// }
-
-export default { getUsers, getUser, createUser, deleteUser, updateUser, login };
+export default { getUsers, getUser, createUser, deleteUser, updateUser, loginUser };
