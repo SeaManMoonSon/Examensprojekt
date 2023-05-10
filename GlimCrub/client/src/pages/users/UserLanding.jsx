@@ -13,7 +13,7 @@ const UserLanding = () => {
         <div className="categories__user-info">
           {user && (
             <div>
-              <h2>{user.name}</h2>
+              <h2>{user.user.name}</h2>
             </div>
           )}
 

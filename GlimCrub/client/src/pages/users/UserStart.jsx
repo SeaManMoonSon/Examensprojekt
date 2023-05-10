@@ -1,5 +1,6 @@
 import { useState } from "react";
 // import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import { useAuthContext } from "../../hooks/userAuthContext";
 
@@ -9,22 +10,29 @@ const UserStart = () => {
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
 
+  const navigate = useNavigate();
+
+
   // const history = useHistory(); // Instantiate useHistory hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(login(ssn, password));
+
     const loginSuccessful = await login(ssn, password);
-    // if (loginSuccessful) {
-    //   history.push("/newpage"); // Navigate to new page
-    // }
+    if (loginSuccessful) {
+      // history.push("/newpage"); // Navigate to new page
+      navigate('/landing');
+      console.log("Yes");
+    }
   };
 
   return (
     <div className="container">
       {user && (
         <div>
-          <h2>{user.name}</h2>
+          <h2>{user.user.name}</h2>
         </div>
       )}
 
