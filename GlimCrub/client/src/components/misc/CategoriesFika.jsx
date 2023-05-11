@@ -13,7 +13,7 @@ import { useEffect, useState } from "react"
 // styles
 import './categories.css'
 
-const Categories = () => {
+const CategoriesFika = () => {
 
     const [products, setProducts] = useState(null)
 
@@ -38,12 +38,8 @@ const Categories = () => {
                 <>
                     {products.map((product, index) => {
                         if (product.category === 'Fika') {
-                            if (index === 0 || products[index - 1].category !== 'Fika') {
-                                return <button key={product._id}>Fika</button>;
-                            }
-                        } else {
-                            return <button key={product._id}>{product.category}</button>;
-                        }
+                            return <button key={product._id}>{product.name}</button>;
+                        } 
                         return null;
                     })}
                 </>
@@ -54,4 +50,4 @@ const Categories = () => {
 
 }
 
-export default Categories
+export default CategoriesFika

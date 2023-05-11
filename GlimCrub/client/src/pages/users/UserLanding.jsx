@@ -1,4 +1,5 @@
 //components
+import { CategoriesFika } from "../../components";
 import Categories from "../../components/misc/Categories";
 import Logout from "../../components/misc/Logout";
 import UserBalance from "../../components/users/UserBalance";
@@ -32,6 +33,7 @@ const UserLanding = () => {
         <p>Meny:</p>
         <div className="categories__menu-items">
           <Categories />
+          <CategoriesFika />
         </div>
       </div>
     </div>
