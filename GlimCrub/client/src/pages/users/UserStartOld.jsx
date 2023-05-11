@@ -4,20 +4,20 @@ import { useEffect, useState } from "react";
 import UserLogin from "../../components/users/UserLogin";
 
 const UserStart = () => {
-  const [users, setUsers] = useState(null)
+  const [users, setUsers] = useState(null);
 
-  useEffect(() =>  {
-      const fetchUser = async () => {
-          const response = await fetch('/api/users')
-          const json = await response.json()
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await fetch("/api/users");
+      const json = await response.json();
 
-          if (response.ok) {
-              setUsers(json)
-          }
+      if (response.ok) {
+        setUsers(json);
       }
+    };
 
-      fetchUser()
-  }, [])
+    fetchUser();
+  }, []);
 
   const [products, setProducts] = useState(null);
 

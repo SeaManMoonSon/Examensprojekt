@@ -34,21 +34,35 @@ const Categories = () => {
 
         <div className="users">
 
-            {products &&
+            {/* {products &&
                 products.forEach((product) => {
-                    if (product.menu) {
-                        product.menu.forEach((item) => {
-                            return <p key={item._id}>{item.type}</p>;
-                        });
+                    if(product.category !== 'fika') {
+                        <p key={product._id}>{product.category}</p>
                     }
-                })}
+                })} */}
 
-
-            {/* {products && products.map((product) => (
-                product.menu && product.menu.map((item) => (
-                    <p key={item._id}>{item.type}</p>
+            {/* {products && products
+                .filter((product) => product.category !== 'Fika')
+                .map((product) => (
+                    <p key={product._id}>{product.category}</p>
                 ))
-            ))} */}
+            } */}
+
+            {products && (
+                <>
+                    {products.map((product, index) => {
+                        if (product.category === 'Fika') {
+                            if (index === 0 || products[index - 1].category !== 'Fika') {
+                                return <p key={product._id}>Fika</p>;
+                            }
+                        } else {
+                            return <p key={product._id}>{product.category}</p>;
+                        }
+                        return null;
+                    })}
+                </>
+            )}
+
 
 
         </div>
