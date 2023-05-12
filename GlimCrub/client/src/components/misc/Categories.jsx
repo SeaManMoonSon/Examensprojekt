@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from "react"
-
+import UserConfirmation from '../users/UserConfirmation'
 
 
 // <div className="users">
@@ -14,8 +14,12 @@ import { useEffect, useState } from "react"
 import './categories.css'
 
 const Categories = () => {
-
+    const [popUp, setPopup] = useState(false);
     const [products, setProducts] = useState(null)
+
+    const handlePopup = () => {
+        setPopup(true);
+    }
 
     useEffect(() => {
         const fetchMenu = async () => {
@@ -32,26 +36,32 @@ const Categories = () => {
 
     return (
 
-        <div className="users">
+        <div className="categories__container">
+            <div className="categories__container-products">
+                {products && (
+                    <>
+                        {products.map((product, index) => {
+                            if (product.category === 'Fika') {
+                                if (index === 0 || products[index - 1].category !== 'Fika') {
+                                    return <button key={product._id}>Fika</button>;
+                                }
+                            } else {
+                                return <button onClick={handlePopup} key={product._id}>{product.category}</button>;
+                            }
+                            return null;
+                        })}
+                    </>
+                )}
+            </div>
 
-            {products &&
-                products.forEach((product) => {
-                    if (product.menu) {
-                        product.menu.forEach((item) => {
-                            return <p key={item._id}>{item.type}</p>;
-                        });
-                    }
-                })}
-
-
-            {/* {products && products.map((product) => (
-                product.menu && product.menu.map((item) => (
-                    <p key={item._id}>{item.type}</p>
-                ))
-            ))} */}
-
-
+            {popUp && (
+                <div>
+                    <UserConfirmation/>
+                </div>
+            )}
         </div>
+
+
     );
 
 }
