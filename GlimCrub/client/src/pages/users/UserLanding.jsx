@@ -3,10 +3,13 @@ import { CategoriesFika } from "../../components";
 import Categories from "../../components/misc/Categories";
 import Logout from "../../components/misc/Logout";
 import UserBalance from "../../components/users/UserBalance";
+import UserConfirmation from "../../components/users/UserConfirmation";
 import { useAuthContext, userAuthContext } from "../../hooks/userAuthContext";
 
 const UserLanding = () => {
   const { user } = useAuthContext();
+
+
 
   return (
     <div className="categories-container">

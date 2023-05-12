@@ -13,10 +13,13 @@ export { default as CategoriesFika } from './misc/CategoriesFika';
 
 export { default as UserAlert } from './users/UserAlert';
 export { default as UserConfirmation } from './users/UserConfirmation';
+export { default as UserConfirmationPopup } from './users/UserConfirmationPopup';
+export { default as UserConfirmationLogout } from './users/UserConfirmationLogout';
 export { default as UserLogin } from './users/UserLogin';
 export { default as UserNavbar } from './users/UserNavbar';
 export { default as UserPassword } from './users/UserPassword';
 export { default as UserBalance } from './users/UserBalance';
+
 
 
 
