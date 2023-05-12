@@ -1,8 +1,15 @@
 import { useState } from "react";
-// import { useHistory } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
+//components
 import { useLogin } from "../../hooks/useLogin";
 import { useAuthContext } from "../../hooks/userAuthContext";
+
+//media
+import startImg from '../../media/start-img.jpg';
+
+// styles
+import '../../sass/style.scss'
 
 const UserStart = () => {
   const { user } = useAuthContext();
@@ -12,9 +19,6 @@ const UserStart = () => {
 
   const navigate = useNavigate();
 
-
-  // const history = useHistory(); // Instantiate useHistory hook
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,96 +26,50 @@ const UserStart = () => {
 
     const loginSuccessful = await login(ssn, password);
     if (loginSuccessful) {
-      // history.push("/newpage"); // Navigate to new page
       navigate('/landing');
-      console.log("Yes");
     }
   };
 
   return (
-    <div className="container">
-      {user && (
-        <div>
-          <h2>{user.user.name}</h2>
-        </div>
-      )}
+    <div className="login-page__container">
 
-      <form className="login" onSubmit={handleSubmit}>
-        <h3>Logga in</h3>
+      <div className="login-page__img">
+        {/* <img src={startImg} alt="Avocados" /> */}
+      </div>
 
-        <label>Personnummer:</label>
-        <input
-          type="text"
-          name="ssn"
-          onChange={(e) => setSsn(e.target.value)}
-          value={ssn}
-        />
+      <div className="login-page__form-container">
+        <form onSubmit={handleSubmit}>
+          <div className="login-page__form-text">
+            <h3>GlimCrub</h3>
+            <p>Registrera din mat här</p>
+          </div>
 
-        <label>PIN</label>
-        <input
-          type="password"
-          name="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
+          <div className="login-page__form-input">
+            {/* <label>Personnummer:</label> */}
+            <input
+              type="text"
+              name="ssn"
+              onChange={(e) => setSsn(e.target.value)}
+              value={ssn}
+              placeholder="Personnummer"
+            />
 
-        <button>Logga in</button>
-        {error && <div className="error">{error}</div>}
-      </form>
+            {/* <label>PIN</label> */}
+            <input
+              type="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              placeholder="PIN"
+            />
+
+            <button>Logga in</button>
+            {error && <div className="error">{error}</div>}
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
 
 export default UserStart;
-
-// import { useEffect, useState } from "react";
-
-// // components
-// import UserLogin from "../../components/users/UserLogin";
-
-// const UserStart = () => {
-// const [users, setUsers] = useState(null)
-
-// useEffect(() => {
-// const fetchUser = async () => {
-// const response = await fetch('/api/users')
-// const json = await response.json()
-
-// if (response.ok) {
-// setUsers(json)
-// }
-// }
-
-// fetchUser()
-// }, [])
-
-// const [products, setProducts] = useState(null);
-
-// useEffect(() => {
-// const fetchMenu = async () => {
-// const response = await fetch("/api/products");
-// const json = await response.json();
-
-// if (response.ok) {
-// setProducts(json);
-// }
-// };
-
-// fetchMenu();
-// }, []);
-
-// return (
-// <div className="start">
-// <UserLogin />
-// {/* <div className="users">
-// {products && products.map((product) =>
-// product.menu && product.menu.snack.map((item) => (
-// <p key={item._id}>{item.name}</p>
-// ))
-// )}
-// </div> */}
-// </div>
-// );
-// };
-
-// export default UserStart;
