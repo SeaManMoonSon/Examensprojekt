@@ -5,7 +5,7 @@ import requireAuth from "../middleware/requireAuth.js";
 const router = express.Router();
 
 // Require auth for all product routes
-router.use(requireAuth);
+// router.use(requireAuth);
 
 // Add new product
 router.post('/', ProductController.createProduct);
