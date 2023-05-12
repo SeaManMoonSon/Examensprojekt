@@ -3,7 +3,6 @@ import { UserStart, UserLanding, Fika } from '../pages';
 export const routes = [
   {
     path: '/login',
-    exact: true,
     component: UserStart
   },
   {
@@ -11,7 +10,7 @@ export const routes = [
     component: UserStart
   },
   {
-    path: '/userlanding',
+    path: '/landing',
     component: UserLanding
   },
   {

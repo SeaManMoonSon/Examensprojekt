@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from "react"
-
+import UserConfirmation from '../users/UserConfirmation'
 
 
 // <div className="users">
@@ -14,8 +14,12 @@ import { useEffect, useState } from "react"
 import './categories.css'
 
 const Categories = () => {
-
+    const [popUp, setPopup] = useState(false);
     const [products, setProducts] = useState(null)
+
+    const handlePopup = () => {
+        setPopup(true);
+    }
 
     useEffect(() => {
         const fetchMenu = async () => {
@@ -32,40 +36,32 @@ const Categories = () => {
 
     return (
 
-        <div className="users">
-
-            {/* {products &&
-                products.forEach((product) => {
-                    if(product.category !== 'fika') {
-                        <p key={product._id}>{product.category}</p>
-                    }
-                })} */}
-
-            {/* {products && products
-                .filter((product) => product.category !== 'Fika')
-                .map((product) => (
-                    <p key={product._id}>{product.category}</p>
-                ))
-            } */}
-
-            {products && (
-                <>
-                    {products.map((product, index) => {
-                        if (product.category === 'Fika') {
-                            if (index === 0 || products[index - 1].category !== 'Fika') {
-                                return <p key={product._id}>Fika</p>;
+        <div className="categories__container">
+            <div className="categories__container-products">
+                {products && (
+                    <>
+                        {products.map((product, index) => {
+                            if (product.category === 'Fika') {
+                                if (index === 0 || products[index - 1].category !== 'Fika') {
+                                    return <button key={product._id}>Fika</button>;
+                                }
+                            } else {
+                                return <button onClick={handlePopup} key={product._id}>{product.category}</button>;
                             }
-                        } else {
-                            return <p key={product._id}>{product.category}</p>;
-                        }
-                        return null;
-                    })}
-                </>
+                            return null;
+                        })}
+                    </>
+                )}
+            </div>
+
+            {popUp && (
+                <div>
+                    <UserConfirmation/>
+                </div>
             )}
-
-
-
         </div>
+
+
     );
 
 }
