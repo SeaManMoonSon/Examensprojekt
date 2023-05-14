@@ -34,7 +34,6 @@ const UserStart = () => {
     <div className="login-page__container">
 
       <div className="login-page__img">
-        {/* <img src={startImg} alt="Avocados" /> */}
       </div>
 
       <div className="login-page__form-container">

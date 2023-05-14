@@ -1,0 +1,78 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+@use '../../components/misc/buttons' as *;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.categories-container {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    text-align: center;
+    height: 100vh;
+
+    .categories__user-container {
+        display: flex;
+        position: relative;
+
+        .categories__img {
+            // background-image: url('../../../media/pineapple-landing.jpg');
+            // background-size: cover;
+            background-color: #DFDACE;
+            // filter: blur(5px);
+            height: 100vh;
+            width: 100%;
+
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(247, 247, 247, 0.5);
+            }
+        }
+
+        .categories__user {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+
+    .categories__menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .categories__menu-welcome {
+            padding: 2rem;
+            font-family: $primary-font;
+            font-size: 35px;
+            letter-spacing: 2px;
+
+            p {
+                padding: 1rem;
+                font-family: $secondary-font;
+                font-size: 25px;
+                letter-spacing: 0;
+            }
+        }
+    }
+
+}
