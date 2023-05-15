@@ -18,6 +18,14 @@ const UserLanding = () => {
       <div className="categories__img"></div>
 
       <div className="categories__user">
+      <div className="categories__menu-welcome">
+          {user && (
+            <div>
+              <h3>Välkommen, {user.user.name.split(" ")[0]}</h3>
+            </div>
+          )}
+          <p>Vad vill du äta idag?</p>
+        </div>
         <div className="categories__user-balance">
           <UserBalance />
         </div>
@@ -28,14 +36,7 @@ const UserLanding = () => {
       </div>
 
       <div className="categories__menu">
-      <div className="categories__menu-welcome">
-          {user && (
-            <div>
-              <h3>Välkommen, {user.user.name}</h3>
-            </div>
-          )}
-          <p>Vad vill du äta idag?</p>
-        </div>
+
 
         <div className="categories__menu-items">
           <Categories />
