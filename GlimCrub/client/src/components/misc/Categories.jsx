@@ -11,7 +11,7 @@ import UserConfirmation from '../users/UserConfirmation'
 // ))}
 // </div>
 // styles
-import './categories.css'
+import '../../sass/style.scss'
 
 const Categories = () => {
     const [popUp, setPopup] = useState(false);

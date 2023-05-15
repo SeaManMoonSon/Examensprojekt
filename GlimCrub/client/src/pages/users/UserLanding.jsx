@@ -6,24 +6,26 @@ import UserBalance from "../../components/users/UserBalance";
 import UserConfirmation from "../../components/users/UserConfirmation";
 import { useAuthContext, userAuthContext } from "../../hooks/userAuthContext";
 
+import '../../sass/style.scss'
+
 const UserLanding = () => {
   const { user } = useAuthContext();
 
-
-
   return (
     <div className="categories-container">
+
+      <div className="categories__user-container">
+      <div className="categories__img"></div>
+
       <div className="categories__user">
-        <div className="categories__user-info">
+      <div className="categories__menu-welcome">
           {user && (
             <div>
-              <h2>{user.user.name}</h2>
+              <h3>Välkommen, {user.user.name.split(" ")[0]}</h3>
             </div>
           )}
-
-          <h3>Vad vill du äta idag?</h3>
+          <p>Vad vill du äta idag?</p>
         </div>
-
         <div className="categories__user-balance">
           <UserBalance />
         </div>
@@ -31,15 +33,17 @@ const UserLanding = () => {
           <Logout />
         </div>
       </div>
+      </div>
 
       <div className="categories__menu">
-        <p>Meny:</p>
+
+
         <div className="categories__menu-items">
           <Categories />
-          <CategoriesFika />
+          {/* <CategoriesFika /> */}
+        </div>
         </div>
       </div>
-    </div>
   );
 };
 

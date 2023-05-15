@@ -3,6 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useAuthContext } from './hooks/userAuthContext';
 
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
+
 // Pages
 import { Dashboard, AdminProducts, AdminStart, Users, Fika, UserStart, UserLanding } from './pages';
 

@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLogout } from '../../hooks/useLogout';
 
+// styles
+import '../../sass/style.scss'
+
 const Logout = () => {
     const { logout } = useLogout()
 
