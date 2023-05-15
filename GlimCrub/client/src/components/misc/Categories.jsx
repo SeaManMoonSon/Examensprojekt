@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from "react"
 import UserConfirmation from '../users/UserConfirmation'
-import URL from '../../proxyURL';
+import URL from '../../proxyURL.js';
 
 
 // <div className="users">
