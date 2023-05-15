@@ -1,6 +1,6 @@
 import React from 'react';
-import { useEffect, useState } from "react"
-import URL from '../../src/proxyURL.js';
+import { useEffect, useState } from "react";
+import URL from '../../proxyURL.js';
 
 
 

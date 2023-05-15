@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "./userAuthContext";
-import URL from "../../src/proxyURL.js"
+import URL from "../proxyURL.js";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
