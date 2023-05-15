@@ -38,12 +38,12 @@ const UserStart = () => {
     <div className="start">
       <UserLogin />
       {/* <div className="users">
-{products && products.map((product) =>
-product.menu && product.menu.snack.map((item) => (
-<p key={item._id}>{item.name}</p>
-))
-)}
-</div> */}
+        {products && products.map((product) => 
+        product.menu && product.menu.snack.map((item) => (
+                <p key={item._id}>{item.name}</p>
+              ))
+          )}
+      </div> */}
     </div>
   );
 };
