@@ -1,0 +1,90 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+@use '../../components/misc/buttons' as *;
+@use '../../utils/animations' as *;
+
+.admin-login-page__container {
+    background-color: $bg-color;
+    display: grid;
+    justify-content: center;
+
+    grid-template-columns: 1fr 2fr;
+    height: 100%;
+
+    .admin-login-page__img {
+        background: url('../../../media/admin-login.jpg') no-repeat center center;
+        width: 30rem;
+        background-size: cover;
+        height: 100vh;
+    }
+
+    .admin-login-page__form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .admin-login-page__form-text {
+            text-align: center;
+            padding-bottom: 2rem;
+
+            h3 {
+                font-family: $primary-font;
+                font-size: 80px;
+                letter-spacing: 0.2rem;
+                color: $font-color;
+
+                    -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+                            animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+                
+            }
+
+            p {
+                font-family: $secondary-font;
+                font-size: 30px;
+                color: $font-color;
+                text-transform: uppercase;
+            }
+        }
+
+        .admin-login-page__form-input {
+            display: grid;
+            align-items: center;
+            grid-template-rows: 1fr 1fr 1fr;
+            justify-content: center;
+
+            input {
+                width: 400px;
+                height: 70px;
+                font-family: $secondary-font;
+                font-size: 20px;
+                border-style: none;
+                margin: 0.5rem;
+                padding: 1.2rem;
+
+                &:focus {
+                    border-color: $btn-color;
+                    outline: none;
+                    box-shadow: 0 0 0 0.17rem $btn-color;
+                }
+
+            }
+
+            button {
+                font-family: $primary-font;
+                color: $secondary-font-color;
+                background-color: #10150E;
+            
+                letter-spacing: 0.1rem;
+                font-size: 25px;
+                border-radius: 38px;
+                border-style: none;
+                
+                width: 400px;
+                height: 70px;
+
+                margin: 1.5rem 0 0 0.5rem;
+            }
+        }
+
+    }
+}
