@@ -1,16 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from "react"
 import UserConfirmation from '../users/UserConfirmation'
-import URL from '../../proxyURL.js';
 
-
-// <div className="users">
-// {products && products.map((product) => (
-// product.menu && product.menu.map((item) => (
-//     <p key={item._id}>{item.type}</p>
-//     ))
-// ))}
-// </div>
 // styles
 import '../../sass/style.scss'
 
@@ -24,7 +15,7 @@ const Categories = () => {
 
     useEffect(() => {
         const fetchMenu = async () => {
-            const response = await fetch(`${URL}/api/products`)
+            const response = await fetch('/api/products')
             const json = await response.json()
 
             if (response.ok) {
@@ -56,8 +47,12 @@ const Categories = () => {
             </div>
 
             {popUp && (
-                <div>
-                    <UserConfirmation/>
+
+                <div className="popup__wrap">
+                    <div className="popup__overlay"></div>
+                    <div className="categories__user-confirmation">
+                        <UserConfirmation />
+                    </div>
                 </div>
             )}
         </div>

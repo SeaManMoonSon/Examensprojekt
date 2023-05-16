@@ -1,6 +1,7 @@
 @use '../../base/colors' as *;
 @use '../../base/typography' as *;
 @use '../../components/misc/buttons' as *;
+@use '../../utils/animations' as *;
 
 * {
     padding: 0;
@@ -14,6 +15,9 @@
     grid-template-columns: 2fr 3fr;
     text-align: center;
     height: 100vh;
+
+	-webkit-animation: fade-in 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: fade-in 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 
     .categories__menu-welcome {
         padding: 0 2rem 2rem 2rem;

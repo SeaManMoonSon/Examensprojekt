@@ -1,3 +1,4 @@
+import { UserConfirmation } from '../components';
 import { UserStart, UserLanding, Fika } from '../pages';
 
 export const routes = [
@@ -12,6 +13,11 @@ export const routes = [
   {
     path: '/landing',
     component: UserLanding
+  },
+  {
+    path: '/landing',
+    component: UserConfirmation
+
   },
   {
     path: '/fika',

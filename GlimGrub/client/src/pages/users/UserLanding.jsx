@@ -26,6 +26,7 @@ const UserLanding = () => {
           )}
           <p>Vad vill du äta idag?</p>
         </div>
+
         <div className="categories__user-balance">
           <UserBalance />
         </div>
@@ -36,8 +37,7 @@ const UserLanding = () => {
       </div>
 
       <div className="categories__menu">
-
-
+        
         <div className="categories__menu-items">
           <Categories />
           {/* <CategoriesFika /> */}
