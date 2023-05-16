@@ -1,0 +1,16 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+
+@mixin button-style {
+    font-family: $primary-font;
+    color: $secondary-font-color;
+    background-color: $btn-color;
+
+    letter-spacing: 0.1rem;
+    font-size: 25px;
+    border-radius: 38px;
+    border-style: none;
+    
+    width: 400px;
+    height: 70px;
+  }
