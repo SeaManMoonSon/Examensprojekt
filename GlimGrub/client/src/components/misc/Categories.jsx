@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from "react"
 import UserConfirmation from '../users/UserConfirmation'
+import URL from "../../proxyURL.js";
 
 // styles
 import '../../sass/style.scss'
@@ -15,7 +16,7 @@ const Categories = () => {
 
     useEffect(() => {
         const fetchMenu = async () => {
-            const response = await fetch('/api/products')
+            const response = await fetch(`${URL}/api/products`);
             const json = await response.json()
 
             if (response.ok) {

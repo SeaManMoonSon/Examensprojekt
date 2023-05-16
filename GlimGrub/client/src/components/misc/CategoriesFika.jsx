@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from "react"
-
+import URL from '../../proxyURL.js';
 
 
 // <div className="users">
@@ -19,7 +19,7 @@ const CategoriesFika = () => {
 
     useEffect(() => {
         const fetchMenu = async () => {
-            const response = await fetch('/api/products')
+            const response = await fetch(`${URL}/api/products`)
             const json = await response.json()
 
             if (response.ok) {
