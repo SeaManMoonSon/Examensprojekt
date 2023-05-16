@@ -18,9 +18,3 @@ Den här punkten kan komma att utvecklas efter ett möte med köksansvarig på G
    - Den fyrsiffriga koden kommer besökarna att få välja på egen hand, utanför applikationen och fungera som ett lösenord
 - Göra det möjligt för kökspersonalen att kunna se vilka som har registrerat sig för dagen
    - Personalen ska kunna se namnen på de som har registrerat sig men inte resterande information
-- Visa veckans matsedel
-- Betygsättning av dagens mat
-   - Göra det möjligt för besökarna att betygsätta dagens mat på vägen ut?
-
-
-
