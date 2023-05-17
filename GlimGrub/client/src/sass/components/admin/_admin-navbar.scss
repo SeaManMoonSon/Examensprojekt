@@ -1,0 +1,34 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+@use '../../components/misc/buttons' as *;
+@use '../../utils/animations' as *;
+
+.navbar__container {
+    margin: 3rem;
+
+    ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-content: center;
+        text-align: center;
+
+        li {
+            background-color: deeppink;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0.2rem;
+
+            a {
+                text-decoration: none;
+                text-transform: uppercase;
+                font-family: $secondary-font;
+                letter-spacing: 0.1rem;
+                font-size: 20px;
+                color: $font-color;
+
+            }
+        }
+    }
+}
