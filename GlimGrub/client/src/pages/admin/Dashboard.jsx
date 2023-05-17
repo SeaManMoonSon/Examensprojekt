@@ -14,7 +14,7 @@ const AdminDashboard = () => {
             <h1>Aktuellt flöde</h1>
             <p>Just nu finns det inte något aktivt flöde.</p>
             <div className="admin-dashboard__info-btn">
-                <button>Starta</button>
+                <button>Återställ</button>
             </div>
             </div>
         </div>
