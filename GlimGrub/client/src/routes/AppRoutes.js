@@ -19,6 +19,10 @@ export const routes = [
     component: UserConfirmation
 
   },
+  // {
+  //   path: '/admin/landing',
+  //   component: 
+  // },
   {
     path: '/fika',
     component: Fika
