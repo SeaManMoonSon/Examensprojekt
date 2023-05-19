@@ -11,6 +11,7 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         justify-content: center;
         text-align: center;
+        position: relative;
 
         li {
             background-color: deeppink;
@@ -19,6 +20,7 @@
             justify-content: center;
             align-items: center;
             margin: 0.2rem;
+            position: relative;
 
             a {
                 text-decoration: none;
@@ -30,5 +32,10 @@
 
             }
         }
+    }
+
+    .admin-searchresult-name {
+        position: absolute;
+        z-index: 100;
     }
 }

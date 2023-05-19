@@ -1,4 +1,4 @@
-export { default as AdminLogin } from './admin/AdminLogin';
+// export { default as AdminLogin } from './admin/AdminLogin';
 export { default as AdminNavigation } from './admin/AdminNavbar';
 export { default as AdminSaldo } from './admin/AdminSaldo';
 export { default as AdminSearchBar } from './admin/AdminSearchBar';

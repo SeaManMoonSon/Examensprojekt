@@ -1,11 +1,14 @@
 import React from 'react'
 
-const AdminSearchResult = ({ results }) => {
+// styles
+import '../../sass/style.scss'
+
+const AdminSearchResultList = ({ results }) => {
   return (
     <div className="admin__searchresult-container">
         {
             results.map((result, id) => {
-                return <div key={id}>{result.name}</div>
+                return <div className="admin-searchresult-name" key={id}>{result.name}</div>
             })
         }
         {/* <div>A</div>
@@ -14,4 +17,4 @@ const AdminSearchResult = ({ results }) => {
     </div>
   )
 }
-export default AdminSearchResult
+export default AdminSearchResultList

@@ -4,34 +4,35 @@
 @use '../../utils/animations' as *;
 @use '../../layout/grid' as *;
 
-.admin__container {
+.admin__container-start {
 
-    h1 {
-        font-family: $primary-font;
-        letter-spacing: 0.1rem;
-        font-size: 45px;
-    }
-
-    p {
-        font-family: $secondary-font;
-        font-size: 25px;
-    }
-
-    .admin-dashboard__info-text {
-        height: 100vh;
-        padding: 2rem;
-    }
-
-    .admin-dashboard__info-btn {
-        padding: 2rem;
-
-        button {
-            padding: 1.5rem;
-            width: 200px;
-            font-family: $secondary-font;
-            text-transform: uppercase;
-            font-size: 25px;
+    .admin__dashboard-info {
+        background-color: deeppink;   
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    
+        .admin__dashboard-info_text {
+            padding-left: 3rem;
+            
+            h2 {
+                font-family: $primary-font;
+                letter-spacing: 0.1rem;
+                font-size: 30px;
+            }
         }
+
+        .admin__dashboard-info_btn {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 3rem;
+            
+            button {
+                font-family: $primary-font;
+                font-size: 20px;
+                padding: 0.5rem;
+            }
+        }
+    
     }
 
 }

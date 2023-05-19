@@ -32,25 +32,25 @@ const Users = () => {
     }, [])
 
 
-    const handleStaff = () => {
-        console.log("Personal");
+    // const handleStaff = () => {
+    //     console.log("Personal");
 
-        const filterStaff = users.filter((user) => user.role === "personal")
+    //     const filterStaff = users.filter((user) => user.role === "personal")
        
-        setFilteredUsers(filterStaff);
+    //     setFilteredUsers(filterStaff);
 
-        console.log(filterStaff);
-    }
+    //     console.log(filterStaff);
+    // }
 
-    const handleParticipants = () => {
-        console.log("Användare")
+    // const handleParticipants = () => {
+    //     console.log("Användare")
 
-        const filterParticipants = users.filter((user) => user.role === "deltagare")
+    //     const filterParticipants = users.filter((user) => user.role === "deltagare")
 
-        setFilteredUsers(filterParticipants);
+    //     setFilteredUsers(filterParticipants);
        
-        console.log(filterParticipants);
-    }
+    //     console.log(filterParticipants);
+    // }
 
     // const handleShowAllUsers = () => {
     //     setFilteredUsers(null); // 
@@ -76,8 +76,8 @@ const Users = () => {
             </div>
 
             <div className="admin__user-btns">
-                <button onClick={handleStaff}>Personal</button>
-                <button onClick={handleParticipants}>Deltagare</button>
+                {/* <button onClick={handleStaff}>Personal</button>
+                <button onClick={handleParticipants}>Deltagare</button> */}
                 {/* <button onClick={handleShowAllUsers}>Visa alla</button> */}
 
             </div>
@@ -94,9 +94,6 @@ const Users = () => {
                                     <div className="admin__show-users_list-balance"><button>Redigera saldo</button></div>
                                 </div>;
                             })}
-                        
-                    
-
 
                     {/* <div className="admin__show-users_list"><p>Simon Månsson</p><div className="admin__show-users_list-balance"><button>Redigera saldo</button></div></div> */}
                     {/* <div className="admin__show-users_list"><p>Veronica Selenwall</p><div className="admin__show-users_list-balance"><button>Redigera saldo</button></div></div> */}
