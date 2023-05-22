@@ -25,14 +25,13 @@ const ListUsers = () => {
 
     return (
         <div>
-            <h1>Här listas users</h1>
+            {/* <h1>Här listas users</h1> */}
             <div>
                 <ul>
                 {purchases && 
-                        
                         purchases.map((user) => {
                             return <div className="admin__show-users_list" key={user._id}>
-                                <p>{user.user_id}</p>
+                                <p>{JSON.stringify(user.user_id.name).replace(/\"/g, "")}</p>
                                 <p>Total kostnad: {user.price_total}</p>
                                 <p>{user.date}</p>
                             </div>;

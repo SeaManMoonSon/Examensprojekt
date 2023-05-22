@@ -8,6 +8,11 @@ import ListUsers from "../../components/misc/ListUsers";
 import '../../sass/style.scss'
 
 const AdminDashboard = () => {
+
+    const handleClearFeed = () => {
+        console.log("Im triggered");
+    }
+
     return (
         <div className="admin__container-start">
             <AdminNavbar />
@@ -16,7 +21,7 @@ const AdminDashboard = () => {
                     <h2>Köp</h2>
                 </div>
                 <div className="admin__dashboard-info_btn">
-                    <button>Rensa flöde</button>
+                    <button onClick={handleClearFeed}>Rensa flöde</button>
                 </div>
             </div>
             <div className="admin__dashboard-users_payflow">

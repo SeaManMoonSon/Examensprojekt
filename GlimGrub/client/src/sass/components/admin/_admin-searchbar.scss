@@ -1,16 +1,10 @@
-// .admin__searchbar-container {
-//     background-color: white;
-//     width: 10rem;
-//     border-radius: 2rem;
-//     padding: 1rem;
-//     height: 2rem;
-//     display: flex;
-//     align-items: center;
-// }
-
-
-.admin-searchresult-name {
-    background-color:darksalmon;
-    padding: 1rem;
-    z-index: 2;
+.admin__searchresult-container {
+    position: absolute;
 }
+
+
+// .admin-searchresult-name {
+//     background-color:darksalmon;
+//     padding: 1rem;
+//     z-index: 2;
+// }

@@ -18,8 +18,8 @@ const AdminNavigation = () => {
     return (
         <div className="navbar__container">
             <nav>
-                <ul>
-                    <li><a href="/admin/landing">Start</a></li>
+                
+                    <div><a href="/admin/landing">Start</a></div>
 
                     <div className="admin__searchbar-container">
                         <AdminSearchBar setResults={setResults} />
@@ -27,11 +27,11 @@ const AdminNavigation = () => {
                             <AdminSearchResultList results={results} />
                         </div>
                     </div>
-
-                    <li><a href="/admin/products">Produkter</a></li>
+                    
+                    <div><a href="/admin/products">Produkter</a></div>
                     {/* <li><a href="/admin/users">Användare</a></li> */}
-                    <li><Logout /></li>
-                </ul>
+                    <div><Logout /></div>
+                
             </nav>
         </div>
     )

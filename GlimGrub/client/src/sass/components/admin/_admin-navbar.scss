@@ -5,15 +5,13 @@
 
 .navbar__container {
     margin: 3rem;
+    overflow: visible;
 
-    ul {
+    nav {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        justify-content: center;
-        text-align: center;
-        position: relative;
+        grid-template-columns: 1fr 5fr 1fr 1fr;
 
-        li {
+        & > div {
             background-color: deeppink;
             list-style: none;
             display: flex;
@@ -21,6 +19,25 @@
             align-items: center;
             margin: 0.2rem;
             position: relative;
+            width: 100%;
+            border: 1px solid black;
+
+            &.admin__searchbar-container {
+                flex-direction: column;
+
+                & > div {
+                    width: 100%;
+                }
+
+                input {
+                    padding: 1.2rem;
+                    min-width: 100%;
+                }
+
+                #search-icon {
+                    position: absolute;
+                }
+            }
 
             a {
                 text-decoration: none;
@@ -31,11 +48,15 @@
                 color: $font-color;
 
             }
-        }
     }
 
+}
+
     .admin-searchresult-name {
-        position: absolute;
-        z-index: 100;
+        background-color: yellow;
+        padding: 1rem;
+        width: 100%;
+        top: 10px;
+        left: 0px;
     }
 }
