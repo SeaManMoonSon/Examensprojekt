@@ -1,0 +1,38 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+@use '../../components/misc/buttons' as *;
+@use '../../utils/animations' as *;
+@use '../../layout/grid' as *;
+
+.admin__container-start {
+
+    .admin__dashboard-info {
+        background-color: deeppink;   
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    
+        .admin__dashboard-info_text {
+            padding-left: 3rem;
+            
+            h2 {
+                font-family: $primary-font;
+                letter-spacing: 0.1rem;
+                font-size: 30px;
+            }
+        }
+
+        .admin__dashboard-info_btn {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 3rem;
+            
+            button {
+                font-family: $primary-font;
+                font-size: 20px;
+                padding: 0.5rem;
+            }
+        }
+    
+    }
+
+}

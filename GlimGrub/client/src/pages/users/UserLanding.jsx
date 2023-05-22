@@ -18,30 +18,32 @@ const UserLanding = () => {
       <div className="categories__img"></div>
 
       <div className="categories__user">
+
+
+        <div className="categories__user-balance">
+          {/* <UserBalance /> */}
+        </div>
+        <div className="categories__user-logout">
+          
+        </div>
+      </div>
+      </div>
+
+      <div className="categories__menu">
       <div className="categories__menu-welcome">
           {user && (
             <div>
               <h3>Välkommen, {user.user.name.split(" ")[0]}</h3>
             </div>
           )}
-          <p>Vad vill du äta idag?</p>
+          <p>Ditt saldo: {user.user.balance} sek</p>
         </div>
-
-        <div className="categories__user-balance">
-          <UserBalance />
-        </div>
-        <div className="categories__user-logout">
-          <Logout />
-        </div>
-      </div>
-      </div>
-
-      <div className="categories__menu">
         
         <div className="categories__menu-items">
           <Categories />
           {/* <CategoriesFika /> */}
         </div>
+        <Logout />
         </div>
       </div>
   );
