@@ -24,7 +24,7 @@ const getPurchases = async (req, res) => {
 };
 
 // Get one purchase
-const getPurchase = async (req,res) => {
+const getPurchase = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -36,41 +36,41 @@ const getPurchase = async (req,res) => {
   if (!purchase) {
     return res.status(404).json({ error: "No purchase found" });
   }
- 
+
   res.status(200).json(purchase);
-}
+};
 
 // Create new purchase
 const createPurchase = async (req, res) => {
-    const { user_id, date, items } = req.body;
+  const { user_id, date, items } = req.body;
 
-    // Calculate total price by summing individual item prices
-    const price_total = items.reduce((total, item) => {
-        return total + item.price_one * item.quantity;
-    }, 0);
+  // Calculate total price by summing individual item prices
+  const price_total = items.reduce((total, item) => {
+    return total + item.price_one * item.quantity;
+  }, 0);
 
-    // Convert the items array to the correct structure for listing
-    const formattedItems = items.map(item => ({
-        product_id: item.product_id,
-        quantity: item.quantity,
-        price_one: item.price_one
-    }));
+  // Convert the items array to the correct structure for listing
+  const formattedItems = items.map((item) => ({
+    product_id: item.product_id,
+    quantity: item.quantity,
+    price_one: item.price_one,
+  }));
 
-    // Add document to database
-    try {
-        const purchase = await Purchase.create({ user_id, price_total, date, items: formattedItems });
+  // Add document to database
+  try {
+    const purchase = await Purchase.create({
+      user_id,
+      price_total,
+      date,
+      items: formattedItems,
+    });
 
-        const user = await User.findById(user_id);
-        if (user && user.balance - price_total >= 0) {
-            user.balance -= price_total;
-            await user.save();
-        } else if (user.balance - price_total <= 0) {
-            res.status(400).json({ error: "User balance is too low" });
-        }
-        
-        res.status(200).json(purchase);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
+    const user = await User.findById(user_id);
+    if (user && user.balance - price_total >= 0) {
+      user.balance -= price_total;
+      await user.save();
+    } else if (user.balance - price_total <= 0) {
+      res.status(400).json({ error: "User balance is too low" });
     }
 
     res.status(200).json(purchase);
