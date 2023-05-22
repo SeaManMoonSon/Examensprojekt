@@ -24,6 +24,21 @@ const getPurchases = async (req, res) => {
 };
 
 // Get one purchase
+const getPurchase = async (req,res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No purchase found" });
+  }
+
+  const purchase = await Purchase.findById(id);
+
+  if (!purchase) {
+    return res.status(404).json({ error: "No purchase found" });
+  }
+ 
+  res.status(200).json(purchase);
+}
 
 // Create new purchase
 const createPurchase = async (req, res) => {
@@ -89,4 +104,4 @@ const exportPurchases = async (req, res) => {
   }
 };
 
-export default { getPurchases, createPurchase, exportPurchases };
+export default { getPurchases, createPurchase, getPurchase, exportPurchases };
