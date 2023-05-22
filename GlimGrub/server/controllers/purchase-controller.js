@@ -43,9 +43,11 @@ const createPurchase = async (req, res) => {
         const purchase = await Purchase.create({ user_id, price_total, date, items: formattedItems });
 
         const user = await User.findById(user_id);
-        if (user) {
+        if (user && user.balance - price_total >= 0) {
             user.balance -= price_total;
             await user.save();
+        } else if (user.balance - price_total <= 0) {
+            res.status(400).json({ error: "User balance is too low" });
         }
         
         res.status(200).json(purchase);
