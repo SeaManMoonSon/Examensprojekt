@@ -9,4 +9,7 @@ router.post('/', PurchaseController.createPurchase);
 // Get all purchases
 router.get('/', PurchaseController.getPurchases);
 
+// Export purchases
+router.post('/export', PurchaseController.exportPurchases);
+
 export default router;

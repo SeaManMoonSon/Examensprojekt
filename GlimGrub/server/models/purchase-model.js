@@ -1,4 +1,8 @@
 import mongoose from "mongoose";
+import dateFormat from "dateformat";
+
+const now = new Date();
+const formattedDate = dateFormat(now, "yyyy-mm-dd");
 
 const purchaseSchema = new mongoose.Schema({
   // user_id, price_total, date, items[product_id, (quantity?), price_one]; 
@@ -12,8 +16,8 @@ const purchaseSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    type: Date,
-    default: Date.now,
+    type: String,
+    default: formattedDate,
   },
   items: [{
       product_id: {
