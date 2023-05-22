@@ -29,9 +29,8 @@ function App() {
             <Route path="/admin/landing" element={user ? <Dashboard /> : <Navigate to="/admin/login"/>} />
             {/* <Route path="/admin/users" element={user ? <Users /> : <Navigate to="/admin/login"/>}/> */}
             <Route path="/admin/products" element={user ? <AdminProducts /> : <Navigate to="/admin/login"/>}/>
-
+            
             <Route path="/admin/users/:id" element={user ? <AdminSingleUser /> : <Navigate to="/admin/users/:id"/>}/>
-
           </Routes>
         </Router>
         

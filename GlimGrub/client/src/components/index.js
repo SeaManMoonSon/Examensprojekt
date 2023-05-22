@@ -3,6 +3,7 @@ export { default as AdminNavigation } from './admin/AdminNavbar';
 export { default as AdminSaldo } from './admin/AdminSaldo';
 export { default as AdminSearchBar } from './admin/AdminSearchBar';
 export { default as AdminSearchResultList } from './admin/AdminSearchResultList';
+export { default as AdminPurchase } from './admin/AdminPurchase';
 // export { default as AdminSingleUser } from '../pages/admin/AdminSingleUser';
 
 export { default as Buttons } from './misc/Buttons';

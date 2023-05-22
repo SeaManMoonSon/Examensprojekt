@@ -2,8 +2,6 @@ import React from 'react';
 import { useAuthContext } from "../../hooks/userAuthContext";
 import { FaWallet } from 'react-icons/fa';
 
-
-
 // styles
 import '../../sass/style.scss'
 
