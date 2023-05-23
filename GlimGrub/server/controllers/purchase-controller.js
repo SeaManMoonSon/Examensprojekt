@@ -1,4 +1,4 @@
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
 import { Parser } from "json2csv";
 
 import Purchase from "../models/purchase-model.js";
@@ -26,19 +26,21 @@ const getPurchases = async (req, res) => {
 // Get one purchase
 const getPurchase = async (req, res) => {
   const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No purchase found" });
-  }
-
-  const purchase = await Purchase.findById(id);
-
+  
+  const purchase = await Purchase.find({user_id: id})
+  .populate("user_id", "name")
+  .populate({
+  path: "items.product_id",
+  model: "Product",
+  select: "name",
+  });
+  
   if (!purchase) {
-    return res.status(404).json({ error: "No purchase found" });
+  return res.status(404).json({ error: "No purchase found" });
   }
-
+  
   res.status(200).json(purchase);
-};
+  };
 
 // Create new purchase
 const createPurchase = async (req, res) => {

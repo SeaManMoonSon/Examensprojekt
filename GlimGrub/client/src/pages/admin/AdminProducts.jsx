@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import URL from "../../proxyURL.js";
+
+
 
 // components
 import AdminNavbar from "../../components/admin/AdminNavbar";
@@ -7,6 +10,22 @@ import AdminNavbar from "../../components/admin/AdminNavbar";
 import '../../sass/style.scss'
 
 const AdminProducts = () => {
+
+    const [products, setProducts] = useState(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const response = await fetch(`${URL}/api/products`);
+            const json = await response.json()
+
+            if (response.ok) {
+                setProducts(json)
+            }
+        }
+
+        fetchProducts()
+    }, [])
+
     return (
         <div className="admin__container">
             <AdminNavbar />
@@ -20,7 +39,16 @@ const AdminProducts = () => {
             <div className="admin__products-list">
 
                 <ul>
-                    <div className="admin__products-list_item">
+
+                {products &&
+                        products.map((product) => {
+                            return <div key={product._id}>
+                                <p>{product.name}</p>
+                                <p>{product.price}</p>
+                            </div>;
+                        })}
+
+                    {/* <div className="admin__products-list_item">
                         <p>Marabou</p>
                         <p>5 kr</p>
                         <div className="admin__products-list_item-wrap">
@@ -34,7 +62,7 @@ const AdminProducts = () => {
                         <div className="admin__products-list_item-wrap">
                             <button>Redigera</button><button>Ta bort</button>
                         </div>
-                    </div>
+                    </div> */}
                 </ul>
 
             </div>
