@@ -40,11 +40,14 @@ const AdminProducts = () => {
 
                 <ul>
 
-                {products &&
+                    {products &&
                         products.map((product) => {
-                            return <div key={product._id}>
+                            return <div className="admin__products-list_item" key={product._id}>
                                 <p>{product.name}</p>
                                 <p>{product.price}</p>
+                                <div className="admin__products-list_item-wrap">
+                                    <button>Redigera</button><button>Ta bort</button>
+                                </div>
                             </div>;
                         })}
 
