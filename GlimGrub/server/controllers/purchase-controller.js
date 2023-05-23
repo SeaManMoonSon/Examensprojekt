@@ -36,11 +36,11 @@ const getPurchase = async (req, res) => {
   });
 
   if (!purchase) {
-    return res.status(404).json({ error: "No purchase found" });
+  return res.status(404).json({ error: "No purchase found" });
   }
-
+  
   res.status(200).json(purchase);
-};
+  };
 
 // Create new purchase
 const createPurchase = async (req, res) => {

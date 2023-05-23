@@ -15,49 +15,54 @@ import '../../sass/style.scss'
 const AdminSingleUser = (props) => {
 
     const { id } = useParams();
+
     const [user, setUser] = useState(null);
-    const [purchases, setPurchases] = useState(null)
+    const [purchases, setPurchases] = useState(null);
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 const response = await fetch(`${URL}/api/users/${id}`);
+
+                console.log('Response status:', response.status);
+
                 if (!response.ok) {
                     throw new Error('User not found');
                 }
-                // console.log("Id: ", id);
 
                 const data = await response.json();
                 setUser(data);
-
-                // console.log("User: ", data);
-
             } catch (error) {
                 console.error(error);
             }
         };
 
         fetchUser();
-    }, [id]);
+    }, [URL, id]);
+
+
 
     useEffect(() => {
         const fetchPayments = async () => {
-            const response = await fetch(`${URL}/api/purchases/${id}`);
+            try {
+                const response = await fetch(`${URL}/api/purchases/${id}`);
 
-            console.log("Payments find id: ", id);
+                console.log('Response status:', response.status);
 
-            console.log(response)
 
-            const json = await response.json()
+                if (!response.ok) {
+                    throw new Error('User not found');
+                }
 
-            console.log("Find json: ", json);
+                const json = await response.json();
+                setPurchases(json);
 
-            if (response.ok) {
-                setPurchases(json)
-                console.log("Here's the json", json);
+                console.log('json:', json);
+
+            } catch (error) {
+                console.error(error);
             }
 
-            // console.log("Payments id: ", id);
         }
 
         fetchPayments()
@@ -86,15 +91,15 @@ const AdminSingleUser = (props) => {
                 {/* <AdminPurchase /> */}
 
                 <h4>Senaste köpen</h4>
-            <ul>
-                {purchases &&
-                    purchases.map((purchase) => {
-                        return <div className="admin__show-users_list" key={purchase._id}>
-                            <p>{purchase.date}</p>
-                            <p>{JSON.stringify(purchase.user_id.name).replace(/\"/g, "")} handlade för totalt {purchase.price_total} kr</p>
-                        </div>;
-                    })}
-            </ul>
+                <ul>
+                    {purchases &&
+                        purchases.map((purchase) => {
+                            return <div className="admin__show-users_list" key={purchase._id}>
+                                <p>{purchase.date}</p>
+                                <p>{JSON.stringify(purchase.user_id.name).replace(/\"/g, "")} handlade för totalt {purchase.price_total} kr</p>
+                            </div>;
+                        })}
+                </ul>
             </div>
 
 
