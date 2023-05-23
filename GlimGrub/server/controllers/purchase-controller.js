@@ -1,4 +1,4 @@
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
 import { Parser } from "json2csv";
 
 import Purchase from "../models/purchase-model.js";
@@ -27,11 +27,13 @@ const getPurchases = async (req, res) => {
 const getPurchase = async (req, res) => {
   const { id } = req.params;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No purchase found" });
-  }
-
-  const purchase = await Purchase.findById(id);
+  const purchase = await Purchase.find({user_id: id})
+  .populate("user_id", "name")
+  .populate({
+    path: "items.product_id",
+    model: "Product",
+    select: "name",
+  });
 
   if (!purchase) {
     return res.status(404).json({ error: "No purchase found" });
@@ -66,10 +68,19 @@ const createPurchase = async (req, res) => {
     });
 
     const user = await User.findById(user_id);
-    if (user && user.balance - price_total >= 0) {
+
+    if (user && user.role === "deltagare" && user.balance - price_total >= 0) {
+      console.log("DELTAGARE OCH PARA FINNS");
       user.balance -= price_total;
       await user.save();
-    } else if (user.balance - price_total <= 0) {
+    }
+    // if (user.role !== "deltagare") {  // **THIS NEEDS A BALANCE RESET BUTTON TO MAKE SENSE**
+    //   console.log("ICKE DELTAGARE");
+    //   user.balance += price_total;
+    //   await user.save();
+    // }
+    if (user.role === "deltagare" && user.balance - price_total < 0) {
+      console.log("PARA FINNS ICKE");
       res.status(400).json({ error: "User balance is too low" });
     }
 
