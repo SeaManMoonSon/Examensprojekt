@@ -1,30 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import URL from "../../proxyURL.js";
 
-
-
 // components
 import AdminNavbar from "../../components/admin/AdminNavbar";
+import AdminAddProduct from '../../components/admin/AdminAddProduct';
 
 // styles
 import '../../sass/style.scss'
 
 const AdminProducts = () => {
-
     const [products, setProducts] = useState(null);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            const response = await fetch(`${URL}/api/products`);
-            const json = await response.json()
+        fetchProducts();
+    }, []);
 
-            if (response.ok) {
-                setProducts(json)
-            }
+    const fetchProducts = async () => {
+        const response = await fetch(`${URL}/api/products`);
+        const json = await response.json();
+
+        if (response.ok) {
+            setProducts(json);
         }
+    };
 
-        fetchProducts()
-    }, [])
+
+    const addProduct = async (product) => {
+        const response = await fetch(`${URL}/api/products`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(product),
+        });
+
+        if (response.ok) {
+            const newProduct = await response.json();
+            setProducts([...products, newProduct]);
+        }
+    };
+
 
     return (
         <div className="admin__container">
@@ -34,10 +49,13 @@ const AdminProducts = () => {
                 <p>Här listas era nuvarande produkter.</p>
             </div>
             <div className="admin__products-add">
-                <button>Lägg till ny produkt via component +</button>
+                <form action="POST">
+                    <input type="text" />
+                    <button></button>
+                </form>
             </div>
             <div className="admin__products-list">
-
+                    <AdminAddProduct addProduct={addProduct}/>
                 <ul>
 
                     {products &&
