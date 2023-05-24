@@ -1,45 +1,49 @@
-import React from 'react';
-import { useEffect, useState } from "react"
+import React from "react";
+import { useEffect, useState } from "react";
 import URL from "../../proxyURL.js";
 
 // styles
 
 const ListUsers = () => {
+  const [purchases, setPurchases] = useState(null);
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetch(`${URL}/api/purchases`);
+      const json = await response.json();
 
-    const [purchases, setPurchases] = useState(null)
+      if (response.ok) {
+        setPurchases(json);
+        // console.log("json", json);
+      }
+    };
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            const response = await fetch(`${URL}/api/purchases`);
-            const json = await response.json()
+    const interval = setInterval(fetchUsers, 10000); // Fetch every 10 second
 
-            if (response.ok) {
-                setPurchases(json)
-                console.log("json", json);
-            }
-        }
+    return () => {
+      clearInterval(interval); // Clear the interval when the component unmounts
+    };
+  }, []);
 
-        fetchUsers()
-    }, [])
+  return (
+    <div>
+      {/* <h1>Här listas users</h1> */}
+      <div>
+        <ul>
+          {purchases &&
+            purchases.map((user) => {
+              return (
+                <div className="admin__show-users_list" key={user._id}>
+                  <p>{JSON.stringify(user.user_id.name).replace(/\"/g, "")}</p>
+                  <p>Total kostnad: {user.price_total}</p>
+                  <p>{user.date}</p>
+                </div>
+              );
+            })}
+        </ul>
+      </div>
+    </div>
+  );
+};
 
-    return (
-        <div>
-            {/* <h1>Här listas users</h1> */}
-            <div>
-                <ul>
-                {purchases && 
-                        purchases.map((user) => {
-                            return <div className="admin__show-users_list" key={user._id}>
-                                <p>{JSON.stringify(user.user_id.name).replace(/\"/g, "")}</p>
-                                <p>Total kostnad: {user.price_total}</p>
-                                <p>{user.date}</p>
-                            </div>;
-                        })}
-                </ul>
-            </div>
-        </div>
-    )
-}
-
-export default ListUsers
+export default ListUsers;
