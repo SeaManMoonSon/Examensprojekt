@@ -6,6 +6,7 @@
 
     .balance__icon {
         font-size: 20px;
+        color: $bg-color-solid;
 
         i {
             font-size: 7rem;
@@ -17,12 +18,15 @@
     letter-spacing: 2px;
     font-size: 50px;
     margin: 1rem;
+    color: $bg-color-solid;
 
 
     h3 {
+    
         font-family: $secondary-font;
         letter-spacing: 0.5px;
         font-size: 25px;
+        color: $bg-color-solid;
     }
 
    }

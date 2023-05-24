@@ -1,13 +1,13 @@
-import React from 'react';
+// import React from 'react';
 
-// styles
+// // styles
 
-const AdminLogin = () => {
-    return (
-        <div>
-            <h1>AdminLogin</h1>
-        </div>
-    )
-}
+// const AdminLogin = () => {
+//     return (
+//         <div>
+//             <h1>AdminLogin</h1>
+//         </div>
+//     )
+// }
 
-export default AdminLogin
+// export default AdminLogin

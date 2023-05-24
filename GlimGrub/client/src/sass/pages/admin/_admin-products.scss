@@ -1,0 +1,62 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+@use '../../components/misc/buttons' as *;
+@use '../../utils/animations' as *;
+@use '../../layout/grid' as *;
+
+
+.admin__container {
+
+    .admin__products-info {
+        h1 {
+            font-family: $primary-font;
+            letter-spacing: 0.1rem;
+            font-size: 45px;
+        }
+
+        p {
+            font-family: $secondary-font;
+            font-size: 25px;
+        }
+
+    }
+
+    .admin__products-add {
+        margin: 5rem;
+
+        button {
+            padding: 1.5rem;
+            width: 500px;
+            font-family: $secondary-font;
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+
+    }
+
+    .admin__products-list {
+
+        .admin__products-list_item {
+            background-color: aqua;
+            margin: 1rem 3rem 1rem 3rem;
+            color: white;
+            display: grid;
+            text-align: start;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            .admin__products-list_item-wrap {
+                background-color: bisque;
+                display: grid;
+                text-align: end;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                
+                button {
+                    padding: 1rem;
+                }
+            }
+        }
+    }
+
+}

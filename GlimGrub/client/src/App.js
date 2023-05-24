@@ -6,7 +6,7 @@ import { useAuthContext } from './hooks/userAuthContext';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // Pages
-import { Dashboard, AdminProducts, AdminStart, Users, Fika, UserStart, UserLanding } from './pages';
+import { Dashboard, AdminProducts, AdminSingleUser, AdminStart, Users, Fika, UserStart, UserLanding } from './pages';
 
 // Components
 import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, Categories, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserSaldo } from './components';
@@ -24,8 +24,13 @@ function App() {
             <Route path="/login" element={<UserStart />}/>
             <Route path="/landing" element={user ? <UserLanding /> : <Navigate to="/login" />}/>
             <Route path="/fika" element={user ? <Fika /> : <Navigate to="/login" />} />
+
             <Route path="/admin/login" element={<AdminStart />} />
             <Route path="/admin/landing" element={user ? <Dashboard /> : <Navigate to="/admin/login"/>} />
+            {/* <Route path="/admin/users" element={user ? <Users /> : <Navigate to="/admin/login"/>}/> */}
+            <Route path="/admin/products" element={user ? <AdminProducts /> : <Navigate to="/admin/login"/>}/>
+            
+            <Route path="/admin/users/:id" element={user ? <AdminSingleUser /> : <Navigate to="/admin/users/:id"/>}/>
           </Routes>
         </Router>
         

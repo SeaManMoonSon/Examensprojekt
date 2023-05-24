@@ -1,0 +1,62 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+@use '../../components/misc/buttons' as *;
+@use '../../utils/animations' as *;
+
+.navbar__container {
+    margin: 3rem;
+    overflow: visible;
+
+    nav {
+        display: grid;
+        grid-template-columns: 1fr 5fr 1fr 1fr;
+
+        & > div {
+            background-color: deeppink;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0.2rem;
+            position: relative;
+            width: 100%;
+            border: 1px solid black;
+
+            &.admin__searchbar-container {
+                flex-direction: column;
+
+                & > div {
+                    width: 100%;
+                }
+
+                input {
+                    padding: 1.2rem;
+                    min-width: 100%;
+                }
+
+                #search-icon {
+                    position: absolute;
+                }
+            }
+
+            a {
+                text-decoration: none;
+                text-transform: uppercase;
+                font-family: $secondary-font;
+                letter-spacing: 0.1rem;
+                font-size: 20px;
+                color: $font-color;
+
+            }
+    }
+
+}
+
+    .admin-searchresult-name {
+        background-color: yellow;
+        padding: 1rem;
+        width: 100%;
+        top: 10px;
+        left: 0px;
+    }
+}

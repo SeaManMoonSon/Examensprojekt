@@ -11,7 +11,7 @@ router.post('/', PurchaseController.createPurchase);
 router.get('/', PurchaseController.getPurchases);
 
 // Get one purchase
-router.get('/', purchaseController.getPurchase);
+router.get('/:id', purchaseController.getPurchase);
 
 // Export purchases
 router.post('/export', PurchaseController.exportPurchases);
