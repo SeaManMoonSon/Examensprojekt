@@ -91,8 +91,9 @@ const createPurchase = async (req, res) => {
 };
 
 const exportPurchases = async (req, res) => {
-  const startDate = req.body.startDate;
-  const endDate = req.body.endDate;
+  // const startDate = req.body.startDate;
+  // const endDate = req.body.endDate;
+  const { startDate, endDate } = req.body;
 
   try {
     const purchases = await PurchaseModel.find({
@@ -100,7 +101,7 @@ const exportPurchases = async (req, res) => {
         $gte: startDate, // Greater than or equal to, start date for export
         $lte: endDate, // Lesser than or equal to, end date for export
       },
-    }).populate("user_id", "name", "ssn");
+    }).populate("user_id", "name ssn");
 
     const fields = ["user_id.name", "price_total", "date"];
     const opts = { fields };
@@ -113,7 +114,7 @@ const exportPurchases = async (req, res) => {
     res.status(200).send(csvData);
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ error: "Exportering misslyckades" });
+    res.status(500).json({ error: "Export failed" });
   }
 };
 
