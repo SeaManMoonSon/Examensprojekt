@@ -22,7 +22,7 @@ Simon Månsson och Veronica Selenwall ska arbeta tillsammans i grupp med detta p
 ### En admin/kökspersonal ska kunna:
 - Se vilka som betalat/registrerat sitt köp i en lista som uppdateras.
    - Namn, val och totalbelopp ska visas i det läget.
-- Snabbt kunna söka upp användare för att assistera med saldo-korrigering och användarhistorik.
+- Snabbt kunna få en överblick över användare för att assistera med saldo-korrigering och användarhistorik.
 - Se, lägga till, redigera, och ta bort produkter på ett enkelt sätt.
    - Välja om produkten i fråga är för deltagare, personal eller alla. Detta påverkar vyn för de olika rollerna (t.ex. personalfika). 
 - Med ett knapptryck kunna få datan på inköp som en fil för bokföring. 
