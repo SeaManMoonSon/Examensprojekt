@@ -48,7 +48,7 @@ const Categories = () => {
 
 
             <div className="categories__container-products">
-                {user.user.role === "personal" && (
+'                {user.user.role === "personal" && (
                     <>
                         {products && (
                             <>
@@ -66,23 +66,34 @@ const Categories = () => {
                         )}
                     </>
                 )}
-
+'
                 {user.user.role === "deltagare" && (
                     <>
-                        {products && (
+                        {products && !fika && (
                             <>
-                                {products.map((product, index) => {
-                                    if (product.role != 1) {
-                                        if (index === 0 || products[index - 1].category !== 'Fika') {
-                                            return <button onClick={handleFika} key={product._id}>Fika</button>;
-                                        } else if (product.role != 1 && product.category !== 'Fika'){
-                                            <button onClick={() => handlePopup(product)} key={product._id}>
-                                                {product.name}
-                                            </button>
-                                        }
-                                    }
-                                    return null;
+                                {products.map((product) => {
+                                   if (product.category != "Fika" && product.role != 1) {
+                                    return <button onClick={() => handlePopup(product)} key={product._id}>
+                                    {product.name}
+                                </button>
+                                   }
+                                   
                                 })}
+                                <button onClick={handleFika}>Fika</button>
+                            </>
+                        )}
+
+                        {fika && (
+                            <>
+                            {products.map((product) => {
+                                if (product.category === "Fika") {
+                                    return (
+                                        <div className="admin__show-users_list" key={product._id}>
+                                        <button onClick={() => handlePopup(product)} key={product._id}>{product.name}</button>;
+                                    </div>
+                                    )
+                                }
+                            })}
                             </>
                         )}
                     </>
@@ -90,7 +101,7 @@ const Categories = () => {
             </div>
 
 
-            <>
+            {/* <>
                 {user.role === 0 && (
                     <div className="categories__container-products">
                         {products && !fika && (
@@ -121,7 +132,7 @@ const Categories = () => {
                             })}
                     </div>
                 )}
-            </>
+            </> */}
 
 
             {popUp && (
