@@ -73,7 +73,7 @@ const AdminSingleUser = (props) => {
         console.log("Balance button");
 
         const editBalanceObj = {
-            ...user,
+            // ...user,
             balance: editedBalance
           };
       
@@ -118,14 +118,14 @@ const AdminSingleUser = (props) => {
             <button onClick={editBalance}>Spara nytt saldo</button>
 
             <div className="single-user__balance">
-                {/* {editedBalance && ( */}
+                
                     <input 
                     type="number" 
                     value={editedBalance}
                     placeholder={user.balance}
                     onChange={(e) => setEditedBalance(e.target.value)}
                     />
-                {/* )} */}
+                
 
                 {/* <UserBalance/> */}
 
