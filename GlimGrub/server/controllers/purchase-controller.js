@@ -91,15 +91,13 @@ const createPurchase = async (req, res) => {
 };
 
 const exportPurchases = async (req, res) => {
-  // const startDate = req.body.startDate;
-  // const endDate = req.body.endDate;
   const { startDate, endDate } = req.body;
 
   try {
     const purchases = await PurchaseModel.find({
       date: {
-        $gte: startDate, // Greater than or equal to, start date for export
-        $lte: endDate, // Lesser than or equal to, end date for export
+        $gte: startDate,
+        $lte: endDate,
       },
     }).populate("user_id", "name ssn");
 
