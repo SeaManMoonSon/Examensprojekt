@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   role: {
-    type: Boolean,
+    type: Number,
     required: true,
   },
 });
