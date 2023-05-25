@@ -4,7 +4,9 @@ const AddProductForm = ({ addProduct }) => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
-    const [role, setRole] = useState('');
+    const [role, setRole] = useState(2);
+
+    console.log(role);
 
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -19,7 +21,8 @@ const AddProductForm = ({ addProduct }) => {
     };
 
     const handleRoleChange = (event) => {
-        setRole(event.target.value);
+        const selectedRole = parseInt(event.target.value, 10);
+        setRole(selectedRole);
     };
 
     const handleSubmit = (event) => {
@@ -65,14 +68,11 @@ const AddProductForm = ({ addProduct }) => {
             />
 
             <label htmlFor="role">Roll: </label>
-
-            <input
-                type="number"
-                id="role"
-                value={role}
-                onChange={handleRoleChange}
-                required
-            />
+            <select id="role" name="role" value={role} onChange={handleRoleChange}>
+                <option value={2}>Alla</option>
+                <option value={0}>Deltagare</option>
+                <option value={1}>Personal</option>
+            </select>
 
             <button type="submit">Lägg till produkt</button>
         </form>
