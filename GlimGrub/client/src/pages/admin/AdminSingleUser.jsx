@@ -18,6 +18,7 @@ const AdminSingleUser = (props) => {
 
     const [user, setUser] = useState(null);
     const [purchases, setPurchases] = useState(null);
+    const [editingBalance, setEditingBalance] = useState('');
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -40,7 +41,9 @@ const AdminSingleUser = (props) => {
         fetchUser();
     }, [URL, id]);
 
+    // const editingBalance = () => {
 
+    // }
 
     useEffect(() => {
         const fetchPayments = async () => {
