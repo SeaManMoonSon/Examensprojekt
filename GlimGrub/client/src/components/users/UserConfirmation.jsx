@@ -94,8 +94,7 @@ const UserConfirmation = ({ product }) => {
             <div className="user-confirmation__product">
               <i className="fa-solid fa-utensils"></i>
               <div className="user-confirmation__product-item">
-                <p>{product.name}</p>
-                {/* <p>{product}</p> */}
+                <p>{product.name}, {product.price} kronor</p>
               </div>
             </div>
           </div>

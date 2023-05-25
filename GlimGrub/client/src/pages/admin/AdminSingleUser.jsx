@@ -18,9 +18,8 @@ const AdminSingleUser = (props) => {
 
     const [user, setUser] = useState(null);
     const [purchases, setPurchases] = useState(null);
-    const [editingBalance, setEditingBalance] = useState('');
+    const [editedBalance, setEditedBalance] = useState('');
 
-    useEffect(() => {
         const fetchUser = async () => {
             try {
                 const response = await fetch(`${URL}/api/users/${id}`);
@@ -36,16 +35,13 @@ const AdminSingleUser = (props) => {
             } catch (error) {
                 console.error(error);
             }
-        };
+    };
 
+    useEffect(() => {
         fetchUser();
     }, [URL, id]);
 
-    // const editingBalance = () => {
 
-    // }
-
-    useEffect(() => {
         const fetchPayments = async () => {
             try {
                 const response = await fetch(`${URL}/api/purchases/${id}`);
@@ -65,12 +61,45 @@ const AdminSingleUser = (props) => {
             } catch (error) {
                 console.error(error);
             }
+    };
 
+    useEffect(() => {
+        fetchPayments();
+      }, [id]);
+
+
+    const editBalance = async () => {
+
+        console.log("Balance button");
+
+        const editBalanceObj = {
+            // ...user,
+            balance: editedBalance
+          };
+      
+
+        try {
+            const response = await fetch(`${URL}/api/users/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editBalanceObj),
+            });
+
+            if (response.ok) {
+                console.log('Saldot är uppdaterat!');
+                setEditedBalance(null);
+
+                fetchUser();
+                fetchPayments();
+            } else {
+                console.error('Tyvärr gick det inte att uppdatera saldot, försök igen.');
+            }
+        } catch (error) {
+            console.error('Det blev ett litet fel: ', error);
         }
-
-        fetchPayments()
-    }, [id])
-
+    };
 
     if (!user) {
         return <div>No user found</div>;
@@ -85,9 +114,21 @@ const AdminSingleUser = (props) => {
                 <h3>{user.role}</h3>
             </div>
 
+            {user.balance}
+            <button onClick={editBalance}>Spara nytt saldo</button>
+
             <div className="single-user__balance">
+                
+                    <input 
+                    type="number" 
+                    value={editedBalance}
+                    placeholder={user.balance}
+                    onChange={(e) => setEditedBalance(e.target.value)}
+                    />
+                
+
                 {/* <UserBalance/> */}
-                {user.balance}
+
             </div>
 
             <div className="single-user__purchased">
