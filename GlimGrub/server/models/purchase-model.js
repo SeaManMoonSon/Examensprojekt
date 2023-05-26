@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dateFormat from "dateformat";
 
 const now = new Date();
-const formattedDate = dateFormat(now, "yyyy-mm-dd");
+const formattedDate = dateFormat(now, "isoDateTime");
 
 const purchaseSchema = new mongoose.Schema({
   // user_id, price_total, date, items[product_id, (quantity?), price_one]; 
