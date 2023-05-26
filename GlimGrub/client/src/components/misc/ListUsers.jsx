@@ -7,6 +7,7 @@ import dateFormat from "dateformat";
 
 const ListUsers = ({ lastClear }) => {
   const [purchases, setPurchases] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -17,9 +18,7 @@ const ListUsers = ({ lastClear }) => {
 
       if (response.ok) {
         const filteredPurchases = json.filter((purchase) => {
-
           const purchaseDate = purchase.date;
-
           const lastClearDate = new Date(lastClear);
           const formattedLastClearDate = dateFormat(lastClearDate, "isoDateTime");
 
@@ -29,6 +28,8 @@ const ListUsers = ({ lastClear }) => {
         })
         console.log("Since last reset: ", filteredPurchases);
         setPurchases(filteredPurchases);
+
+        setIsLoading(false);
       }
     };
 
@@ -54,6 +55,9 @@ const ListUsers = ({ lastClear }) => {
                 </div>
               );
             })}
+            {isLoading && (
+              <p>Laddar flöde...</p>
+            )}
         </ul>
       </div>
     </div>
