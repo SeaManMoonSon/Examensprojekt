@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import dateFormat from 'dateformat';
+import dateFormat from "dateformat";
 
 // components
 import AdminNavbar from "../../components/admin/AdminNavbar";
@@ -11,12 +11,22 @@ import URL from "../../proxyURL.js";
 import '../../sass/style.scss'
 
 const AdminDashboard = () => {
+    const [lastClear, setLastClear] = useState(null);
     const [popUp, setPopUp] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
     const handleClearFeed = () => {
-        console.log("Im triggered");
+        // ----------------- LIVE CODE ------------------------------------------
+        // const timestamp = new Date();
+        // const formattedTimestamp = dateFormat(timestamp, "isoDateTime");
+        // setLastClear(formattedTimestamp);
+        // console.log("Im triggered", formattedTimestamp);
+
+        // --------------- TEST/DEV ---------------------------------------------
+        const test = "2023-05-24T16:56:12+0200";
+        setLastClear(test);
+        console.log("Im triggered", test);
     }
 
     const handleExport = () => {
@@ -50,8 +60,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="admin__dashboard-users_payflow">
-                <ListUsers />
-
+                <ListUsers lastClear={lastClear}/>
                 <div className="categories__container">
                     {popUp && (
                         <div className="popup__wrap">
