@@ -29,6 +29,10 @@ const Categories = () => {
         setPopup(true);
     }
 
+    const handlePopupDismiss = () => {
+        setPopup(false);
+    }
+
     useEffect(() => {
         const fetchMenu = async () => {
             const response = await fetch(`${URL}/api/products`);
@@ -139,7 +143,7 @@ const Categories = () => {
                 <div className="popup__wrap">
                     <div className="popup__overlay"></div>
                     <div className="categories__user-confirmation">
-                        <UserConfirmation product={selectedProduct} />
+                        <UserConfirmation product={selectedProduct} onDismiss={handlePopupDismiss}/>
                     </div>
                 </div>
             )}
