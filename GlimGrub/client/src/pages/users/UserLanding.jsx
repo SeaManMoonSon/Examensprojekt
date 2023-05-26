@@ -36,7 +36,9 @@ const UserLanding = () => {
               <h3>Välkommen, {user.user.name.split(" ")[0]}</h3>
             </div>
           )}
-          <p>Ditt saldo: {user.user.balance} sek</p>
+          {user.user.role === "deltagare" && (
+            <p>Ditt saldo: {user.user.balance} sek</p>
+          )}
         </div>
         
         <div className="categories__menu-items">
