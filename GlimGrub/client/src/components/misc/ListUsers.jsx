@@ -6,6 +6,7 @@ import URL from "../../proxyURL.js";
 
 const ListUsers = () => {
   const [purchases, setPurchases] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -14,6 +15,7 @@ const ListUsers = () => {
 
       if (response.ok) {
         setPurchases(json);
+        setIsLoading(false);
         // console.log("json", json);
       }
     };
@@ -40,6 +42,9 @@ const ListUsers = () => {
                 </div>
               );
             })}
+            {isLoading && (
+              <p>Laddar flöde...</p>
+            )}
         </ul>
       </div>
     </div>

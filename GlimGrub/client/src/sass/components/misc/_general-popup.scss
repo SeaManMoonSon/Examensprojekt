@@ -1,0 +1,14 @@
+@use '../../components/misc/buttons' as *;
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+
+.popup__container {
+    background-color: green;
+    z-index: 100;
+    padding: 5rem;
+    text-align: center;
+
+    form {
+        margin: 2rem;
+    }
+}
