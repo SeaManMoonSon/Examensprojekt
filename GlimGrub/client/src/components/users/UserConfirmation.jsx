@@ -12,7 +12,7 @@ import "../../sass/style.scss";
 const now = new Date();
 const formattedDate = dateFormat(now, "yyyy-mm-dd");
 
-const UserConfirmation = ({ product }) => {
+const UserConfirmation = ({ product, onDismiss }) => {
   const [confirmed, setConfirmed] = useState(false);
   const [countdown, setCountdown] = useState(10);
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ const UserConfirmation = ({ product }) => {
   };
 
   const handleEscape = () => {
-    navigate("/landing");
+    onDismiss();
   };
 
   return (
