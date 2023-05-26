@@ -107,7 +107,7 @@ const exportPurchases = async (req, res) => {
     const parser = new Parser(opts);
     const csvData = parser.parse(purchases);
 
-    res.setHeader("Content-Disposition", "attachment; filename=Inköp.csv");
+    res.setHeader("Content-Disposition", "attachment; filename=Betalningar.csv");
     res.set("Content-Type", "text/csv");
     res.status(200).send(csvData);
   } catch (error) {
