@@ -70,7 +70,7 @@ const createPurchase = async (req, res) => {
     const user = await User.findById(user_id);
 
     if (user && user.role === "deltagare" && user.balance - price_total >= 0) {
-      console.log("DELTAGARE OCH PARA FINNS");
+      // console.log("DELTAGARE OCH PARA FINNS");
       user.balance -= price_total;
       await user.save();
     }
@@ -91,16 +91,15 @@ const createPurchase = async (req, res) => {
 };
 
 const exportPurchases = async (req, res) => {
-  const startDate = req.body.startDate;
-  const endDate = req.body.endDate;
+  const { startDate, endDate } = req.body;
 
   try {
     const purchases = await PurchaseModel.find({
       date: {
-        $gte: startDate, // Greater than or equal to, start date for export
-        $lte: endDate, // Lesser than or equal to, end date for export
+        $gte: startDate,
+        $lte: endDate,
       },
-    }).populate("user_id", "name", "ssn");
+    }).populate("user_id", "name ssn");
 
     const fields = ["user_id.name", "price_total", "date"];
     const opts = { fields };
@@ -113,7 +112,7 @@ const exportPurchases = async (req, res) => {
     res.status(200).send(csvData);
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ error: "Exportering misslyckades" });
+    res.status(500).json({ error: "Export failed" });
   }
 };
 
