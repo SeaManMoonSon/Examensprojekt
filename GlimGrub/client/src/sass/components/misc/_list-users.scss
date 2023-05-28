@@ -1,0 +1,58 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+@use '../../components/misc/buttons' as *;
+@use '../../utils/animations' as *;
+@use '../../layout/grid' as *;
+
+.list-users__container {
+
+    .admin__show-users_list {
+        margin: 1rem 2rem 1rem 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+        p {
+            background-color: rgb(241, 241, 241);
+            padding: 1.2rem;
+            font-size: 20px;
+            font-family: $secondary-font;
+        }
+
+        &>div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            p {
+                padding-left: 4rem;
+            }
+        }
+        }
+
+        .list-users__loading {
+            margin-top: 12rem;
+
+        .list-users__loading-progress {
+            margin: auto;
+            border: 20px solid #EAF0F6;
+            border-radius: 50%;
+            border-top: 20px solid $btn-color;
+            width: 100px;
+            height: 100px;
+            animation: spinner 4s linear infinite;
+          }
+          
+          @keyframes spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          
+        p {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 20px;
+            font-family: $secondary-font;
+        }
+    }
+}

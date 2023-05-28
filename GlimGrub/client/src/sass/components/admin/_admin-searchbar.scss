@@ -1,5 +1,24 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+@use '../../components/misc/buttons' as *;
+@use '../../utils/animations' as *;
+
 .admin__searchresult-container {
     position: absolute;
+    width: 100%;
+    background-color: rgb(241, 241, 241);
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+
+    .admin-searchresult-name {
+        width: 200rem;
+        padding: 2rem;
+        width: 100%;
+        top: 10px;
+        left: 0px;
+        font-size: 20px;
+        font-family: $secondary-font;
+        color: $font-color;
+    }
 }
 
 

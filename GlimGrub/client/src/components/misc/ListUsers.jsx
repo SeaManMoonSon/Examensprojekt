@@ -16,7 +16,6 @@ const ListUsers = () => {
       if (response.ok) {
         setPurchases(json);
         setIsLoading(false);
-        // console.log("json", json);
       }
     };
 
@@ -29,22 +28,27 @@ const ListUsers = () => {
 
   return (
     <div>
-      {/* <h1>Här listas users</h1> */}
-      <div>
+      <div className="list-users__container">
         <ul>
           {purchases &&
             purchases.map((user) => {
               return (
                 <div className="admin__show-users_list" key={user._id}>
                   <p>{JSON.stringify(user.user_id.name).replace(/\"/g, "")}</p>
-                  <p>Total kostnad: {user.price_total}</p>
-                  <p>{user.date}</p>
+                  <div>
+                    <p>{user.date.split("T")[0]}</p>
+                    <p>Total kostnad: {user.price_total} kr</p>
+                  </div>
                 </div>
               );
             })}
-            {isLoading && (
-              <p>Laddar flöde...</p>
-            )}
+
+          {isLoading && (
+            <div className="list-users__loading">
+              <div className="list-users__loading-progress"></div>
+              <p>Laddar flödet...</p>
+            </div>
+          )}
         </ul>
       </div>
     </div>
