@@ -92,6 +92,7 @@ const Categories = () => {
 
             {fika && (
               <>
+                <button onClick={() => setFika(false)}>Tillbaka till meny</button>
                 {products.map((product) => {
                   if (product.category === "Fika") {
                     return (
@@ -102,7 +103,6 @@ const Categories = () => {
                         >
                           {product.name}
                         </button>
-                        ;
                       </div>
                     );
                   }
