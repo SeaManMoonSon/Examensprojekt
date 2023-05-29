@@ -39,14 +39,11 @@ const UserConfirmation = ({ product, onDismiss }) => {
   });
 
   const handleConfirmation = async () => {
-    setConfirmed(true);
-    console.log("Här ska pengarna dras");
-
     try {
-      //   if (!product || !product.items) {
-      //     console.error("Product data is missing.");
-      //     return;
-      //   }
+        if (!product) {
+          console.error("Product data is missing.");
+          return;
+        }
 
       console.log(product);
 
@@ -72,10 +69,13 @@ const UserConfirmation = ({ product, onDismiss }) => {
       const json = await response.json();
 
       if (!response.ok) {
+        onDismiss();
         console.error(json.error);
       } else {
+        setConfirmed(true);
         console.log("Purchase successful");
       }
+
     } catch (error) {
       console.error(error);
     }
