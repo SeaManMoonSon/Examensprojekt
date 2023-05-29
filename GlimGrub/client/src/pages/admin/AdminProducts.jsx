@@ -15,6 +15,7 @@ const AdminProducts = () => {
     const [editedPrice, setEditedPrice] = useState('');
     const [editedRole, setEditedRole] = useState('');
     const [editedCategory, setEditedCategory] = useState('');
+    const [addNewProduct, setAddNewProduct] = useState(false);
 
 
     useEffect(() => {
@@ -89,6 +90,14 @@ const AdminProducts = () => {
         }
     };
 
+    const handleAddProduct = () => {
+        setAddNewProduct(true);
+    }
+
+    const handleAddProductClose = () => {
+        setAddNewProduct(false);
+    }
+
     return (
         <div className="admin__container">
             <AdminNavbar />
@@ -97,20 +106,25 @@ const AdminProducts = () => {
                 <p>Här listas era nuvarande produkter.</p>
             </div>
             <div className="admin__products-add">
-                <form action="POST">
-                    <input type="text" />
-                    <button></button>
-                </form>
+                <button onClick={handleAddProduct}><i className="fa-solid fa-plus"></i>Lägg till ny produkt</button>
             </div>
             <div className="admin__products-list">
-                <AdminAddProduct addProduct={addProduct} />
+                <div className="popup__wrap">
+                    <div className="popup__overlay">
+                        <div className="popup__container">
+                            {addNewProduct && (
+                                <div><button className="popup__close-addproduct" onClick={handleAddProductClose}><i class="fa-solid fa-xmark"></i></button>
+                                    <AdminAddProduct addProduct={addProduct} /></div>
+                            )}
+                        </div>
+                    </div>
+                </div>
 
 
                 <ul>
                     {products &&
                         products.map((product) => {
                             if (editingProduct && editingProduct._id === product._id) {
-                                // Render form fields for editing if in editing mode
                                 return (
                                     <div className="admin__products-list_item" key={product._id}>
                                         <input
@@ -138,60 +152,27 @@ const AdminProducts = () => {
                                             onChange={(e) => setEditedRole(e.target.value)}
                                         />
                                         <div className="admin__products-list_item-wrap">
-                                            <button onClick={() => updateProduct(product._id)}>Uppdatera</button>
+                                            <button onClick={() => updateProduct(product._id)}><i class="fa-solid fa-check"></i></button>
                                             <button onClick={() => setEditingProduct(null)}>Avbryt</button>
                                         </div>
                                     </div>
                                 );
                             } else {
-                                // Render product details if not in editing mode
                                 return (
                                     <div className="admin__products-list_item" key={product._id}>
                                         <p>{product.name}</p>
-                                        <p>{product.price}</p>
+                                        <p>{product.price} kr</p>
                                         <p>{product.category}</p>
                                         <p>{product.role}</p>
                                         <div className="admin__products-list_item-wrap">
                                             <button onClick={() => setEditingProduct(product)}>Redigera</button>
-                                            <button onClick={() => deleteProduct(product._id)}>Ta bort</button>
+                                            <button onClick={() => deleteProduct(product._id)}><i class="fa-solid fa-trash"></i></button>
                                         </div>
                                     </div>
                                 );
                             }
                         })}
-
-
-                    {/* {products &&
-                        products.map((product) => {
-                            return <div className="admin__products-list_item" key={product._id}>
-                                <p>{product.name}</p>
-                                <p>{product.price}</p>
-                                <p>{product.category}</p>
-                                <p>{product.role}</p>
-                                <div className="admin__products-list_item-wrap">
-                                    <button onClick={() => updateProduct(product._id)}>Redigera</button>
-                                    <button onClick={() => deleteProduct(product._id)}>Ta bort</button>
-                                </div>
-                            </div>;
-                        })} */}
-
-                    {/* <div className="admin__products-list_item">
-                        <p>Marabou</p>
-                        <p>5 kr</p>
-                        <div className="admin__products-list_item-wrap">
-                            <button>Redigera</button><button>Ta bort</button>
-                        </div>
-                    </div>
-
-                    <div className="admin__products-list_item">
-                        <p>Snickers</p>
-                        <p>5 kr</p>
-                        <div className="admin__products-list_item-wrap">
-                            <button>Redigera</button><button>Ta bort</button>
-                        </div>
-                    </div> */}
                 </ul>
-
             </div>
         </div>
     )

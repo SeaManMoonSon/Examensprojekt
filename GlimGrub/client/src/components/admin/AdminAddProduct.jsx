@@ -36,46 +36,49 @@ const AddProductForm = ({ addProduct }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Produktens namn: </label>
+        <div className="admin__add-products_container">
+            <h2>Lägg till produkt</h2>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="name">Produktens namn: </label>
 
-            <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={handleNameChange}
-                required
-            />
+                <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={handleNameChange}
+                    required
+                />
 
-            <label htmlFor="price">Produktens pris: </label>
+                <label htmlFor="price">Produktens pris: </label>
 
-            <input
-                type="number"
-                id="price"
-                value={price}
-                onChange={handlePriceChange}
-                required
-            />
+                <input
+                    type="number"
+                    id="price"
+                    value={price}
+                    onChange={handlePriceChange}
+                    required
+                />
 
-            <label htmlFor="category">Kategori: </label>
+                <label htmlFor="category">Kategori: </label>
 
-            <input
-                type="text"
-                id="category"
-                value={category}
-                onChange={handleCategoryChange}
-                required
-            />
+                <input
+                    type="text"
+                    id="category"
+                    value={category}
+                    onChange={handleCategoryChange}
+                    required
+                />
 
-            <label htmlFor="role">Roll: </label>
-            <select id="role" name="role" value={role} onChange={handleRoleChange}>
-                <option value={2}>Alla</option>
-                <option value={0}>Deltagare</option>
-                <option value={1}>Personal</option>
-            </select>
+                <label htmlFor="role">Roll: </label>
+                <select id="role" name="role" value={role} onChange={handleRoleChange}>
+                    <option value={2}>Alla</option>
+                    <option value={0}>Deltagare</option>
+                    <option value={1}>Personal</option>
+                </select>
 
-            <button type="submit">Lägg till produkt</button>
-        </form>
+                <button type="submit">Lägg till produkt</button>
+            </form>
+        </div>
     )
 };
 

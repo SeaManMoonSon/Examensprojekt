@@ -59,37 +59,37 @@ const AdminDashboard = () => {
                 <div className="categories__container">
                     {popUp && (
                         <div className="popup__wrap">
-                            <div className="popup__overlay"></div>
+                            <div className="popup__overlay">
+                                <div className="popup__container">
 
-                            <div className="popup__container">
+                                    <button onClick={handleExportClose} className="popup__close"><i className="fa-solid fa-xmark"></i></button>
+                                    <h2>Exportera betalningar</h2>
 
-                                <button onClick={handleExportClose} className="popup__close"><i className="fa-solid fa-xmark"></i></button>
-                                <h2>Exportera betalningar</h2>
+                                    <form action={`${URL}/api/purchases/export`} method="POST">
+                                        <div className="popup__form-date">
+                                            {/* <label htmlFor="startDate"><p>Från</p></label> */}
+                                            <input
+                                                type="date"
+                                                name="startDate"
+                                                value={startDate}
+                                                onChange={(e) => setStartDate(e.target.value)}
+                                                required />
 
-                                <form action={`${URL}/api/purchases/export`} method="POST">
-                                    <div className="popup__form-date">
-                                        {/* <label htmlFor="startDate"><p>Från</p></label> */}
-                                        <input
-                                            type="date"
-                                            name="startDate"
-                                            value={startDate}
-                                            onChange={(e) => setStartDate(e.target.value)}
-                                            required />
+                                            <div className="popup__form-arrow"><i class="fa-solid fa-arrow-right"></i></div>
 
-                                        <div className="popup__form-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                                            {/* <label htmlFor="endDate"><p>Till</p></label> */}
+                                            <input
+                                                type="date"
+                                                name="endDate"
+                                                value={endDate}
+                                                onChange={(e) => setEndDate(e.target.value)}
+                                                required />
+                                        </div>
 
-                                        {/* <label htmlFor="endDate"><p>Till</p></label> */}
-                                        <input
-                                            type="date"
-                                            name="endDate"
-                                            value={endDate}
-                                            onChange={(e) => setEndDate(e.target.value)}
-                                            required />
-                                    </div>
+                                        <input type="submit" className="popup__form-submit" value="Ladda ner" onClick={handleSubmit} />
+                                    </form>
 
-                                    <input type="submit" id="form-btn" value="Ladda ner" onClick={handleSubmit} />
-                                </form>
-
+                                </div>
                             </div>
                         </div>
                     )}

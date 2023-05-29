@@ -48,7 +48,7 @@ const Categories = () => {
 
 
             <div className="categories__container-products">
-'                {user.user.role === "personal" && (
+                {user.user.role === "personal" && (
                     <>
                         {products && (
                             <>
@@ -66,7 +66,7 @@ const Categories = () => {
                         )}
                     </>
                 )}
-'
+
                 {user.user.role === "deltagare" && (
                     <>
                         {products && !fika && (
@@ -89,7 +89,7 @@ const Categories = () => {
                                 if (product.category === "Fika") {
                                     return (
                                         <div className="admin__show-users_list" key={product._id}>
-                                        <button onClick={() => handlePopup(product)} key={product._id}>{product.name}</button>;
+                                        <button onClick={() => handlePopup(product)} key={product._id}>{product.name}</button>
                                     </div>
                                     )
                                 }

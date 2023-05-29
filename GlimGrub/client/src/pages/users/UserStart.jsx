@@ -40,7 +40,7 @@ const UserStart = () => {
         <form onSubmit={handleSubmit}>
           <div className="login-page__form-text">
             <h3>GlimCrub</h3>
-            <p>Registrera din mat här</p>
+            <p>Välkommen</p>
           </div>
 
           <div className="login-page__form-input">
