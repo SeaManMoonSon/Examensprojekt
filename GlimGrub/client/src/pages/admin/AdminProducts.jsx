@@ -120,7 +120,6 @@ const AdminProducts = () => {
                     </div>
                 </div>
 
-
                 <ul>
                     {products &&
                         products.map((product) => {
