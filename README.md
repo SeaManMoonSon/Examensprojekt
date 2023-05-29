@@ -26,3 +26,8 @@ Simon Månsson och Veronica Selenwall ska arbeta tillsammans i grupp med detta p
 - Se, lägga till, redigera, och ta bort produkter på ett enkelt sätt.
    - Välja om produkten i fråga är för deltagare, personal eller alla. Detta påverkar vyn för de olika rollerna (t.ex. personalfika). 
 - Med ett knapptryck kunna få datan på inköp som en fil för bokföring. 
+
+
+### Extra
+- Implementera Swish för betalning.
+- Kunna betygsätta maten på vägen ut ur matsalen.
