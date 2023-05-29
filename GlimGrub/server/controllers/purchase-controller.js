@@ -80,8 +80,7 @@ const createPurchase = async (req, res) => {
     //   await user.save();
     // }
     if (user.role === "deltagare" && user.balance - price_total < 0) {
-      console.log("PARA FINNS ICKE");
-      res.status(400).json({ error: "User balance is too low" });
+      return res.status(400).json({ error: "User balance is too low" });
     }
 
     res.status(200).json(purchase);
