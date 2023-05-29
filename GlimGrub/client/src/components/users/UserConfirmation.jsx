@@ -60,21 +60,29 @@ const UserConfirmation = ({ product, onDismiss }) => {
         ],
       };
 
-      const response = await fetch(`${URL}/api/purchases`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      if (user.user.balance - product.price >= 0) {
+        const response = await fetch(`${URL}/api/purchases`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+  
+        const json = await response.json();
 
-      const json = await response.json();
+        if (!response.ok) {
+          onDismiss();
+          console.error(json.error);
+        } else {
+          setConfirmed(true);
+          console.log("Purchase successful");
+        }
 
-      if (!response.ok) {
-        onDismiss();
-        console.error(json.error);
       } else {
-        setConfirmed(true);
-        console.log("Purchase successful");
+        onDismiss();
+        console.log("User balance is too low");
       }
+
+
 
     } catch (error) {
       console.error(error);
