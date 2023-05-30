@@ -18,15 +18,15 @@ const AdminDashboard = () => {
 
     const handleClearFeed = () => {
         // ----------------- LIVE CODE ------------------------------------------
-        // const timestamp = new Date();
-        // const formattedTimestamp = dateFormat(timestamp, "isoDateTime");
-        // setLastClear(formattedTimestamp);
-        // console.log("Im triggered", formattedTimestamp);
+        const timestamp = new Date();
+        const formattedTimestamp = dateFormat(timestamp, "isoDateTime");
+        setLastClear(formattedTimestamp);
+        console.log("Im triggered", formattedTimestamp);
 
         // --------------- TEST/DEV ---------------------------------------------
-        const test = "2023-05-24T16:56:12+0200";
-        setLastClear(test);
-        console.log("Im triggered", test);
+        // const test = "2023-05-24T16:56:12+0200";
+        // setLastClear(test);
+        // console.log("Im triggered", test);
     }
 
     const handleExport = () => {
@@ -36,14 +36,11 @@ const AdminDashboard = () => {
 
     const handleSubmit = () => {
 
-        const formattedStartDate = dateFormat(startDate, "yyyy-mm-dd");
-        const formattedEndDate = dateFormat(endDate, "yyyy-mm-dd");
+        setStartDate(startDate);
+        setEndDate(endDate);
 
-        setStartDate(formattedStartDate);
-        setEndDate(formattedEndDate);
-
-        console.log('Formatted Startdate: ', formattedStartDate);
-        console.log('Formatted Enddate: ', formattedEndDate);
+        console.log(startDate);
+        console.log(endDate);
     }
 
     return (
@@ -72,7 +69,7 @@ const AdminDashboard = () => {
                                 <form action={`${URL}/api/purchases/export`} method="POST">
                                     <label htmlFor="startDate">Startdatum: </label>
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         name="startDate"
                                         value={startDate}
                                         onChange={(e) => setStartDate(e.target.value)}
@@ -80,7 +77,7 @@ const AdminDashboard = () => {
 
                                     <label htmlFor="endDate">Slutdatum: </label>
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         name="endDate"
                                         value={endDate}
                                         onChange={(e) => setEndDate(e.target.value)}

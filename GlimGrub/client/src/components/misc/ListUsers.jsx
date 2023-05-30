@@ -22,8 +22,8 @@ const ListUsers = ({ lastClear }) => {
           const lastClearDate = new Date(lastClear);
           const formattedLastClearDate = dateFormat(lastClearDate, "isoDateTime");
 
-          // console.log("purchaseDate", purchaseDate);
-          // console.log("lastClearDate", formattedLastClearDate);
+          console.log("purchaseDate", purchaseDate);
+          console.log("lastClearDate", formattedLastClearDate);
           return purchaseDate > formattedLastClearDate;
         })
         console.log("Since last reset: ", filteredPurchases);
