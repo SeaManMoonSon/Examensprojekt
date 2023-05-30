@@ -37,44 +37,49 @@ const AddProductForm = ({ addProduct }) => {
 
     return (
         <div className="admin__add-products_container">
-            <h2>Lägg till produkt</h2>
+            <h2>Lägg till en ny produkt</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Produktens namn: </label>
-
+                {/* <label htmlFor="name">Produktens namn: </label> */}
                 <input
                     type="text"
                     id="name"
                     value={name}
                     onChange={handleNameChange}
+                    placeholder="Produktnamn"
                     required
                 />
 
-                <label htmlFor="price">Produktens pris: </label>
+                {/* <label htmlFor="price">Produktens pris: </label> */}
 
-                <input
-                    type="number"
-                    id="price"
-                    value={price}
-                    onChange={handlePriceChange}
-                    required
-                />
-
-                <label htmlFor="category">Kategori: </label>
+                {/* <label htmlFor="category">Kategori: </label> */}
 
                 <input
                     type="text"
                     id="category"
                     value={category}
                     onChange={handleCategoryChange}
+                    placeholder="Kategori"
                     required
                 />
 
-                <label htmlFor="role">Roll: </label>
+                {/* <label htmlFor="role">Roll: </label> */}
+
+                <div className="input-wrap">
+                <input
+                    type="number"
+                    id="price"
+                    value={price}
+                    onChange={handlePriceChange}
+                    placeholder="Pris"
+                    required
+                />
+
                 <select id="role" name="role" value={role} onChange={handleRoleChange}>
                     <option value={2}>Alla</option>
                     <option value={0}>Deltagare</option>
                     <option value={1}>Personal</option>
                 </select>
+                </div>
 
                 <button type="submit">Lägg till produkt</button>
             </form>

@@ -3,6 +3,20 @@
 @use '../../components/misc/buttons' as *;
 @use '../../utils/animations' as *;
 
+.error {
+    // background-color: rgb(216, 145, 145);
+    // padding: 2rem;
+    // position: absolute;
+    margin-top: 2rem;
+    position: absolute;
+    bottom: 9rem;
+    width: 25rem;
+    font-family: $secondary-font;
+    // border: 1px solid red;
+    text-align: center;
+    color: rgb(185, 90, 90);
+}
+
 .login-page__container {
     background-color: $bg-color;
     display: grid;

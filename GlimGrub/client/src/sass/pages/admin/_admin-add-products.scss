@@ -1,0 +1,72 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+@use '../../components/misc/buttons' as *;
+@use '../../utils/animations' as *;
+@use '../../layout/grid' as *;
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    z-index: 0;
+  }
+
+.admin__add-products_container {
+    // background-color: deeppink;
+    padding: 2rem;
+    width: 50rem;
+
+    position: relative;
+    z-index: 100;
+
+    .input-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    h2 {
+        padding-bottom: 2rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        input {
+            padding: 1rem 1rem 1rem 1.5rem;
+            width: 25rem;
+            margin: 1rem;
+            border-radius: 2rem;
+            border-style: none;
+            font-size: 17px;
+
+        }
+
+        #price {
+            width: 11.5rem;
+        }
+
+        select {
+            padding: 1rem;
+            width: 11rem;
+            margin: 1rem;
+            border-style: none;
+            border-radius: 2rem;
+
+            option {
+                background-color: yellow;
+            }
+        }
+
+        button { 
+            @include button-style-confirm;
+            margin-top: 2rem;
+            width: 24rem;
+        }
+    }
+
+}
