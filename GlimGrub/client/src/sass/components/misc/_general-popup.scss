@@ -1,14 +1,94 @@
 @use '../../components/misc/buttons' as *;
 @use '../../base/colors' as *;
 @use '../../base/typography' as *;
+@use '../../utils/animations' as *;
 
-.popup__container {
-    background-color: green;
-    z-index: 100;
-    padding: 5rem;
-    text-align: center;
+// .popup__wrap {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
 
-    form {
-        margin: 2rem;
+.popup__overlay {
+    // background-color: rgba(0, 0, 0, 0.65);
+    // height: 100vh;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // position: absolute;
+    // // top: 0;
+    // left: 0;
+    // right: 0;
+    // bottom: 0;
+    // z-index: 999;
+
+
+    .popup__container {
+        background-color: $popup-color;
+        position: absolute;
+        z-index: 100;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        color: $font-color;
+        font-family: $secondary-font;
+        font-size: 17px;
+
+
+        // .popup__close-addproduct {
+        //     background-color: deeppink;
+        //     display: flex;
+        //     margin-left: auto;
+        // }
+
+        .popup__form-date {
+            display: flex;
+            margin: 2rem;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+            .popup__form-arrow {
+                margin: 2rem;
+            }
+
+            input {
+                padding: 1rem;
+                font-family: $secondary-font;
+                font-size: 15px;
+                border-radius: 0.5rem;
+                border-style: none;
+            }
+        }
+
+        h2 {
+            font-size: 30px;
+            font-family: $primary-font;
+            letter-spacing: 1.5px;
+        }
+
+        form {
+            margin: 0 5rem 5rem 5rem;
+
+            .popup__form-submit {
+                @include button-style-confirm;
+            }
+        }
+
+        .popup__close {
+            background-color: transparent;
+            border-style: none;
+            display: flex;
+            margin-left: auto;
+
+            i {
+                font-size: 30px;
+                padding: 2rem;
+                display: flex;
+                color: $btn-color;
+            }
+        }
     }
 }

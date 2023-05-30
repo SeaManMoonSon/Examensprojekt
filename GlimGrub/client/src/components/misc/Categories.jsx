@@ -8,87 +8,87 @@ import { useAuthContext } from "../../hooks/userAuthContext";
 import "../../sass/style.scss";
 
 const Categories = () => {
-  const { user } = useAuthContext();
 
-  const [popUp, setPopup] = useState(false);
-  const [products, setProducts] = useState(null);
+    const { user } = useAuthContext();
 
-  const [selectedProduct, setSelectedProduct] = useState(null); // New state
+    const [popUp, setPopup] = useState(false);
+    const [products, setProducts] = useState(null);
 
-  const [fika, setFika] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null); // New state
 
-  const handleFika = () => {
-    console.log("fika valt");
-    setFika(true);
-  };
+    const [fika, setFika] = useState(false);
 
-  // console.log("Roll: ", user.user.role);
+    const handleFika = () => {
+        console.log("fika valt");
+        setFika(true);
+    }
 
-  const handlePopup = (product) => {
-    setSelectedProduct(product);
-    setPopup(true);
-  };
+    // console.log("Roll: ", user.user.role);
 
-  const handlePopupDismiss = () => {
+    const handlePopup = (product) => {
+        setSelectedProduct(product);
+        setPopup(true);
+    }
+    
+      const handlePopupDismiss = () => {
     setPopup(false);
   };
 
-  useEffect(() => {
-    const fetchMenu = async () => {
-      const response = await fetch(`${URL}/api/products`);
-      const json = await response.json();
 
-      if (response.ok) {
-        setProducts(json);
-      }
-    };
+    useEffect(() => {
+        const fetchMenu = async () => {
+            const response = await fetch(`${URL}/api/products`);
+            const json = await response.json()
 
-    fetchMenu();
-  }, []);
+            if (response.ok) {
+                setProducts(json)
+            }
+        }
 
-  return (
-    <div className="categories__container">
-      <div className="categories__container-products">
-        {user.user.role === "personal" && (
-          <>
-            {products && (
-              <>
-                {products.map((product) => {
-                  if (product.role != 0) {
-                    return (
-                      <button
-                        onClick={() => handlePopup(product)}
-                        key={product._id}
-                      >
-                        {product.name}
-                      </button>
-                    );
-                  }
-                  return null;
-                })}
-              </>
-            )}
-          </>
-        )}
-        {user.user.role === "deltagare" && (
-          <>
-            {products && !fika && (
-              <>
-                {products.map((product) => {
-                  if (product.category != "Fika" && product.role != 1) {
-                    return (
-                      <button
-                        onClick={() => handlePopup(product)}
-                        key={product._id}
-                      >
-                        {product.name}
-                      </button>
-                    );
-                  }
-                })}
-                <button onClick={handleFika}>Fika</button>
-              </>
-            )}
+        fetchMenu()
+    }, [])
+
+    return (
+
+        <div className="categories__container">
+
+
+            <div className="categories__container-products">
+                {user.user.role === "personal" && (
+                    <>
+                        {products && (
+                            <>
+                                {products.map((product) => {
+                                    if (product.role != 0) {
+                                        return (
+                                            <button onClick={() => handlePopup(product)} key={product._id}>
+                                                {product.name}
+                                            </button>
+                                        );
+                                    }
+                                    return null;
+                                })}
+                            </>
+                        )}
+                    </>
+                )}
+
+                {user.user.role === "deltagare" && (
+                    <>
+                        {products && !fika && (
+                            <>
+                                {products.map((product) => {
+                                   if (product.category != "Fika" && product.role != 1) {
+                                    return <button onClick={() => handlePopup(product)} key={product._id}>
+                                    {product.name}
+                                </button>
+                                   }
+                                   
+                                })}
+                                <button onClick={handleFika}>Fika</button>
+                            </>
+                        )}
+
 
             {fika && (
               <>

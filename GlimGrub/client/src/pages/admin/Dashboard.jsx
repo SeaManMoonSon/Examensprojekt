@@ -30,9 +30,13 @@ const AdminDashboard = () => {
     }
 
     const handleExport = () => {
-
         setPopUp(true);
     }
+
+    const handleExportClose = () => {
+        setPopUp(false);
+    }
+
 
     const handleSubmit = () => {
 
@@ -48,11 +52,11 @@ const AdminDashboard = () => {
             <AdminNavbar />
             <div className="admin__dashboard-info">
                 <div className="admin__dashboard-info_text">
-                    <h2>Köp</h2>
+                    <h2>Senaste köpen</h2>
                 </div>
                 <div className="admin__dashboard-info_btn">
-                    <button onClick={handleExport}>Export</button>
-                    <button onClick={handleClearFeed}>Rensa flöde</button>
+                    <button onClick={handleExport}><i class="fa-solid fa-download"></i></button>
+                    <button onClick={handleClearFeed}><i class="fa-solid fa-rotate-right"></i>Rensa flöde</button>
                 </div>
             </div>
 
@@ -61,31 +65,37 @@ const AdminDashboard = () => {
                 <div className="categories__container">
                     {popUp && (
                         <div className="popup__wrap">
-                            <div className="popup__overlay"></div>
-                            <div className="popup__container">
+                            <div className="popup__overlay">
+                                <div className="popup__container">
 
-                                <h2>Exportera betalningar</h2>
+                                    <button onClick={handleExportClose} className="popup__close"><i className="fa-solid fa-xmark"></i></button>
+                                    <h2>Exportera betalningar</h2>
 
-                                <form action={`${URL}/api/purchases/export`} method="POST">
-                                    <label htmlFor="startDate">Startdatum: </label>
-                                    <input
-                                        type="datetime-local"
-                                        name="startDate"
-                                        value={startDate}
-                                        onChange={(e) => setStartDate(e.target.value)}
-                                        required />
+                                    <form action={`${URL}/api/purchases/export`} method="POST">
+                                        <div className="popup__form-date">
+                                            {/* <label htmlFor="startDate"><p>Från</p></label> */}
+                                            <input
+                                                type="datetime-local"
+                                                name="startDate"
+                                                value={startDate}
+                                                onChange={(e) => setStartDate(e.target.value)}
+                                                required />
 
-                                    <label htmlFor="endDate">Slutdatum: </label>
-                                    <input
-                                        type="datetime-local"
-                                        name="endDate"
-                                        value={endDate}
-                                        onChange={(e) => setEndDate(e.target.value)}
-                                        required />
+                                            <div className="popup__form-arrow"><i class="fa-solid fa-arrow-right"></i></div>
 
-                                    <input type="submit" value="Ladda ner" onClick={handleSubmit}/>
-                                </form>
+                                            {/* <label htmlFor="endDate"><p>Till</p></label> */}
+                                            <input
+                                                type="datetime-local"
+                                                name="endDate"
+                                                value={endDate}
+                                                onChange={(e) => setEndDate(e.target.value)}
+                                                required />
+                                        </div>
 
+                                        <input type="submit" className="popup__form-submit" value="Ladda ner" onClick={handleSubmit} />
+                                    </form>
+
+                                </div>
                             </div>
                         </div>
                     )}

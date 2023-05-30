@@ -2,6 +2,7 @@
 @forward './admin/admin-start';
 @forward './admin/dashboard';
 @forward './admin/users';
+@forward './admin/admin-single-user';
 
 @forward './users/fika';
 @forward './users/user-landing';

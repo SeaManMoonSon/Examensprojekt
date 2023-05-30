@@ -4,38 +4,46 @@
 @use '../../utils/animations' as *;
 
 .navbar__container {
-    margin: 3rem;
+    margin: 2rem 0 3rem 0;
     overflow: visible;
 
     nav {
         display: grid;
-        grid-template-columns: 1fr 5fr 1fr 1fr;
+        grid-template-columns: 1fr 7fr 1fr;
+        color: $font-color;
 
-        & > div {
-            background-color: deeppink;
+        &>div {
             list-style: none;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0.2rem;
             position: relative;
             width: 100%;
-            border: 1px solid black;
 
             &.admin__searchbar-container {
                 flex-direction: column;
 
-                & > div {
-                    width: 100%;
-                }
-
                 input {
+                    border-radius: 12px;
+                    border-style: none;
+                    background-color: rgb(241, 241, 241);
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
                     padding: 1.2rem;
                     min-width: 100%;
+                    padding-left: 4rem;
+                    font-size: 20px;
+                    font-family: $secondary-font;
+                }
+
+                &>div {
+                    width: 100%;
                 }
 
                 #search-icon {
                     position: absolute;
+                    font-size: 2rem;
+                    margin: 1rem 0.7rem 0.7rem 1rem;
                 }
             }
 
@@ -48,15 +56,55 @@
                 color: $font-color;
 
             }
-    }
 
-}
+            button {
+                border: none;
+                background-color: transparent;
+            }
 
-    .admin-searchresult-name {
-        background-color: yellow;
-        padding: 1rem;
-        width: 100%;
-        top: 10px;
-        left: 0px;
+            .fa-solid {
+                font-size: 2.2rem;
+            }
+        }
+
+        .navbar__toggle-menu {
+            background-color: $btn-color;
+            margin-top: -32px;
+            position: absolute;
+            width: 30rem;
+            display: grid;
+            align-items: right;
+            right: 0; 
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+            & > div {
+                cursor: pointer;
+                padding-bottom: 2rem;
+                text-align: center;
+
+                a {
+                    color: white;
+                    font-size: 25px;
+                }
+            }
+
+            .navbar__toggle-menu_items {
+                margin: 10rem 0 10rem 0;
+            }
+
+            .navbar__toggle-menu_close {
+                padding: 3rem 1.5rem 3rem 1.5rem;
+                margin-right: 2rem;
+                margin-top: 0;
+                position: absolute;
+                justify-self: end; 
+                align-self: start; 
+
+                button {
+                    font-size: 20px;
+                    color: white;
+                }
+            }
+        }
     }
 }

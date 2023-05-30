@@ -42,22 +42,27 @@ const ListUsers = ({ lastClear }) => {
 
   return (
     <div>
-      {/* <h1>Här listas users</h1> */}
-      <div>
+      <div className="list-users__container">
         <ul>
           {purchases &&
             purchases.map((purchase) => {
               return (
                 <div className="admin__show-users_list" key={purchase._id}>
                   <p>{JSON.stringify(purchase.user_id.name).replace(/\"/g, "")}</p>
-                  <p>Total kostnad: {purchase.price_total}</p>
-                  <p>{purchase.date.split("T")[0]}</p>
+                  <div>
+                    <p>{purchase.date.split("T")[0]}</p>
+                    <p>Total kostnad: {purchase.price_total} kr</p>
+                  </div>
                 </div>
               );
             })}
-            {isLoading && (
-              <p>Laddar flöde...</p>
-            )}
+
+          {isLoading && (
+            <div className="list-users__loading">
+              <div className="list-users__loading-progress"></div>
+              <p>Laddar flödet...</p>
+            </div>
+          )}
         </ul>
       </div>
     </div>

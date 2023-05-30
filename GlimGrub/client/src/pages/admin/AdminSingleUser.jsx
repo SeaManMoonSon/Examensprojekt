@@ -19,22 +19,23 @@ const AdminSingleUser = (props) => {
     const [user, setUser] = useState(null);
     const [purchases, setPurchases] = useState(null);
     const [editedBalance, setEditedBalance] = useState('');
+    const [newBalance, setNewBalance] = useState(false);
 
-        const fetchUser = async () => {
-            try {
-                const response = await fetch(`${URL}/api/users/${id}`);
+    const fetchUser = async () => {
+        try {
+            const response = await fetch(`${URL}/api/users/${id}`);
 
-                console.log('Response status:', response.status);
+            console.log('Response status:', response.status);
 
-                if (!response.ok) {
-                    throw new Error('User not found');
-                }
-
-                const data = await response.json();
-                setUser(data);
-            } catch (error) {
-                console.error(error);
+            if (!response.ok) {
+                throw new Error('User not found');
             }
+
+            const data = await response.json();
+            setUser(data);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     useEffect(() => {
@@ -42,41 +43,37 @@ const AdminSingleUser = (props) => {
     }, [URL, id]);
 
 
-        const fetchPayments = async () => {
-            try {
-                const response = await fetch(`${URL}/api/purchases/${id}`);
+    const fetchPayments = async () => {
+        try {
+            const response = await fetch(`${URL}/api/purchases/${id}`);
 
-                console.log('Response status:', response.status);
+            console.log('Response status:', response.status);
 
 
-                if (!response.ok) {
-                    throw new Error('User not found');
-                }
-
-                const json = await response.json();
-                setPurchases(json);
-
-                console.log('json:', json);
-
-            } catch (error) {
-                console.error(error);
+            if (!response.ok) {
+                throw new Error('User not found');
             }
+
+            const json = await response.json();
+            setPurchases(json);
+
+            console.log('json:', json);
+
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     useEffect(() => {
         fetchPayments();
-      }, [id]);
+    }, [id]);
 
 
     const editBalance = async () => {
 
-        console.log("Balance button");
-
         const editBalanceObj = {
-            // ...user,
             balance: editedBalance
-          };
-      
+        };
 
         try {
             const response = await fetch(`${URL}/api/users/${id}`, {
@@ -99,10 +96,16 @@ const AdminSingleUser = (props) => {
         } catch (error) {
             console.error('Det blev ett litet fel: ', error);
         }
+
+        setNewBalance(false);
     };
 
     if (!user) {
         return <div>No user found</div>;
+    }
+
+    const handleEditBalance = () => {
+        setNewBalance(true);
     }
 
     return (
@@ -114,46 +117,56 @@ const AdminSingleUser = (props) => {
                 <h3>{user.role}</h3>
             </div>
 
-            {user.balance}
-            <button onClick={editBalance}>Spara nytt saldo</button>
+            <div className="single-user__balance-purcased_wrap">
+                <div className="single-user__balance">
+                    <div className="balance-container">
+                        <div className="balance__balance">
+                            <div className="balance__icon">
+                                <i class="fa-solid fa-money-check-dollar"></i>
+                            </div>
+                            <div>
+                                <h2>{user.balance} sek</h2>
+                            </div>
+                            <h3>Kvar av saldo</h3>
+                            <button onClick={handleEditBalance}>Redigera saldo</button>
+                        </div>
+                    </div>
 
-            <div className="single-user__balance">
-                
-                    <input 
-                    type="number" 
-                    value={editedBalance}
-                    placeholder={user.balance}
-                    onChange={(e) => setEditedBalance(e.target.value)}
-                    />
-                
+                    {newBalance && (
+                        <div className="popup__wrap">
+                            <div className="popup__overlay">
+                                <div className="popup__container">
+                                    <div>
+                                        <input
+                                            type="number"
+                                            value={editedBalance}
+                                            placeholder={user.balance}
+                                            onChange={(e) => setEditedBalance(e.target.value)}
+                                        />
+                                        <button onClick={editBalance}>Spara nytt saldo</button>
+                                    </div>
 
-                {/* <UserBalance/> */}
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
+
+                </div>
+
+                <div className="single-user__purchased">
+                    <h4>Senaste köpen</h4>
+                    <ul>
+                        {purchases &&
+                            purchases.map((purchase) => {
+                                return <div className="admin__show-users_list" key={purchase._id}>
+                                    <p>{purchase.date.split("T")[0]}</p>
+                                    <p><b>{JSON.stringify(purchase.user_id.name).replace(/\"/g, "")}</b> handlade för totalt <b>{purchase.price_total} kr</b></p>
+                                </div>;
+                            })}
+                    </ul>
+                </div>
             </div>
-
-            <div className="single-user__purchased">
-                {/* <AdminPurchase /> */}
-
-                <h4>Senaste köpen</h4>
-                <ul>
-                    {purchases &&
-                        purchases.map((purchase) => {
-                            return <div className="admin__show-users_list" key={purchase._id}>
-                                <p>{purchase.date}</p>
-                                <p>{JSON.stringify(purchase.user_id.name).replace(/\"/g, "")} handlade för totalt {purchase.price_total} kr</p>
-                            </div>;
-                        })}
-                </ul>
-            </div>
-
-
-
-            {/* <h2>{user.name}</h2>
-      <h3>{user.role}</h3>
-
-      <p>{user.balance}</p>
-
-      Render other user details */}
         </div>
     );
 };
