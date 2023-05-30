@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const AddProductForm = ({ addProduct }) => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState("Mat");
     const [role, setRole] = useState(2);
 
     console.log(role);
@@ -17,7 +17,9 @@ const AddProductForm = ({ addProduct }) => {
     };
 
     const handleCategoryChange = (event) => {
-        setCategory(event.target.value);
+        if (event.target.checked) {
+            setCategory("Fika");
+        } 
     };
 
     const handleRoleChange = (event) => {
@@ -31,7 +33,7 @@ const AddProductForm = ({ addProduct }) => {
         addProduct({ name, price, category, role });
         setName('');
         setPrice('');
-        setCategory('');
+        setCategory();
         setRole('');
     };
 
@@ -59,14 +61,14 @@ const AddProductForm = ({ addProduct }) => {
                     required
                 />
 
-                <label htmlFor="category">Kategori: </label>
+                <label htmlFor="category">Är fika: </label>
 
                 <input
-                    type="text"
+                    type="checkbox"
+                    name="category"
                     id="category"
-                    value={category}
+                    // value="Fika"
                     onChange={handleCategoryChange}
-                    required
                 />
 
                 <label htmlFor="role">Roll: </label>
