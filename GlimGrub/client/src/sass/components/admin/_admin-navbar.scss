@@ -6,6 +6,7 @@
 .navbar__container {
     margin: 2rem 0 3rem 0;
     overflow: visible;
+    // height: 100vh;
 
     nav {
         display: grid;
@@ -68,14 +69,18 @@
         }
 
         .navbar__toggle-menu {
+            // background-color: #f4f4f4;
             background-color: $btn-color;
             margin-top: -32px;
             position: absolute;
+            height: 100vh;
+            z-index: 100;
             width: 30rem;
             display: grid;
             align-items: right;
             right: 0; 
-            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+            
 
             & > div {
                 cursor: pointer;

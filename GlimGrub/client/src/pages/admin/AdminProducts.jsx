@@ -109,15 +109,23 @@ const AdminProducts = () => {
                 <button onClick={handleAddProduct}><i className="fa-solid fa-plus"></i>Lägg till ny produkt</button>
             </div>
             <div className="admin__products-list">
-                <div className="popup__wrap">
-                    <div className="popup__overlay">
-                        <div className="popup__container">
-                            {addNewProduct && (
-                                <div><button className="popup__close-addproduct" onClick={handleAddProductClose}><i class="fa-solid fa-xmark"></i></button>
-                                    <AdminAddProduct addProduct={addProduct} /></div>
-                            )}
+                <div className="popup__overlay">
+
+                    {addNewProduct && (
+
+                        <div className="popup__wrap">
+                            <div className="overlay">
+                                <div className="popup__container">
+
+
+                                    <div><button className="popup__close" onClick={handleAddProductClose}><i class="fa-solid fa-xmark"></i></button>
+                                        <AdminAddProduct addProduct={addProduct} /></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    )}
+
+
                 </div>
 
                 <ul>
@@ -125,36 +133,42 @@ const AdminProducts = () => {
                         products.map((product) => {
                             if (editingProduct && editingProduct._id === product._id) {
                                 return (
-                                    <div className="admin__products-list_item" key={product._id}>
-                                        <input
-                                            type="text"
-                                            value={editedName}
-                                            placeholder={product.name}
-                                            onChange={(e) => setEditedName(e.target.value)}
-                                        />
-                                        <input
-                                            type="number"
-                                            value={editedPrice}
-                                            placeholder={product.price}
-                                            onChange={(e) => setEditedPrice(e.target.value)}
-                                        />
-                                        <input
-                                            type="text"
-                                            value={editedCategory}
-                                            placeholder={product.category}
-                                            onChange={(e) => setEditedCategory(e.target.value)}
-                                        />
-                                        <input
-                                            type="text"
-                                            value={editedRole}
-                                            placeholder={product.role}
-                                            onChange={(e) => setEditedRole(e.target.value)}
-                                        />
-                                        <div className="admin__products-list_item-wrap">
-                                            <button onClick={() => updateProduct(product._id)}><i class="fa-solid fa-check"></i></button>
-                                            <button onClick={() => setEditingProduct(null)}>Avbryt</button>
-                                        </div>
-                                    </div>
+                                    // <div className="popup__wrap">
+                                    //     <div className="popup__overlay">
+                                    //         <div className="popup__container">
+                                                <div className="admin__products-list_item" key={product._id}>
+                                                    <input
+                                                        type="text"
+                                                        value={editedName}
+                                                        placeholder={product.name}
+                                                        onChange={(e) => setEditedName(e.target.value)}
+                                                    />
+                                                    <input
+                                                        type="number"
+                                                        value={editedPrice}
+                                                        placeholder={product.price}
+                                                        onChange={(e) => setEditedPrice(e.target.value)}
+                                                    />
+                                                    <input
+                                                        type="text"
+                                                        value={editedCategory}
+                                                        placeholder={product.category}
+                                                        onChange={(e) => setEditedCategory(e.target.value)}
+                                                    />
+                                                    <input
+                                                        type="text"
+                                                        value={editedRole}
+                                                        placeholder={product.role}
+                                                        onChange={(e) => setEditedRole(e.target.value)}
+                                                    />
+                                                    <div className="admin__products-list_item-wrap">
+                                                        <button onClick={() => updateProduct(product._id)}><i class="fa-solid fa-check"></i></button>
+                                                        <button onClick={() => setEditingProduct(null)}>Avbryt</button>
+                                                    </div>
+                                                </div>
+                                    //         </div>
+                                    //     </div>
+                                    // </div>
                                 );
                             } else {
 

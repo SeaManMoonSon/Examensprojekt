@@ -17,4 +17,8 @@
         margin-top: 2.5rem;
         letter-spacing: 1px;
     }
+
+    .navbar__logout {
+        @include button-style-admin-logout;
+    }
 }

@@ -20,6 +20,7 @@ const AdminSingleUser = (props) => {
     const [purchases, setPurchases] = useState(null);
     const [editedBalance, setEditedBalance] = useState('');
     const [newBalance, setNewBalance] = useState(false);
+    // const [popupSaldo, setPopupSaldo] = useState(false);
 
     const fetchUser = async () => {
         try {
@@ -108,6 +109,10 @@ const AdminSingleUser = (props) => {
         setNewBalance(true);
     }
 
+    // const handleEditBalanceDismiss = () => {
+    //     setPopupSaldo(false);
+    // }
+
     return (
         <div className="single-user__container">
             <AdminNavbar />
@@ -134,16 +139,21 @@ const AdminSingleUser = (props) => {
 
                     {newBalance && (
                         <div className="popup__wrap">
-                            <div className="popup__overlay">
-                                <div className="popup__container">
-                                    <div>
+                            <div className="overlay">
+                                <div className="popup__balance-container">
+                                    <div className="popup__balance">
+                                    <button onClick={() => setNewBalance(false)} className="popup__close"><i className="fa-solid fa-xmark"></i></button>
+                                        <div className="popup__balance-info">
+                                        <h2>Redigera saldo</h2>
+                                        <h3>{user.name} | {user.role}</h3>
                                         <input
                                             type="number"
                                             value={editedBalance}
                                             placeholder={user.balance}
                                             onChange={(e) => setEditedBalance(e.target.value)}
                                         />
-                                        <button onClick={editBalance}>Spara nytt saldo</button>
+                                        <button onClick={editBalance}>Spara saldo</button>
+                                        </div>
                                     </div>
 
                                 </div>

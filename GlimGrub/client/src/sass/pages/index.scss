@@ -3,6 +3,7 @@
 @forward './admin/dashboard';
 @forward './admin/users';
 @forward './admin/admin-single-user';
+@forward './admin/admin-add-products';
 
 @forward './users/fika';
 @forward './users/user-landing';

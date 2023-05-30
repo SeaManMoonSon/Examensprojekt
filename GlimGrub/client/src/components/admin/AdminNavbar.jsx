@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 // components
-import Logout from "../../components/misc/Logout";
+// import Logout from "../../components/misc/Logout";
+import AdminLogout from '../../components/admin/AdminLogout';
 import AdminSearchBar from '../../components/admin/AdminSearchBar';
 import AdminSearchResultList from '../../components/admin/AdminSearchResultList';
 
@@ -44,8 +45,9 @@ const AdminNavigation = () => {
                             </div>
 
                             <div className="navbar__toggle-menu_items">
+                            {/* <div className="overlay"></div> */}
                                 <div><a href="/admin/products">Produkter</a></div>
-                                <div><Logout /></div>
+                                <div><AdminLogout/></div>
                             </div>
 
                         </div>

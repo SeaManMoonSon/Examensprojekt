@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/userAuthContext";
-import Logout from "../misc/Logout";
+// import Logout from "../misc/Logout";
+import AdminLogout from "../admin/AdminLogout";
 import URL from "../../proxyURL.js";
 import dateFormat from "dateformat";
 import { useLogout } from "../../hooks/useLogout";
@@ -82,8 +83,6 @@ const UserConfirmation = ({ product, onDismiss }) => {
         console.log("User balance is too low");
       }
 
-
-
     } catch (error) {
       console.error(error);
     }
@@ -131,7 +130,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
             </div>
           </div>
           <div className="user-confirmation__buttons">
-            <Logout />
+            <AdminLogout />
           </div>
         </div>
       )}
