@@ -80,8 +80,7 @@ const createPurchase = async (req, res) => {
     //   await user.save();
     // }
     if (user.role === "deltagare" && user.balance - price_total < 0) {
-      console.log("PARA FINNS ICKE");
-      res.status(400).json({ error: "User balance is too low" });
+      return res.status(400).json({ error: "User balance is too low" });
     }
 
     res.status(200).json(purchase);
@@ -93,25 +92,35 @@ const createPurchase = async (req, res) => {
 const exportPurchases = async (req, res) => {
   const { startDate, endDate } = req.body;
 
+  console.log(endDate);
+
   try {
     const purchases = await PurchaseModel.find({
       date: {
-        $gte: startDate,
-        $lte: endDate,
+        $gte: startDate, /* MongoDB comparison query operator. https://www.mongodb.com/docs/manual/reference/operator/query-comparison/ */
+        $lte: endDate, /* gte = greater than or equal to. lte = lesser than or equal to */
       },
-    }).populate("user_id", "name ssn");
+    }).populate({
+      path: "user_id",
+      select: "name role"
+    });
 
-    const fields = ["user_id.name", "price_total", "date"];
-    const opts = { fields };
+    const fields = [
+      { label: "Datum", value: (row) => (new Date(row.date)).toLocaleDateString() },  /* What we in the biz call a "silvertejpslösning" for date to show prettier in the csv file */
+      { label: "Roll", value: "user_id.role" },
+      { label: "Namn", value: "user_id.name" },
+      { label: "Totalsumma", value: "price_total" }
+    ];
+    const opts = { fields, encoding: "utf-8" };
 
     const parser = new Parser(opts);
     const csvData = parser.parse(purchases);
 
     res.setHeader("Content-Disposition", "attachment; filename=Betalningar.csv");
-    res.set("Content-Type", "text/csv");
+    res.set("Content-Type", "text/csv; charset=utf-8");
     res.status(200).send(csvData);
   } catch (error) {
-    console.log(error.message);
+    console.error(error); // Log the error message for debugging purposes
     res.status(500).json({ error: "Export failed" });
   }
 };

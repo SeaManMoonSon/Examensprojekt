@@ -9,10 +9,7 @@ import { useLogout } from "../../hooks/useLogout";
 // styles
 import "../../sass/style.scss";
 
-const now = new Date();
-const formattedDate = dateFormat(now, "yyyy-mm-dd");
-
-const UserConfirmation = ({ product }) => {
+const UserConfirmation = ({ product, onDismiss }) => {
   const [confirmed, setConfirmed] = useState(false);
   const [countdown, setCountdown] = useState(10);
   const navigate = useNavigate();
@@ -39,16 +36,16 @@ const UserConfirmation = ({ product }) => {
   });
 
   const handleConfirmation = async () => {
-    setConfirmed(true);
-    console.log("Här ska pengarna dras");
-
     try {
-      //   if (!product || !product.items) {
-      //     console.error("Product data is missing.");
-      //     return;
-      //   }
+        if (!product) {
+          console.error("Product data is missing.");
+          return;
+        }
 
       console.log(product);
+
+      const now = new Date();
+      const formattedDate = dateFormat(now, "isoDateTime");
 
       const data = {
         user_id: user.user._id,
@@ -63,26 +60,37 @@ const UserConfirmation = ({ product }) => {
         ],
       };
 
-      const response = await fetch(`${URL}/api/purchases`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      if (user.user.balance - product.price >= 0 || user.user.role !== "deltagare") {
+        const response = await fetch(`${URL}/api/purchases`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+  
+        const json = await response.json();
 
-      const json = await response.json();
+        if (!response.ok) {
+          onDismiss();
+          console.error(json.error);
+        } else {
+          setConfirmed(true);
+          console.log("Purchase successful");
+        }
 
-      if (!response.ok) {
-        console.error(json.error);
       } else {
-        console.log("Purchase successful");
+        onDismiss();
+        console.log("User balance is too low");
       }
+
+
+
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleEscape = () => {
-    navigate("/landing");
+    onDismiss();
   };
 
   return (

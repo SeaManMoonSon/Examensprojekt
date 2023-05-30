@@ -1,13 +1,14 @@
-import React from 'react';
-import { useEffect, useState } from "react"
-import UserConfirmation from '../users/UserConfirmation'
+import React from "react";
+import { useEffect, useState } from "react";
+import UserConfirmation from "../users/UserConfirmation";
 import URL from "../../proxyURL.js";
-import { useAuthContext } from '../../hooks/userAuthContext';
+import { useAuthContext } from "../../hooks/userAuthContext";
 
 // styles
-import '../../sass/style.scss'
+import "../../sass/style.scss";
 
 const Categories = () => {
+
     const { user } = useAuthContext();
 
     const [popUp, setPopup] = useState(false);
@@ -28,6 +29,11 @@ const Categories = () => {
         setSelectedProduct(product);
         setPopup(true);
     }
+    
+      const handlePopupDismiss = () => {
+    setPopup(false);
+  };
+
 
     useEffect(() => {
         const fetchMenu = async () => {
@@ -83,25 +89,31 @@ const Categories = () => {
                             </>
                         )}
 
-                        {fika && (
-                            <>
-                            {products.map((product) => {
-                                if (product.category === "Fika") {
-                                    return (
-                                        <div className="admin__show-users_list" key={product._id}>
-                                        <button onClick={() => handlePopup(product)} key={product._id}>{product.name}</button>
-                                    </div>
-                                    )
-                                }
-                            })}
-                            </>
-                        )}
-                    </>
-                )}
-            </div>
 
+            {fika && (
+              <>
+                <button onClick={() => setFika(false)}>Tillbaka till meny</button>
+                {products.map((product) => {
+                  if (product.category === "Fika") {
+                    return (
+                      <div className="admin__show-users_list" key={product._id}>
+                        <button
+                          onClick={() => handlePopup(product)}
+                          key={product._id}
+                        >
+                          {product.name}
+                        </button>
+                      </div>
+                    );
+                  }
+                })}
+              </>
+            )}
+          </>
+        )}
+      </div>
 
-            {/* <>
+      {/* <>
                 {user.role === 0 && (
                     <div className="categories__container-products">
                         {products && !fika && (
@@ -134,17 +146,19 @@ const Categories = () => {
                 )}
             </> */}
 
-
-            {popUp && (
-                <div className="popup__wrap">
-                    <div className="popup__overlay"></div>
-                    <div className="categories__user-confirmation">
-                        <UserConfirmation product={selectedProduct} />
-                    </div>
-                </div>
-            )}
+      {popUp && (
+        <div className="popup__wrap">
+          <div className="popup__overlay"></div>
+          <div className="categories__user-confirmation">
+            <UserConfirmation
+              product={selectedProduct}
+              onDismiss={handlePopupDismiss}
+            />
+          </div>
         </div>
-    );
-}
+      )}
+    </div>
+  );
+};
 
 export default Categories;
