@@ -15,18 +15,27 @@ const AdminDashboard = () => {
     const [popUp, setPopUp] = useState(false);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+    const [reset, setReset] = useState(false);
+    const [isLoading, setIsLoading] = useState(null);
 
     const handleClearFeed = () => {
         // ----------------- LIVE CODE ------------------------------------------
-        const timestamp = new Date();
-        const formattedTimestamp = dateFormat(timestamp, "isoDateTime");
-        setLastClear(formattedTimestamp);
-        console.log("Im triggered", formattedTimestamp);
+        // const timestamp = new Date();
+        // const formattedTimestamp = dateFormat(timestamp, "isoDateTime");
+        // setLastClear(formattedTimestamp);
+        // console.log("Im triggered", formattedTimestamp);
 
         // --------------- TEST/DEV ---------------------------------------------
-        // const test = "2023-05-24T16:56:12+0200";
-        // setLastClear(test);
-        // console.log("Im triggered", test);
+        const test = "2023-05-24T16:56:12+0200";
+        setLastClear(test);
+        console.log("Im triggered", test);
+
+        setReset(false);
+        setIsLoading(true);
+
+        setInterval(() => {
+            setIsLoading(false);
+        }, 10000);
     }
 
     const handleExport = () => {
@@ -36,7 +45,6 @@ const AdminDashboard = () => {
     const handleExportClose = () => {
         setPopUp(false);
     }
-
 
     const handleSubmit = () => {
 
@@ -56,12 +64,18 @@ const AdminDashboard = () => {
                 </div>
                 <div className="admin__dashboard-info_btn">
                     <button onClick={handleExport}><i class="fa-solid fa-download"></i></button>
-                    <button onClick={handleClearFeed}><i class="fa-solid fa-rotate-right"></i>Rensa flöde</button>
+                    <button onClick={() => setReset(true)}><i class="fa-solid fa-rotate-right"></i>Rensa flöde</button>
                 </div>
             </div>
 
             <div className="admin__dashboard-users_payflow">
-                <ListUsers lastClear={lastClear}/>
+            {isLoading && (
+            <div className="list-users__loading">
+              <div className="list-users__loading-progress"></div>
+              <p>Flödet uppdateras...</p>
+            </div>
+          )}
+                <ListUsers lastClear={lastClear} />
                 <div className="categories__container">
                     {popUp && (
                         <div className="popup__wrap">
@@ -95,6 +109,18 @@ const AdminDashboard = () => {
                                         <input type="submit" className="popup__form-submit" value="Ladda ner" onClick={handleSubmit} />
                                     </form>
 
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {reset && (
+                        <div className="popup__wrap">
+                            <div className="popup__overlay">
+                                <div className="popup__container">
+                                    <button onClick={() => setReset(false)} className="popup__close"><i className="fa-solid fa-xmark"></i></button> 
+                                    <h2>Är du säker på att du vill återställa flödet?</h2>
+                                    <button onClick={handleClearFeed} className="popup__form-submit" value="">Ja</button>
+                                    <button onClick={() => setReset(false)} className="popup__form-submit" value="">Nej</button>
                                 </div>
                             </div>
                         </div>

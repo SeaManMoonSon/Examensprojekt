@@ -157,12 +157,14 @@ const AdminProducts = () => {
                                     </div>
                                 );
                             } else {
+
+                 
                                 return (
                                     <div className="admin__products-list_item" key={product._id}>
                                         <p>{product.name}</p>
                                         <p>{product.price} kr</p>
                                         <p>{product.category}</p>
-                                        <p>{product.role}</p>
+                                        {product.role === 0 ? (<p>Deltagare</p>) : product.role === 1 ? (<p>Personal</p>) : (<p>Alla</p>)}
                                         <div className="admin__products-list_item-wrap">
                                             <button onClick={() => setEditingProduct(product)}>Redigera</button>
                                             <button onClick={() => deleteProduct(product._id)}><i class="fa-solid fa-trash"></i></button>
