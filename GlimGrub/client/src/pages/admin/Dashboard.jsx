@@ -71,10 +71,13 @@ const AdminDashboard = () => {
             <div className="admin__dashboard-users_payflow">
             {isLoading && (
             <div className="list-users__loading">
-              <div className="list-users__loading-progress"></div>
+              <div className="list-users__loading-progress">
+              </div>
+              <div className="overlay loading-overlay"></div>
               <p>Flödet uppdateras...</p>
             </div>
           )}
+
                 <ListUsers lastClear={lastClear} />
                 <div className="categories__container">
                     {popUp && (
@@ -118,9 +121,11 @@ const AdminDashboard = () => {
                             <div className="popup__overlay">
                                 <div className="popup__container">
                                     <button onClick={() => setReset(false)} className="popup__close"><i className="fa-solid fa-xmark"></i></button> 
+                                    <div className="popup__info">
                                     <h2>Är du säker på att du vill återställa flödet?</h2>
-                                    <button onClick={handleClearFeed} className="popup__form-submit" value="">Ja</button>
+                                    <button onClick={handleClearFeed} className="popup__form-submit submit-yes" value="">Ja</button>
                                     <button onClick={() => setReset(false)} className="popup__form-submit" value="">Nej</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

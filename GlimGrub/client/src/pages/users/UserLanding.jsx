@@ -15,7 +15,9 @@ const UserLanding = () => {
     <div className="categories-container">
 
       <div className="categories__user-container">
+        
       <div className="categories__img"></div>
+      <div className="categories__img img-fika"></div>
 
       <div className="categories__user">
 
