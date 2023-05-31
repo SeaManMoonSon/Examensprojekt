@@ -83,6 +83,35 @@
         }
     }
 
+.popup__info {
+    padding: 0 4rem 4rem 4rem;
 
+    h2 {
+        margin-bottom: 2rem;
+    }
+
+    .popup__form-submit {
+        background-color: transparent;
+        padding: 1rem;
+        width: 10rem;
+        margin-right: 0.7rem;
+        border-radius: 2rem;
+        border: 2px solid $btn-color;
+        font-family: $secondary-font;
+        font-size: 17px;
+    }
+
+    .submit-yes {
+        background-color: $btn-color;
+        color: white;
+    }
+    
+}
+
+.loading-overlay {
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+}
 
 

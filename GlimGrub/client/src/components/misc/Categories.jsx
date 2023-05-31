@@ -93,9 +93,9 @@ const Categories = () => {
 
             {fika && (
               <>
-                <button onClick={() => setFika(false)}>
-                  Tillbaka till meny
-                </button>
+                <div className="categories__btn-back" onClick={() => setFika(false)}>
+                <i class="fa-solid fa-arrow-left-long"></i>
+                </div>
                 {products.map((product) => {
                   if (product.category === "Fika" && product.role !== 1) {
                     return (
