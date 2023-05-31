@@ -20,15 +20,15 @@ const AdminDashboard = () => {
 
     const handleClearFeed = () => {
         // ----------------- LIVE CODE ------------------------------------------
-        // const timestamp = new Date();
-        // const formattedTimestamp = dateFormat(timestamp, "isoDateTime");
-        // setLastClear(formattedTimestamp);
-        // console.log("Im triggered", formattedTimestamp);
+        const timestamp = new Date();
+        const formattedTimestamp = dateFormat(timestamp, "isoDateTime");
+        setLastClear(formattedTimestamp);
+        console.log("Im triggered", formattedTimestamp);
 
         // --------------- TEST/DEV ---------------------------------------------
-        const test = "2023-05-24T16:56:12+0200";
-        setLastClear(test);
-        console.log("Im triggered", test);
+        // const test = "2023-05-24T16:56:12+0200";
+        // setLastClear(test);
+        // console.log("Im triggered", test);
 
         setReset(false);
         setIsLoading(true);
