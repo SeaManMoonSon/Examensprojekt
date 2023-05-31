@@ -53,14 +53,6 @@ const AddProductForm = ({ addProduct }) => {
 
                 {/* <label htmlFor="price">Produktens pris: </label> */}
 
-                <label htmlFor="category">Är fika: </label>
-                <input
-                    type="checkbox"
-                    name="category"
-                    id="category"
-                    onChange={handleCategoryChange}
-                />
-
                 {/* <label htmlFor="role">Roll: </label> */}
 
                 <div className="input-wrap">
@@ -78,6 +70,16 @@ const AddProductForm = ({ addProduct }) => {
                     <option value={0}>Deltagare</option>
                     <option value={1}>Personal</option>
                 </select>
+                </div>
+
+                <div className="admin__add-products-fika">
+                <label htmlFor="category">Markera produkten som fika</label>
+                <input
+                    type="checkbox"
+                    name="category"
+                    id="category"
+                    onChange={handleCategoryChange}
+                />
                 </div>
 
                 <button type="submit">Lägg till produkt</button>
