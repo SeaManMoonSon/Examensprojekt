@@ -23,18 +23,23 @@ const AdminStart = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(login(ssn, password));
+    // console.log(login(ssn, password));
 
     console.log("btn triggered");
 
-    const loginSuccessful = await login(ssn, password);
-      if (loginSuccessful && user.user.role === "admin") {
+    const {loginSuccessful, userRole} = await login(ssn, password);
+
+    console.log(loginSuccessful);
+
+      if (loginSuccessful) {
+        if(userRole === "admin") {
         navigate('/admin/landing');
-        console.log(user.user.role);
+        console.log(userRole);
       } else {
         console.log("funkar inte");
     }
   };
+}
 
   return (
     <div className="admin-login-page__container">

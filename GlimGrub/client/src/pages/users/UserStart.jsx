@@ -27,6 +27,7 @@ const UserStart = () => {
     const loginSuccessful = await login(ssn, password);
     if (loginSuccessful) {
       navigate('/landing');
+      console.log(user.user.role);
     }
   };
 
