@@ -73,7 +73,7 @@ const AdminDashboard = () => {
             <div className="list-users__loading">
               <div className="list-users__loading-progress">
               </div>
-              <div className="overlay loading-overlay"></div>
+              <div className="loading-overlay"></div>
               <p>Flödet uppdateras...</p>
             </div>
           )}
