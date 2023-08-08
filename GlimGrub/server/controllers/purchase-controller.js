@@ -11,11 +11,12 @@ const getPurchases = async (req, res) => {
   try {
     const purchases = await Purchase.find({})
       .populate("user_id", "name")
+      .populate("date", "date")
       .populate({
         path: "items.product_id",
         model: "Product",
         select: "name",
-      });
+      }).sort({ date: -1 });
 
     res.status(200).json(purchases);
   } catch (error) {
