@@ -25,15 +25,14 @@ const AdminStart = () => {
 
     console.log(login(ssn, password));
 
+    console.log("btn triggered");
+
     const loginSuccessful = await login(ssn, password);
-    if (loginSuccessful) {
-      if (user.user.role === "admin") {
+      if (loginSuccessful && user.user.role === "admin") {
         navigate('/admin/landing');
         console.log(user.user.role);
       } else {
         console.log("funkar inte");
-        
-      }
     }
   };
 
