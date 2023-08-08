@@ -54,7 +54,7 @@ const ListUsers = ({ lastClear }) => {
                     <p>Total kostnad: {purchase.price_total} kr</p>
                   </div>
                 </div>
-              );
+              )
             })}
 
           {isLoading && (
