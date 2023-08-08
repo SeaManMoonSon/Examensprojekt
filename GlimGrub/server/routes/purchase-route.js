@@ -1,6 +1,5 @@
 import express from "express";
 import PurchaseController from "../controllers/purchase-controller.js";
-import purchaseController from "../controllers/purchase-controller.js";
 
 const router = express.Router();
 
@@ -11,7 +10,7 @@ router.post('/', PurchaseController.createPurchase);
 router.get('/', PurchaseController.getPurchases);
 
 // Get one purchase
-router.get('/:id', purchaseController.getPurchase);
+router.get('/:id', PurchaseController.getPurchase);
 
 // Export purchases
 router.post('/export', PurchaseController.exportPurchases);

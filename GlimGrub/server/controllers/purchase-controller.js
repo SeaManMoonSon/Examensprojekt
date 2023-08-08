@@ -3,8 +3,6 @@ import { Parser } from "json2csv";
 
 import Purchase from "../models/purchase-model.js";
 import User from "../models/user-model.js";
-// import Product from "../models/product-model.js";
-import PurchaseModel from "../models/purchase-model.js";
 
 // Get all purchases
 const getPurchases = async (req, res) => {
@@ -95,7 +93,7 @@ const exportPurchases = async (req, res) => {
   console.log(endDate);
 
   try {
-    const purchases = await PurchaseModel.find({
+    const purchases = await Purchase.find({
       date: {
         $gte: startDate, /* MongoDB comparison query operator. https://www.mongodb.com/docs/manual/reference/operator/query-comparison/ */
         $lte: endDate, /* gte = greater than or equal to. lte = lesser than or equal to */
