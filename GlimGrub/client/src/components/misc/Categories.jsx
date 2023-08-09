@@ -14,6 +14,10 @@ const Categories = () => {
   const [products, setProducts] = useState(null);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  const [showPopup, setShowPopup] = useState(false);
+
 
   const [fika, setFika] = useState(false);
 
@@ -32,6 +36,17 @@ const Categories = () => {
   const handlePopupDismiss = () => {
     setPopup(false);
   };
+
+  const handleSelectedProduct = (product) => {
+    setSelectedProducts([...selectedProducts, product]);
+
+    console.log("You have selected", selectedProducts);
+  }
+
+  const handleCheckout = () => {
+    setShowPopup(true);
+    console.log("Shows popup");
+  }
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -96,12 +111,13 @@ const Categories = () => {
                 <div className="categories__btn-back" onClick={() => setFika(false)}>
                 <i class="fa-solid fa-arrow-left-long"></i>
                 </div>
+                <button onClick={handleCheckout}>Varukorg</button>
                 {products.map((product) => {
                   if (product.category === "Fika" && product.role !== 1) {
                     return (
                       <div className="admin__show-users_list" key={product._id}>
                         <button
-                          onClick={() => handlePopup(product)}
+                          onClick={() => handleSelectedProduct(product)}
                           key={product._id}
                         >
                           {product.name}
@@ -110,11 +126,23 @@ const Categories = () => {
                     );
                   }
                 })}
+                {/* {selectedProducts.length > 0 && <button onClick={handleCheckout}>Checkout</button>} */}
               </>
             )}
           </>
         )}
       </div>
+
+      {showPopup && ( 
+        <div className="popup">
+        <h2>Din varukorg</h2>
+        <ul>
+          {selectedProducts.map((product) => (
+            <li key={product._id}>{product.name}</li>
+          ))}
+        </ul>
+        </div>
+      )}
 
       {popUp && (
         <div className="popup__wrap">
