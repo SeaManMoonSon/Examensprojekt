@@ -52,7 +52,7 @@ const Categories = () => {
   const handleCheckout = () => {
     setShowPopup(true);
     console.log("Popup info: ", selectedProducts);
-    }
+  }
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -94,13 +94,15 @@ const Categories = () => {
 
         {user.user.role === "deltagare" && (
           <>
+
+            <button onClick={handleCheckout}>Varukorg</button>
             {products && !fika && (
               <>
                 {products.map((product) => {
                   if (product.category != "Fika" && product.role != 1) {
                     return (
                       <button
-                        onClick={() => handlePopup(product)}
+                        onClick={() => handleSelectedProduct(product)}
                         key={product._id}
                       >
                         {product.name}
@@ -115,10 +117,8 @@ const Categories = () => {
             {fika && (
               <>
                 <div className="categories__btn-back" onClick={() => setFika(false)}>
-                <i class="fa-solid fa-arrow-left-long"></i>
+                  <i class="fa-solid fa-arrow-left-long"></i>
                 </div>
-
-                <button onClick={handleCheckout}>Varukorg</button>
 
                 {products.map((product) => {
                   if (product.category === "Fika" && product.role !== 1) {
@@ -141,16 +141,16 @@ const Categories = () => {
         )}
       </div>
 
-      {showPopup && ( 
+      {showPopup && (
         <div className="popup">
-        <h2>Din varukorg</h2>
-        <ul>
-          {selectedProducts.map((product) => (
-            <li key={product._id}>{product.name}</li>
-          ))}
-        </ul>
-        <button onClick={handlePopupClose}>Fortsätt handla</button>
-        <button onClick={() => handlePopup(selectedProducts)}>Betala</button>
+          <h2>Din varukorg</h2>
+          <ul>
+            {selectedProducts.map((product) => (
+              <li key={product._id}>{product.name}</li>
+            ))}
+          </ul>
+          <button onClick={handlePopupClose}>Fortsätt handla</button>
+          <button onClick={() => handlePopup(selectedProducts)}>Betala</button>
         </div>
       )}
 

@@ -43,7 +43,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
         return;
       }
 
-      console.log(product);
+      console.log("Product: ", product);
 
       const now = new Date();
       const formattedDate = dateFormat(now, "isoDateTime");
@@ -52,16 +52,16 @@ const UserConfirmation = ({ product, onDismiss }) => {
         user_id: user.user._id,
         date: formattedDate,
         price_total: 10,
-        items: [
-          {
-            product_id: product._id,
-            quantity: 1,
-            price_one: product.price,
-          },
-        ],
+        items: product.map(item => ({
+          product_id: item._id,
+          quantity: 1,
+          price_one: item.price,
+          })),
       };
 
-      if (user.user.balance - product.price >= 0 || user.user.role !== "deltagare") {
+      console.log("Items: ", data);
+
+      if (user.user.balance - data.price_total >= 0 || user.user.role !== "deltagare") {
         const response = await fetch(`${URL}/api/purchases`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -98,15 +98,26 @@ const UserConfirmation = ({ product, onDismiss }) => {
         <div>
           <div className="user-confirmation__container-text">
             <h2>Vänligen bekräfta ditt val</h2>
-            {product.map((product) => (
+             {product.length > 1 && 
+            <div className="test">
+              {product.map((product) => (
+                <p>{product.name}, {product.price} kronor</p>
+              ))}
+            </div>
+            } 
+             {product && (
+              <p>{product.name}</p>
+            )}
+          
+            {/* {product.map((product) => (
               <div className="user-confirmation__product">
                 <i className="fa-solid fa-utensils"></i>
                 <div className="user-confirmation__product-item">
                   <p>{product.name}, {product.price} kronor</p>
                 </div>
               </div>
-            ))}
-
+            ))} */}
+        
           </div>
           <div className="user-confirmation__buttons">
             <button
