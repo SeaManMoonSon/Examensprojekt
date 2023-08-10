@@ -10,7 +10,7 @@ import { useLogout } from "../../hooks/useLogout";
 // styles
 import "../../sass/style.scss";
 
-const UserConfirmation = ({ product, onDismiss }) => {
+const UserConfirmation = ({ product, items, onDismiss }) => {
   const [confirmed, setConfirmed] = useState(false);
   const [countdown, setCountdown] = useState(3);
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
           return;
         }
 
-      console.log(product);
+      console.log(product[0]);
 
       const now = new Date();
       const formattedDate = dateFormat(now, "isoDateTime");
@@ -52,16 +52,14 @@ const UserConfirmation = ({ product, onDismiss }) => {
         user_id: user.user._id,
         date: formattedDate,
         price_total: 10,
-        items: [
-          {
-            product_id: product._id,
-            quantity: 1,
-            price_one: product.price,
-          },
-        ],
+        items: items.map(item => ({
+          product_id: item._id,
+          quantity: 1,
+          price_one: item.price,
+        })),
       };
 
-      if (user.user.balance - product.price >= 0 || user.user.role !== "deltagare") {
+      if (user.user.balance - data.price_total >= 0 || user.user.role !== "deltagare") {
         const response = await fetch(`${URL}/api/purchases`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },

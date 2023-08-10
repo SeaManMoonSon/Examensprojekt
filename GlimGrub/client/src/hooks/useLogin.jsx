@@ -7,6 +7,7 @@ export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(null);
   // const [users, setUsers] = useState(null)
   const { dispatch } = useAuthContext();
+  const [pwChangePrompt, setPwChangePrompt] = useState(false);
 
   const login = async (ssn, password) => {
     setIsLoading(true);
@@ -28,9 +29,17 @@ export const useLogin = () => {
       dispatch({ type: "LOGIN", payload: json });
       localStorage.setItem("user", JSON.stringify(json));
       setIsLoading(false);
+
+      // console.log("json in useLogin", json);
+      if (json.passwordChangePrompt === true) {
+        console.log("json.passwordChangePrompt", json.passwordChangePrompt);
+        setPwChangePrompt(true);
+        // console.log("pwChangePrompt", pwChangePrompt);
+      }
+
       return true;
     }
   };
 
-  return { login, isLoading, error };
+  return { login, isLoading, pwChangePrompt ,error };
 }  

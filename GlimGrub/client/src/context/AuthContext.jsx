@@ -18,16 +18,17 @@ export const AuthContextProvider = ({ children }) => {
     user: JSON.parse(localStorage.getItem('user')),
   })
 
+
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
     // console.log(user, 'hej');
 
     if(user) {
+      console.log("user.passwordChangePrompt", user.passwordChangePrompt);
       dispatch({ type: 'LOGIN', payload: user})
     }
   }, [])
-
-  console.log("AuthContext state: ", state);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

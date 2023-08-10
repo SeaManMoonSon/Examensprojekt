@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 //components
@@ -15,19 +15,32 @@ const UserStart = () => {
   const { user } = useAuthContext();
   const [ssn, setSsn] = useState("");
   const [password, setPassword] = useState("");
-  const { login, error, isLoading } = useLogin();
+  const { login, error, isLoading, pwChangePrompt } = useLogin();
 
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (pwChangePrompt) {
+      
+  //   }
+  // }, [pwChangePrompt]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(login(ssn, password));
+    // console.log(login(ssn, password));
 
     const loginSuccessful = await login(ssn, password);
+
     if (loginSuccessful) {
-      navigate('/landing');
-    }
+      // console.log("pwChangePrompt", pwChangePrompt);
+      // navigate('/landing');
+      // if (pwChangePrompt) {
+      //   console.log("CHANGE PASSWORD NOOOOOOOOW");
+      // } else {
+        navigate('/landing');
+      }
+    // }
   };
 
   return (
@@ -63,6 +76,9 @@ const UserStart = () => {
             />
 
             <button>Logga in</button>
+            {pwChangePrompt && (
+              <div>TESTING pwChangePrompt TRUE POPUP</div>
+            )}
             {error && <div className="error">{error}</div>}
           </div>
         </form>
