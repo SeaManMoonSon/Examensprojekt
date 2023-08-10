@@ -38,10 +38,10 @@ const UserConfirmation = ({ product, onDismiss }) => {
 
   const handleConfirmation = async () => {
     try {
-        if (!product) {
-          console.error("Product data is missing.");
-          return;
-        }
+      if (!product) {
+        console.error("Product data is missing.");
+        return;
+      }
 
       console.log(product);
 
@@ -67,7 +67,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
-  
+
         const json = await response.json();
 
         if (!response.ok) {
@@ -98,12 +98,15 @@ const UserConfirmation = ({ product, onDismiss }) => {
         <div>
           <div className="user-confirmation__container-text">
             <h2>Vänligen bekräfta ditt val</h2>
-            <div className="user-confirmation__product">
-              <i className="fa-solid fa-utensils"></i>
-              <div className="user-confirmation__product-item">
-                <p>{product.name}, {product.price} kronor</p>
+            {product.map((product) => (
+              <div className="user-confirmation__product">
+                <i className="fa-solid fa-utensils"></i>
+                <div className="user-confirmation__product-item">
+                  <p>{product.name}, {product.price} kronor</p>
+                </div>
               </div>
-            </div>
+            ))}
+
           </div>
           <div className="user-confirmation__buttons">
             <button

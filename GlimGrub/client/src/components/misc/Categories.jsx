@@ -28,14 +28,20 @@ const Categories = () => {
 
   // console.log("Roll: ", user.user.role);
 
-  const handlePopup = (product) => {
-    setSelectedProduct(product);
+  const handlePopup = (selectedProducts) => {
+    // setSelectedProduct(product);
+    console.log("You are buying this: ", selectedProducts)
+    setSelectedProducts(selectedProducts);
     setPopup(true);
   };
 
   const handlePopupDismiss = () => {
     setPopup(false);
   };
+
+  const handlePopupClose = () => {
+    setShowPopup(false);
+  }
 
   const handleSelectedProduct = (product) => {
     setSelectedProducts([...selectedProducts, product]);
@@ -45,8 +51,8 @@ const Categories = () => {
 
   const handleCheckout = () => {
     setShowPopup(true);
-    console.log("Shows popup");
-  }
+    console.log("Popup info: ", selectedProducts);
+    }
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -111,7 +117,9 @@ const Categories = () => {
                 <div className="categories__btn-back" onClick={() => setFika(false)}>
                 <i class="fa-solid fa-arrow-left-long"></i>
                 </div>
+
                 <button onClick={handleCheckout}>Varukorg</button>
+
                 {products.map((product) => {
                   if (product.category === "Fika" && product.role !== 1) {
                     return (
@@ -141,6 +149,8 @@ const Categories = () => {
             <li key={product._id}>{product.name}</li>
           ))}
         </ul>
+        <button onClick={handlePopupClose}>Fortsätt handla</button>
+        <button onClick={() => handlePopup(selectedProducts)}>Betala</button>
         </div>
       )}
 
@@ -149,7 +159,7 @@ const Categories = () => {
           <div className="popup__overlay"></div>
           <div className="categories__user-confirmation">
             <UserConfirmation
-              product={selectedProduct}
+              product={selectedProducts}
               onDismiss={handlePopupDismiss}
             />
           </div>
