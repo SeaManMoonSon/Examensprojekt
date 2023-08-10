@@ -13,7 +13,7 @@ const Categories = () => {
   const [popUp, setPopup] = useState(false);
   const [products, setProducts] = useState(null);
 
-  const [selectedProduct, setSelectedProduct] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const [fika, setFika] = useState(false);
 
@@ -25,7 +25,7 @@ const Categories = () => {
   // console.log("Roll: ", user.user.role);
 
   const handlePopup = (product) => {
-    setSelectedProduct([product]);
+    setSelectedProduct(product);
     setPopup(true);
   };
 
