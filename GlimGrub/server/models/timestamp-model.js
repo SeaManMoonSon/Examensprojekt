@@ -8,6 +8,7 @@ const timestampSchema = new mongoose.Schema({
   timestamp: {
     type: String,
     default: formattedDate,
+    unique: true
   }
 });
 

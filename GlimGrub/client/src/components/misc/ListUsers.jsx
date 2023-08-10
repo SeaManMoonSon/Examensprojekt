@@ -14,15 +14,18 @@ const ListUsers = () => {
     const fetchLastResetTimestamp = async () => {
       try {
         const response = await fetch(`${URL}/api/clearfeed`, {
-          method: "POST",
+          method: "GET",
           headers: {
               "Content-Type": "application/json",
           }
       });
         const data = await response.json();
 
+        // console.log("data", data[0].timestamp);
+
         if (response.ok) {
-          setLastResetTimestamp(data.timestamp);
+          setLastResetTimestamp(data[0].timestamp);
+          console.log(lastResetTimestamp);
         }
       } catch (error) {
         console.error(error);
@@ -30,7 +33,7 @@ const ListUsers = () => {
     };
 
     fetchLastResetTimestamp();
-  }, []);
+  }, [lastResetTimestamp]);
 
   useEffect(() => {
     if (lastResetTimestamp) {
@@ -44,9 +47,14 @@ const ListUsers = () => {
               const purchaseDate = new Date(purchase.date);
               const lastResetDate = new Date(lastResetTimestamp);
 
+              // console.log("purchaseDate", purchaseDate);
+              // console.log("lastResetDate", lastResetDate);
+
               return purchaseDate > lastResetDate;
             });
 
+            // console.log("filteredPurchases", filteredPurchases);
+            
             setPurchases(filteredPurchases);
             setIsLoading(false);
           }
@@ -55,7 +63,7 @@ const ListUsers = () => {
         }
       };
 
-      fetchPurchases();
+      // fetchPurchases();
 
       const interval = setInterval(fetchPurchases, 10000);
 
