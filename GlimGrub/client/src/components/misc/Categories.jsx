@@ -14,6 +14,10 @@ const Categories = () => {
   const [products, setProducts] = useState(null);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  const [showPopup, setShowPopup] = useState(false);
+
 
   const [fika, setFika] = useState(false);
 
@@ -24,14 +28,31 @@ const Categories = () => {
 
   // console.log("Roll: ", user.user.role);
 
-  const handlePopup = (product) => {
-    setSelectedProduct(product);
+  const handlePopup = (selectedProducts) => {
+    // setSelectedProduct(product);
+    console.log("You are buying this: ", selectedProducts)
+    setSelectedProducts(selectedProducts);
     setPopup(true);
   };
 
   const handlePopupDismiss = () => {
     setPopup(false);
   };
+
+  const handlePopupClose = () => {
+    setShowPopup(false);
+  }
+
+  const handleSelectedProduct = (product) => {
+    setSelectedProducts([...selectedProducts, product]);
+
+    console.log("You have selected", selectedProducts);
+  }
+
+  const handleCheckout = () => {
+    setShowPopup(true);
+    console.log("Popup info: ", selectedProducts);
+  }
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -73,13 +94,15 @@ const Categories = () => {
 
         {user.user.role === "deltagare" && (
           <>
+
+            <button onClick={handleCheckout}>Varukorg</button>
             {products && !fika && (
               <>
                 {products.map((product) => {
                   if (product.category != "Fika" && product.role != 1) {
                     return (
                       <button
-                        onClick={() => handlePopup(product)}
+                        onClick={() => handleSelectedProduct(product)}
                         key={product._id}
                       >
                         {product.name}
@@ -94,14 +117,15 @@ const Categories = () => {
             {fika && (
               <>
                 <div className="categories__btn-back" onClick={() => setFika(false)}>
-                <i class="fa-solid fa-arrow-left-long"></i>
+                  <i class="fa-solid fa-arrow-left-long"></i>
                 </div>
+
                 {products.map((product) => {
                   if (product.category === "Fika" && product.role !== 1) {
                     return (
                       <div className="admin__show-users_list" key={product._id}>
                         <button
-                          onClick={() => handlePopup(product)}
+                          onClick={() => handleSelectedProduct(product)}
                           key={product._id}
                         >
                           {product.name}
@@ -110,18 +134,32 @@ const Categories = () => {
                     );
                   }
                 })}
+                {/* {selectedProducts.length > 0 && <button onClick={handleCheckout}>Checkout</button>} */}
               </>
             )}
           </>
         )}
       </div>
 
+      {showPopup && (
+        <div className="popup">
+          <h2>Din varukorg</h2>
+          <ul>
+            {selectedProducts.map((product) => (
+              <li key={product._id}>{product.name}</li>
+            ))}
+          </ul>
+          <button onClick={handlePopupClose}>Fortsätt handla</button>
+          <button onClick={() => handlePopup(selectedProducts)}>Betala</button>
+        </div>
+      )}
+
       {popUp && (
         <div className="popup__wrap">
           <div className="popup__overlay"></div>
           <div className="categories__user-confirmation">
             <UserConfirmation
-              product={selectedProduct}
+              product={selectedProducts}
               onDismiss={handlePopupDismiss}
             />
           </div>
