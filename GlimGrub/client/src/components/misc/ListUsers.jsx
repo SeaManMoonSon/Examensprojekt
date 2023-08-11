@@ -86,7 +86,7 @@ const ListUsers = () => {
                     {JSON.stringify(purchase.user_id.name).replace(/\"/g, "")}
                   </p>
                   <div>
-                    <p>{purchase.date.split("T")[0]}</p>
+                    <p>{purchase.date.split("T")[0] + (", ") + purchase.date.split("T")[1].split("+")[0]}</p>
                     <p>Total kostnad: {purchase.price_total} kr</p>
                   </div>
                 </div>
