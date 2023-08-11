@@ -10,7 +10,7 @@ router.post('/', PurchaseController.createPurchase);
 router.get('/', PurchaseController.getPurchases);
 
 // Get all purchases since last reset
-router.get('/since', PurchaseController.getPurchasesSinceLastReset);
+// router.get('/since', PurchaseController.getPurchasesSinceLastReset);
 
 // Get one purchase
 router.get('/:id', PurchaseController.getPurchase);
