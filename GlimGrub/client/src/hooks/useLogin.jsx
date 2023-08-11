@@ -7,7 +7,7 @@ export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(null);
   // const [users, setUsers] = useState(null)
   const { dispatch } = useAuthContext();
-  const [pwChangePrompt, setPwChangePrompt] = useState(false);
+  const [pwChangePrompt, setPwChangePrompt] = useState(null);
 
   const login = async (ssn, password) => {
     setIsLoading(true);
@@ -32,7 +32,7 @@ export const useLogin = () => {
 
       // console.log("json in useLogin", json);
       if (json.passwordChangePrompt === true) {
-        console.log("json.passwordChangePrompt", json.passwordChangePrompt);
+        console.log("json.passwordChangePrompt TRUUUUUUUUE", json.passwordChangePrompt);
         setPwChangePrompt(true);
         // console.log("pwChangePrompt", pwChangePrompt);
       }

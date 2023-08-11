@@ -33,14 +33,8 @@ const UserStart = () => {
     const loginSuccessful = await login(ssn, password);
 
     if (loginSuccessful) {
-      // console.log("pwChangePrompt", pwChangePrompt);
-      // navigate('/landing');
-      // if (pwChangePrompt) {
-      //   console.log("CHANGE PASSWORD NOOOOOOOOW");
-      // } else {
-        navigate('/landing');
-      }
-    // }
+      navigate('/landing');
+    }
   };
 
   return (
