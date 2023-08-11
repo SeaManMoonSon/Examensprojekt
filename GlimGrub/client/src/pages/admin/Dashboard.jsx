@@ -46,6 +46,7 @@ const AdminDashboard = () => {
 
             setInterval(() => {
                 setIsLoading(false);
+                // window.location.reload();
             }, 10000);
         } catch (error) {
             console.error(error.message);

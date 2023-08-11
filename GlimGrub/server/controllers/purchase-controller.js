@@ -22,18 +22,18 @@ const getPurchases = async (req, res) => {
 };
 
 // Get purchases since last reset
-const getPurchasesSinceLastReset = async (req, res) => {
-  try {
-    const sinceLastReset = req.query.since;
-    const purchases = await Purchase.find({
-      createdAt: { $gte: sinceLastReset },
-    });
+// const getPurchasesSinceLastReset = async (req, res) => {
+//   try {
+//     const sinceLastReset = req.query.since;
+//     const purchases = await Purchase.find({
+//       createdAt: { $gte: sinceLastReset },
+//     });
 
-    res.status(200).json(purchases);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
+//     res.status(200).json(purchases);
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// };
 
 // Get one purchase
 const getPurchase = async (req, res) => {
@@ -143,4 +143,4 @@ const exportPurchases = async (req, res) => {
   }
 };
 
-export default { getPurchases, createPurchase, getPurchase, exportPurchases, getPurchasesSinceLastReset };
+export default { getPurchases, createPurchase, getPurchase, exportPurchases };

@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import URL from "../../proxyURL.js";
-import dateFormat from "dateformat";
 
 // styles
 
@@ -25,7 +24,7 @@ const ListUsers = () => {
 
         if (response.ok) {
           setLastResetTimestamp(data[0].timestamp);
-          console.log(lastResetTimestamp);
+          // console.log(lastResetTimestamp);
         }
       } catch (error) {
         console.error(error);
@@ -50,12 +49,14 @@ const ListUsers = () => {
               // console.log("purchaseDate", purchaseDate);
               // console.log("lastResetDate", lastResetDate);
 
+
               return purchaseDate > lastResetDate;
             });
 
             // console.log("filteredPurchases", filteredPurchases);
             
             setPurchases(filteredPurchases);
+            console.log(filteredPurchases);
             setIsLoading(false);
           }
         } catch (error) {
@@ -63,7 +64,7 @@ const ListUsers = () => {
         }
       };
 
-      // fetchPurchases();
+      fetchPurchases();
 
       const interval = setInterval(fetchPurchases, 10000);
 
