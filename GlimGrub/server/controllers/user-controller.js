@@ -94,12 +94,17 @@ const loginUser = async(req, res) => {
       throw new Error("Fel personnummer eller PIN-kod");
     }
 
+    if (user.password === "0000") {
+      res.status(200).json({ user, passwordChangePrompt: true });
+      return;
+    }
+
     // const match = await bcrypt.compare(ssn, user.ssn);
 
     // Create token
     const token = createToken(user._id);
 
-    res.status(200).json({user, token});
+    res.status(200).json({user, passwordChangePrompt: false, token});
   } catch (error) {
     res.status(400).json({error: error.message});
   }

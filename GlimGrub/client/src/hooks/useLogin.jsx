@@ -7,6 +7,7 @@ export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(null);
   const [userRole, setUserRole] = useState(null)
   const { dispatch } = useAuthContext();
+  const [pwChangePrompt, setPwChangePrompt] = useState();
 
   const login = async (ssn, password) => {
     setIsLoading(true);
@@ -28,6 +29,8 @@ export const useLogin = () => {
     }
 
     setUserRole(json.user.role);
+    setPwChangePrompt(json.passwordChangePrompt);
+    // console.log("pwChangePrompt: ", pwChangePrompt);
 
     dispatch({
       type: "LOGIN",
@@ -36,10 +39,12 @@ export const useLogin = () => {
 
     localStorage.setItem("user", JSON.stringify(json));
     setIsLoading(false);
-    return { loginSuccessful: true, userRole: json.user.role}
+
+    return { loginSuccessful: true, userRole: json.user.role, pwChangePrompt: pwChangePrompt }
   } catch (error) {
     setIsLoading(false);
     setError(error.message);
+
     return {loginSuccessful: false, userRole: null};
   }
 
@@ -51,5 +56,5 @@ export const useLogin = () => {
     // }
   };
 
-  return { login, isLoading, error, userRole };
+  return { login, isLoading, error, userRole, pwChangePrompt };
 }  
