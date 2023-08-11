@@ -8,6 +8,7 @@ import cors from "cors";
 import UserRoute from "./routes/user-route.js";
 import ProductRoute from "./routes/product-route.js";
 import PurchaseRoute from "./routes/purchase-route.js";
+import TimestampRoute from "./routes/timestamp-route.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 app.use("/api/users", UserRoute);
 app.use("/api/products", ProductRoute);
 app.use("/api/purchases", PurchaseRoute);
+app.use("/api/clearfeed", TimestampRoute);
 
 // DB connection
 mongoose

@@ -12,7 +12,7 @@ import "../../sass/style.scss";
 
 const UserConfirmation = ({ product, onDismiss }) => {
   const [confirmed, setConfirmed] = useState(false);
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(3);
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const { logout } = useLogout();
