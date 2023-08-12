@@ -15,13 +15,9 @@ const UserStart = () => {
   const { user } = useAuthContext();
   const [ssn, setSsn] = useState("");
   const [password, setPassword] = useState("");
-  const { login, error, isLoading, pwChangePrompt } = useLogin();
+  const { login, error, isLoading } = useLogin();
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log("pwChangePrompt:", pwChangePrompt);
-  }, [pwChangePrompt]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,15 +26,9 @@ const UserStart = () => {
 
     const loginSuccessful = await login(ssn, password);
 
-    // if (loginSuccessful) {
-    //   // console.log("pwChangePrompt", pwChangePrompt);
-    //   // navigate('/landing');
-    //   // if (pwChangePrompt) {
-    //   //   console.log("CHANGE PASSWORD NOOOOOOOOW");
-    //   // } else {
-    //     navigate('/landing');
-    //   }
-    // }
+    if (loginSuccessful) {
+        navigate('/landing');
+      }
   };
 
   return (
@@ -74,9 +64,6 @@ const UserStart = () => {
             />
 
             <button>Logga in</button>
-            {pwChangePrompt && (
-              <div>TESTING pwChangePrompt TRUE POPUP</div>
-            )}
             {error && <div className="error">{error}</div>}
           </div>
         </form>
