@@ -60,6 +60,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
       };
 
       console.log("Items: ", data);
+      // console.log("Price total: ", data.price_total)
 
       if (user.user.balance - data.price_total >= 0 || user.user.role !== "deltagare") {
         const response = await fetch(`${URL}/api/purchases`, {
@@ -67,6 +68,9 @@ const UserConfirmation = ({ product, onDismiss }) => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
+
+        // console.log("Price total: ", product.price_total)
+
 
         const json = await response.json();
 
@@ -101,7 +105,14 @@ const UserConfirmation = ({ product, onDismiss }) => {
              {product.length > 1 && 
             <div className="test">
               {product.map((product) => (
-                <p>{product.name}, {product.price} kronor</p>
+                <p>
+                  {product.name}, {product.price} kronor
+                  {/* {product.price_total} */}
+                  {/* {product.length > 1 && (
+                    <p>{product.price_total} kronor </p>
+                  )} */}
+                </p>
+        
               ))}
             </div>
             } 
