@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 //components
@@ -22,12 +22,13 @@ const UserStart = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(login(ssn, password));
+    // console.log(login(ssn, password));
 
     const loginSuccessful = await login(ssn, password);
+
     if (loginSuccessful) {
-      navigate('/landing');
-    }
+        navigate('/landing');
+      }
   };
 
   return (
