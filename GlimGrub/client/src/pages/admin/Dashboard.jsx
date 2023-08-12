@@ -18,7 +18,7 @@ const AdminDashboard = () => {
     const [reset, setReset] = useState(false);
     const [isLoading, setIsLoading] = useState(null);
 
-    const handleClearFeed = () => {
+    const handleClearFeed = async () => {
         // ----------------- LIVE CODE ------------------------------------------
         const timestamp = new Date();
         const formattedTimestamp = dateFormat(timestamp, "isoDateTime");
@@ -30,12 +30,27 @@ const AdminDashboard = () => {
         // setLastClear(test);
         // console.log("Im triggered", test);
 
-        setReset(false);
-        setIsLoading(true);
+        // --------------- DATABASE TIMESTAMP -----------------------------------
+        try {
+            const response = await fetch(`${URL}/api/clearfeed`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
 
-        setInterval(() => {
-            setIsLoading(false);
-        }, 10000);
+            if (response.status === 200) {
+                setReset(false);
+                setIsLoading(true);
+            }
+
+            setInterval(() => {
+                setIsLoading(false);
+                // window.location.reload();
+            }, 10000);
+        } catch (error) {
+            console.error(error.message);
+        }
     }
 
     const handleExport = () => {
@@ -73,7 +88,7 @@ const AdminDashboard = () => {
             <div className="list-users__loading">
               <div className="list-users__loading-progress">
               </div>
-              <div className="overlay loading-overlay"></div>
+              <div className="loading-overlay"></div>
               <p>Flödet uppdateras...</p>
             </div>
           )}
