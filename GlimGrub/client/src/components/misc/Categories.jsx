@@ -104,7 +104,10 @@ const Categories = () => {
           </>
         )}
 
-        <button onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i></button>
+        <button
+          className="product-button"
+          onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+        </button>
 
 
         {user.user.role === "deltagare" && (
@@ -115,6 +118,7 @@ const Categories = () => {
                   if (product.category != "Fika" && product.role != 1) {
                     return (
                       <button
+                        className={`product-button ${selectedProducts.includes(product) ? 'selected' : ''}`}
                         onClick={() => handleSelectedProduct(product)}
                         key={product._id}
                       >
@@ -123,7 +127,9 @@ const Categories = () => {
                     );
                   }
                 })}
-                <button onClick={handleFika}>Fika</button>
+                <button
+                  className="product-button"
+                  onClick={handleFika}>Fika</button>
               </>
             )}
 
@@ -140,6 +146,7 @@ const Categories = () => {
                     return (
                       <div className="admin__show-users_list" key={product._id}>
                         <button
+                          className={`product-button ${selectedProducts.includes(product) ? 'selected' : ''}`}
                           onClick={() => handleSelectedProduct(product)}
                           key={product._id}
                         >
