@@ -18,6 +18,7 @@ const AdminSingleUser = (props) => {
 
     const [user, setUser] = useState(null);
     const [purchases, setPurchases] = useState(null);
+    const [editedPassword, setEditedPassword] = useState('');
     const [editedBalance, setEditedBalance] = useState('');
     const [newBalance, setNewBalance] = useState(false);
     // const [popupSaldo, setPopupSaldo] = useState(false);
@@ -100,6 +101,29 @@ const AdminSingleUser = (props) => {
 
         setNewBalance(false);
     };
+
+    const editPassword = async () => {
+        const editPasswordObj = {
+            password: editedPassword
+        };
+
+        try {
+            const response = await fetch(`${URL}/api/users/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editedPassword),
+            });
+
+            if (response.ok) {
+                console.log('Lösenordet återstäldes korrekt!');
+            }
+            
+        } catch (error) {
+            console.error('Lösenorder kunde inte återställas, ladda om och försök igen');
+        }
+    }
 
     if (!user) {
         return <div>No user found</div>;
