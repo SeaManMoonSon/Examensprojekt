@@ -18,6 +18,7 @@ const AdminSingleUser = (props) => {
 
     const [user, setUser] = useState(null);
     const [purchases, setPurchases] = useState(null);
+    const [editedPassword, setEditedPassword] = useState('');
     const [editedBalance, setEditedBalance] = useState('');
     const [newBalance, setNewBalance] = useState(false);
     // const [popupSaldo, setPopupSaldo] = useState(false);
@@ -101,12 +102,41 @@ const AdminSingleUser = (props) => {
         setNewBalance(false);
     };
 
+    const resetPassword = async () => {
+        const defaultPassword = "0000";
+        const editPasswordObj = {
+            password: defaultPassword
+        };
+
+        try {
+            const response = await fetch(`${URL}/api/users/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editPasswordObj),
+            });
+
+            if (response.ok) {
+                setEditedPassword(defaultPassword);
+                console.log('Lösenordet återstäldes korrekt!');
+            }
+            
+        } catch (error) {
+            console.error('Lösenorder kunde inte återställas, ladda om och försök igen');
+        }
+    }
+
     if (!user) {
         return <div>No user found</div>;
     }
 
     const handleEditBalance = () => {
         setNewBalance(true);
+    }
+    const handleEditPassword = () => {
+        resetPassword();
+        console.log("klick");
     }
 
     // const handleEditBalanceDismiss = () => {
@@ -134,6 +164,7 @@ const AdminSingleUser = (props) => {
                             </div>
                             <h3>Kvar av saldo</h3>
                             <button onClick={handleEditBalance}>Redigera saldo</button>
+                            <button onClick={handleEditPassword}>Återställ lösenord</button>
                         </div>
                     </div>
 
