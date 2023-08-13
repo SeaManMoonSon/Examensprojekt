@@ -43,6 +43,16 @@ const Categories = () => {
     setShowPopup(false);
   }
 
+  const handleRemove = (productId) => {
+    console.log("Remove this: ");
+
+    const updateCart = selectedProducts.filter(
+      product => product._id !== productId
+    );
+    setSelectedProducts(updateCart);
+    
+  }
+
   const handleSelectedProduct = (product) => {
     setSelectedProducts([...selectedProducts, product]);
 
@@ -72,13 +82,14 @@ const Categories = () => {
       <div className="categories__container-products">
         {user.user.role === "personal" && (
           <>
+           <button onClick={handleCheckout}>Varukorg</button>
             {products && (
               <>
                 {products.map((product) => {
                   if (product.role != 0) {
                     return (
                       <button
-                        onClick={() => handlePopup(product)}
+                      onClick={() => handleSelectedProduct(product)}
                         key={product._id}
                       >
                         {product.name}
@@ -91,17 +102,16 @@ const Categories = () => {
             )}
           </>
         )}
+        <button onClick={handleCheckout}>Varukorg</button>
 
         {user.user.role === "deltagare" && (
           <>
-
-            <button onClick={handleCheckout}>Varukorg</button>
             {products && !fika && (
               <>
                 {products.map((product) => {
                   if (product.category != "Fika" && product.role != 1) {
                     return (
-                      <button
+                      <button 
                         onClick={() => handleSelectedProduct(product)}
                         key={product._id}
                       >
@@ -146,7 +156,8 @@ const Categories = () => {
           <h2>Din varukorg</h2>
           <ul>
             {selectedProducts.map((product) => (
-              <li key={product._id}>{product.name}</li>
+              <li key={product._id}>{product.name}{' '} 
+              <button onClick={() => handleRemove(product._id)}>Ta bort</button></li>
             ))}
           </ul>
           <button onClick={handlePopupClose}>Fortsätt handla</button>
