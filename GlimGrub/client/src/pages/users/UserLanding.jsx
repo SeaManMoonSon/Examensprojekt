@@ -94,11 +94,10 @@ const UserLanding = () => {
             <Categories />
             {/* <CategoriesFika /> */}
           </div>
-          {/* <Logout /> */}
+          <Logout />
         </div>
       )}
       ;
-      <Logout />
     </div>
   );
 };
