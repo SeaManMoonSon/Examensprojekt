@@ -102,9 +102,10 @@ const AdminSingleUser = (props) => {
         setNewBalance(false);
     };
 
-    const editPassword = async () => {
+    const resetPassword = async () => {
+        const defaultPassword = "0000";
         const editPasswordObj = {
-            password: editedPassword
+            password: defaultPassword
         };
 
         try {
@@ -113,10 +114,11 @@ const AdminSingleUser = (props) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(editedPassword),
+                body: JSON.stringify(editPasswordObj),
             });
 
             if (response.ok) {
+                setEditedPassword(defaultPassword);
                 console.log('Lösenordet återstäldes korrekt!');
             }
             
@@ -133,7 +135,8 @@ const AdminSingleUser = (props) => {
         setNewBalance(true);
     }
     const handleEditPassword = () => {
-        setEditedPassword("0000");
+        resetPassword();
+        console.log("klick");
     }
 
     // const handleEditBalanceDismiss = () => {
