@@ -89,6 +89,7 @@ const UserLanding = () => {
               <p>Ditt saldo: {user.user.balance} sek</p>
             )}
           </div>
+          
 
           <div className="categories__menu-items">
             <Categories />

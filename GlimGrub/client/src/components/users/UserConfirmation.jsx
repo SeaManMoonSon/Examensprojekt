@@ -103,7 +103,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
           <div className="user-confirmation__container-text">
             <h2>Vänligen bekräfta ditt val</h2>
              {product.length > 1 && 
-            <div className="test">
+            <div className="user-confirmation__container-products">
               {product.map((product) => (
                 <p key={product._id}>
                   {product.name}, {product.price} kronor
