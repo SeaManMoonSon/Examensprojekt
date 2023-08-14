@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "init": "cd server && pm2 start npm --name backend && cd .. && cd client && pm2 start npm --name frontend",
-    "start": "cd server && pm2 start backend && cd .. && cd client && pm2 start frontend"
+    "start": "cd server && npm start && cd .. & cd client && npm start"
   },
   "author": "",
   "license": "ISC"
