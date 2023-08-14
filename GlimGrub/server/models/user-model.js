@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import PurchaseModel from "./purchase-model.js";
 
 const userSchema = new mongoose.Schema({
   // namn, personnummer, lösen, saldo, roll
@@ -28,5 +29,11 @@ const userSchema = new mongoose.Schema({
 });
 
 const UserModel = mongoose.model("User", userSchema);
+
+// userSchema.pre("remove", async function(next) {
+//   const user = this;
+//   await PurchaseModel.deleteMany({ user_id: user._id });
+//   next();
+// });
 
 export default UserModel;
