@@ -33,6 +33,7 @@ const Categories = () => {
     console.log("You are buying this: ", selectedProducts)
     setSelectedProducts(selectedProducts);
     setPopup(true);
+    setShowPopup(false);
   };
 
   const handlePopupDismiss = () => {
@@ -50,7 +51,7 @@ const Categories = () => {
       product => product._id !== productId
     );
     setSelectedProducts(updateCart);
-    
+
   }
 
   const handleSelectedProduct = (product) => {
@@ -82,14 +83,14 @@ const Categories = () => {
       <div className="categories__container-products">
         {user.user.role === "personal" && (
           <>
-           <button onClick={handleCheckout}>Varukorg</button>
+            <button onClick={handleCheckout}>Varukorg</button>
             {products && (
               <>
                 {products.map((product) => {
                   if (product.role != 0) {
                     return (
                       <button
-                      onClick={() => handleSelectedProduct(product)}
+                        onClick={() => handleSelectedProduct(product)}
                         key={product._id}
                       >
                         {product.name}
@@ -102,7 +103,12 @@ const Categories = () => {
             )}
           </>
         )}
-        <button onClick={handleCheckout}>Varukorg</button>
+
+        <button
+          className="product-button"
+          onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+        </button>
+
 
         {user.user.role === "deltagare" && (
           <>
@@ -111,7 +117,8 @@ const Categories = () => {
                 {products.map((product) => {
                   if (product.category != "Fika" && product.role != 1) {
                     return (
-                      <button 
+                      <button
+                        className={`product-button ${selectedProducts.includes(product) ? 'selected' : ''}`}
                         onClick={() => handleSelectedProduct(product)}
                         key={product._id}
                       >
@@ -120,9 +127,13 @@ const Categories = () => {
                     );
                   }
                 })}
-                <button onClick={handleFika}>Fika</button>
+                <button
+                  className="product-button"
+                  onClick={handleFika}>Fika</button>
               </>
             )}
+
+
 
             {fika && (
               <>
@@ -135,6 +146,7 @@ const Categories = () => {
                     return (
                       <div className="admin__show-users_list" key={product._id}>
                         <button
+                          className={`product-button ${selectedProducts.includes(product) ? 'selected' : ''}`}
                           onClick={() => handleSelectedProduct(product)}
                           key={product._id}
                         >
@@ -151,19 +163,34 @@ const Categories = () => {
         )}
       </div>
 
+
+
       {showPopup && (
-        <div className="popup">
-          <h2>Din varukorg</h2>
-          <ul>
-            {selectedProducts.map((product) => (
-              <li key={product._id}>{product.name}{' '} 
-              <button onClick={() => handleRemove(product._id)}>Ta bort</button></li>
-            ))}
-          </ul>
-          <button onClick={handlePopupClose}>Fortsätt handla</button>
-          <button onClick={() => handlePopup(selectedProducts)}>Betala</button>
+        <div className="overlay">
+
+          <div className="user-cart_container">
+            <h2>Din varukorg</h2>
+            <ul>
+              {selectedProducts.map((product) => (
+                <div className="user-cart_item-container" key={product._id}>
+                  <div className="user-cart_item-text">
+                    <li>{product.name}, {product.price} kr{' '}</li>
+                  </div>
+                  <div className="user-cart_item-button">
+                    <button className="button-remove" onClick={() => handleRemove(product._id)}>Ta bort</button>
+                  </div>
+                </div>
+              ))}
+
+            </ul>
+
+            <button onClick={handlePopupClose}>Fortsätt handla</button>
+            <button className="button-payment" onClick={() => handlePopup(selectedProducts)}>Betala</button>
+          </div>
         </div>
+
       )}
+
 
       {popUp && (
         <div className="popup__wrap">

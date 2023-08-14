@@ -103,9 +103,9 @@ const UserConfirmation = ({ product, onDismiss }) => {
           <div className="user-confirmation__container-text">
             <h2>Vänligen bekräfta ditt val</h2>
              {product.length > 1 && 
-            <div className="test">
+            <div className="user-confirmation__container-products">
               {product.map((product) => (
-                <p>
+                <p key={product._id}>
                   {product.name}, {product.price} kronor
                   {/* {product.price_total} */}
                   {/* {product.length > 1 && (
@@ -116,8 +116,8 @@ const UserConfirmation = ({ product, onDismiss }) => {
               ))}
             </div>
             } 
-             {product && (
-              <p>{product.name}</p>
+             {product.length === 1 && (
+              <p>{product[0].name}, {product[0].price} kronor</p>
             )}
           
             {/* {product.map((product) => (
