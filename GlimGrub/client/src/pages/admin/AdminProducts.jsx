@@ -16,6 +16,7 @@ const AdminProducts = () => {
     const [editedRole, setEditedRole] = useState('');
     const [editedCategory, setEditedCategory] = useState('');
     const [addNewProduct, setAddNewProduct] = useState(false);
+    const [addProductMessage, setAddProductMessage] = useState(false);
 
 
     useEffect(() => {
@@ -31,7 +32,6 @@ const AdminProducts = () => {
         }
     };
 
-
     const addProduct = async (product) => {
         const response = await fetch(`${URL}/api/products`, {
             method: 'POST',
@@ -44,6 +44,11 @@ const AdminProducts = () => {
         if (response.ok) {
             const newProduct = await response.json();
             setProducts([...products, newProduct]);
+
+            setAddNewProduct(false);
+            // setAddProductMessage(true);
+
+            console.log("Product added");
         }
     };
 
@@ -106,7 +111,7 @@ const AdminProducts = () => {
                 <p>Här listas era nuvarande produkter.</p>
             </div>
             <div className="admin__products-add">
-                <button onClick={handleAddProduct}><i className="fa-solid fa-plus"></i>Lägg till ny produkt</button>
+            <button onClick={handleAddProduct}><i className="fa-solid fa-plus"></i>Lägg till ny produkt</button>
             </div>
             <div className="admin__products-list">
                 <div className="popup__overlay">
@@ -136,43 +141,43 @@ const AdminProducts = () => {
                                     // <div className="popup__wrap">
                                     //     <div className="popup__overlay">
                                     //         <div className="popup__container">
-                                                <div className="admin__products-list_item" key={product._id}>
-                                                    <input
-                                                        type="text"
-                                                        value={editedName}
-                                                        placeholder={product.name}
-                                                        onChange={(e) => setEditedName(e.target.value)}
-                                                    />
-                                                    <input
-                                                        type="number"
-                                                        value={editedPrice}
-                                                        placeholder={product.price}
-                                                        onChange={(e) => setEditedPrice(e.target.value)}
-                                                    />
-                                                    <input
-                                                        type="text"
-                                                        value={editedCategory}
-                                                        placeholder={product.category}
-                                                        onChange={(e) => setEditedCategory(e.target.value)}
-                                                    />
-                                                    <input
-                                                        type="text"
-                                                        value={editedRole}
-                                                        placeholder={product.role}
-                                                        onChange={(e) => setEditedRole(e.target.value)}
-                                                    />
-                                                    <div className="admin__products-list_item-wrap">
-                                                        <button onClick={() => updateProduct(product._id)}><i class="fa-solid fa-check"></i></button>
-                                                        <button onClick={() => setEditingProduct(null)}>Avbryt</button>
-                                                    </div>
-                                                </div>
+                                    <div className="admin__products-list_item" key={product._id}>
+                                        <input
+                                            type="text"
+                                            value={editedName}
+                                            placeholder={product.name}
+                                            onChange={(e) => setEditedName(e.target.value)}
+                                        />
+                                        <input
+                                            type="number"
+                                            value={editedPrice}
+                                            placeholder={product.price}
+                                            onChange={(e) => setEditedPrice(e.target.value)}
+                                        />
+                                        <input
+                                            type="text"
+                                            value={editedCategory}
+                                            placeholder={product.category}
+                                            onChange={(e) => setEditedCategory(e.target.value)}
+                                        />
+                                        <input
+                                            type="text"
+                                            value={editedRole}
+                                            placeholder={product.role}
+                                            onChange={(e) => setEditedRole(e.target.value)}
+                                        />
+                                        <div className="admin__products-list_item-wrap">
+                                            <button onClick={() => updateProduct(product._id)}><i class="fa-solid fa-check"></i></button>
+                                            <button onClick={() => setEditingProduct(null)}>Avbryt</button>
+                                        </div>
+                                    </div>
                                     //         </div>
                                     //     </div>
                                     // </div>
                                 );
                             } else {
 
-                 
+
                                 return (
                                     <div className="admin__products-list_item" key={product._id}>
                                         <p>{product.name}</p>

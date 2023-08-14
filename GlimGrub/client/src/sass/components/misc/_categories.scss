@@ -9,7 +9,7 @@
         display: flex;
         flex-direction: column;
 
-        button {
+        .product-button {
             border-style: none;
             padding: 1rem;
             width: 450px;
@@ -21,7 +21,12 @@
             font-size: 22px;
             background-color: $btn-color;
             cursor: pointer;
-        }
+          }
+          
+          .product-button.selected {
+            // background-color: #C7CA92;
+            background-color: #70a8a6;
+          }
     }
 
     .popup__wrap {
@@ -61,6 +66,94 @@
 
 }
 
+.user-cart_container {
+    background-color: rgb(241, 241, 241);
+    z-index: 1000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5rem;
+
+    h2 {
+        font-family: $primary-font;
+        letter-spacing: 0.1rem;
+        font-size: 35px;
+        padding-bottom: 1rem;
+    }
+
+    .user-cart_item-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .user-cart_item-text {
+            display: grid;
+    
+            ul {
+
+                li {
+                    margin-top: 2rem;
+                }
+            }
+
+        }
+
+        
+    }
+
+
+    ul {
+        list-style: none;
+        text-align: center;
+        margin: 1rem 0 1rem 2rem;
+
+        li {
+            font-family: $secondary-font;
+            font-size: 20px;
+            // padding: 0.5rem;
+            // display: inline-block;
+            text-align:left;
+            margin-top: 1.5rem;
+           
+        }
+        
+    }
+
+    button {
+        padding: 1.2rem;
+        width: 12rem;
+        margin: 2rem 0.5rem 1rem 0.5rem;
+        border: 2.5px solid $btn-color;
+        border-radius: 10rem;
+        font-family: $secondary-font;
+        text-transform: uppercase;
+        font-size: 15px;
+        background-color: transparent;
+    }
+
+    .button-payment {
+        padding: 1.2rem;
+        width: 12rem;
+        margin: 1rem 0.5rem 1rem 0.5rem;
+        border: 2.5px solid $btn-color;
+        border-radius: 10rem;
+        font-family: $secondary-font;
+        text-transform: uppercase;
+        font-size: 15px;
+        background-color: $btn-color;
+        color: white;
+        
+    }
+
+    .button-remove {
+        border: none;
+        font-size: 1rem;
+        text-decoration: underline;
+        padding: 0 0 0 5rem;
+        text-align:left;
+    }
+
+}
 
 .categories__btn-back {
     font-size: 30px;
