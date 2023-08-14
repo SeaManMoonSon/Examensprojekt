@@ -17,9 +17,9 @@ const userSchema = new mongoose.Schema({
     default: "0000",
   },
   balance: {
-    type: String,
+    type: Number,
     required: true,
-    default: "000",
+    default: 0,
   },
   role: {
     type: String,
