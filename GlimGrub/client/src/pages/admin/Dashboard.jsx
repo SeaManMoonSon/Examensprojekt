@@ -44,10 +44,10 @@ const AdminDashboard = () => {
                 setIsLoading(true);
             }
 
-            setInterval(() => {
-                setIsLoading(false);
-                // window.location.reload();
-            }, 10000);
+            // setInterval(() => {
+            //     setIsLoading(false);
+                window.location.reload();
+            // }, 10000);
         } catch (error) {
             console.error(error.message);
         }
