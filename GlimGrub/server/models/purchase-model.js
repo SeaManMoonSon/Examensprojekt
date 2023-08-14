@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import dateFormat from "dateformat";
+import UserModel from "./user-model.js";
 
 const now = new Date();
 const formattedDate = dateFormat(now, "isoDateTime");
@@ -36,12 +37,12 @@ const purchaseSchema = new mongoose.Schema({
     }]
 });
 
-// userSchema.pre("remove", async function(next) {
-//   const user = this;
-//   await PurchaseModel.deleteMany({ user_id: user._id });
-//   next();
-// });
-
 const PurchaseModel = mongoose.model("Purchase", purchaseSchema);
+
+userSchema.pre("remove", async function(next) {
+  const user = this;
+  await PurchaseModel.deleteMany({ user_id: user._id });
+  next();
+});
 
 export default PurchaseModel;
