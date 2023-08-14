@@ -4,6 +4,10 @@
 @use '../../utils/animations' as *;
 
 .categories__container {
+    // width: 100vw;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
 
     .categories__container-products {
         display: flex;

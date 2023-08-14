@@ -184,7 +184,7 @@ const Categories = () => {
 
             </ul>
 
-            <button onClick={handlePopupClose}>Fortsätt handla</button>
+            <button className="button-cancel" onClick={handlePopupClose}>Fortsätt handla</button>
             <button className="button-payment" onClick={() => handlePopup(selectedProducts)}>Betala</button>
           </div>
         </div>
