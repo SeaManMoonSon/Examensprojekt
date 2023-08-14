@@ -36,11 +36,11 @@ const purchaseSchema = new mongoose.Schema({
     }]
 });
 
-userSchema.pre("remove", async function(next) {
-  const user = this;
-  await PurchaseModel.deleteMany({ user_id: user._id });
-  next();
-});
+// userSchema.pre("remove", async function(next) {
+//   const user = this;
+//   await PurchaseModel.deleteMany({ user_id: user._id });
+//   next();
+// });
 
 const PurchaseModel = mongoose.model("Purchase", purchaseSchema);
 
