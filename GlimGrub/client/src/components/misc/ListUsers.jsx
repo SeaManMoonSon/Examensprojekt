@@ -83,7 +83,7 @@ const ListUsers = () => {
               return (
                 <div className="admin__show-users_list" key={purchase._id}>
                   <p>
-                    {JSON.stringify(purchase.user_id.name).replace(/\"/g, "")}
+                    {/* {JSON.stringify(purchase.user_id.name).replace(/\"/g, "")} */}
                   </p>
                   <div>
                     <p>{purchase.date.split("T")[0] + (", ") + purchase.date.split("T")[1].split("+")[0]}</p>
