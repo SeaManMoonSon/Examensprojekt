@@ -60,21 +60,24 @@ const UserLanding = () => {
         </div>
       </div>
       {pwChangePrompt ? (
-        <div>
-          <p>Du måste ändra ditt lösenord!</p>
+        <div className="user-change_pw">
+          <h2>Välkommen, {user.user.name.split(" ")[0]}</h2>
+          <p>Du behöver ändra ditt lösenord.</p>
+          <p>Vänligen välj ett lösenord med <b>fyra siffror.</b></p>
+
           <form onSubmit={handleSubmit}>
-            <label htmlFor="password">4 siffror</label>
+            <label htmlFor="password"></label>
             <input
               type="password"
               pattern="[0-9]+"
               name="password"
-              placeholder="Lösenord..."
+              placeholder="****"
               maxLength={4}
               value={editedPassword}
               onChange={(e) => setEditedPassword(e.target.value)}
               required
             />
-            <input type="submit" value="Spara" />
+            <input className="pw-submit_button" type="submit" value="Spara" />
           </form>
         </div>
       ) : (
