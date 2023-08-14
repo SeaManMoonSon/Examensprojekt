@@ -13,10 +13,10 @@ import "../../sass/style.scss";
 
 const AdminSingleUser = (props) => {
   const { id } = useParams();
-  
+
   const [user, setUser] = useState(null);
   const [purchases, setPurchases] = useState(null);
-  const [editedPassword, setEditedPassword] = useState('');
+  const [editedPassword, setEditedPassword] = useState("");
   const [editedBalance, setEditedBalance] = useState("");
   const [newBalance, setNewBalance] = useState(false);
   // const [popupSaldo, setPopupSaldo] = useState(false);
@@ -78,36 +78,7 @@ const AdminSingleUser = (props) => {
         },
         body: JSON.stringify(editBalanceObj),
       });
-      
-    const resetPassword = async () => {
-        const defaultPassword = "0000";
-        const editPasswordObj = {
-            password: defaultPassword
-        };
 
-        try {
-            const response = await fetch(`${URL}/api/users/${id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(editPasswordObj),
-            });
-
-            if (response.ok) {
-                setEditedPassword(defaultPassword);
-                console.log('Lösenordet återstäldes korrekt!');
-            }
-            
-        } catch (error) {
-            console.error('Lösenorder kunde inte återställas, ladda om och försök igen');
-        }
-    }
-
-    if (!user) {
-        return <div>No user found</div>;
-    }
-      
       if (response.ok) {
         console.log("Saldot är uppdaterat!");
         setEditedBalance(null);
@@ -122,12 +93,34 @@ const AdminSingleUser = (props) => {
     } catch (error) {
       console.error("Det blev ett litet fel: ", error);
     }
-    const handleEditPassword = () => {
-        resetPassword();
-        console.log("klick");
-    }
 
     setNewBalance(false);
+  };
+
+  const resetPassword = async () => {
+    const defaultPassword = "0000";
+    const editPasswordObj = {
+      password: defaultPassword,
+    };
+
+    try {
+      const response = await fetch(`${URL}/api/users/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editPasswordObj),
+      });
+
+      if (response.ok) {
+        setEditedPassword(defaultPassword);
+        console.log("Lösenordet återstäldes korrekt!");
+      }
+    } catch (error) {
+      console.error(
+        "Lösenorder kunde inte återställas, ladda om och försök igen"
+      );
+    }
   };
 
   if (!user) {
@@ -136,6 +129,10 @@ const AdminSingleUser = (props) => {
 
   const handleEditBalance = () => {
     setNewBalance(true);
+  };
+  const handleEditPassword = () => {
+    resetPassword();
+    console.log("klick");
   };
 
   // const handleEditBalanceDismiss = () => {
@@ -202,18 +199,14 @@ const AdminSingleUser = (props) => {
           <h4>Senaste köpen</h4>
           <ul>
             {purchases &&
-              purchases.toReversed().map((purchase) => {
+              purchases.map((purchase) => {
                 return (
                   <div className="admin__show-users_list" key={purchase._id}>
                     <p>{purchase.date.split("T")[0]}</p>
                     <p>
                       <b>
-                        {JSON.stringify(purchase.user_id.name).replace(
-                          /\"/g,
-                          ""
-                        )}
-                      </b>{" "}
-                      handlade för totalt <b>{purchase.price_total} kr</b>
+                        {JSON.stringify(purchase.user_id.name).replace(/\"/g,"")}
+                      </b>{" "}handlade för totalt <b>{purchase.price_total} kr</b>
                     </p>
                   </div>
                 );
