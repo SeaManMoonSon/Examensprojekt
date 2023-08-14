@@ -45,7 +45,7 @@ const AdminDashboard = () => {
             }
 
             // setInterval(() => {
-            //     setIsLoading(false);
+            //     setIsLoading(false); 
                 window.location.reload();
             // }, 10000);
         } catch (error) {
