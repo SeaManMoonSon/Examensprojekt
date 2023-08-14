@@ -147,6 +147,8 @@
 
     .single-user__purchased {
         padding: 2rem 0 2rem 4rem;
+        overflow: auto;
+        height: 30rem;
 
         h4 {
             font-family: $secondary-font;

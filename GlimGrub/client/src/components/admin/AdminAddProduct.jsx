@@ -98,14 +98,14 @@ const AddProductForm = ({ addProduct }) => {
             </form>
 
 
-            <div className="popup__overlay">
+            {/* <div className="popup__overlay">
 
                 {messagePopup.map((message, index) => (
                     <MessagePopup key={index} message={message} onClose={closePopup} />
                 ))}
 
 
-            </div>
+            </div> */}
 
         </div>
 
