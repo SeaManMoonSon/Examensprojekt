@@ -101,7 +101,7 @@ const UserLanding = () => {
           <Logout />
         </div>
       )}
-      ;
+      
     </div>
   );
 };

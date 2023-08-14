@@ -1,0 +1,118 @@
+@media (max-width: 576px) {
+    .login-page__img {
+        display: none;
+    }
+
+    .login-page__container {
+
+        height: 100vh !important;
+        width: 100%;
+        
+
+        .login-page__form-container {
+            height: 100%;
+            width: 100%;
+            // background-color: rgba(223, 218, 206);
+            background-color: rgba(237, 237, 237) !important;
+
+
+            .login-page__form-input {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                input {
+                    width: 20rem !important;
+                }
+
+                button {
+                    width: 20rem !important;
+                    height: 4rem !important;
+                }
+               
+            }
+
+            .login-page__form-text {
+                // margin: 0;
+                // padding: 0;
+                // width: 0;
+
+
+                h3 {
+                    font-size: 4rem !important;
+                }
+            }
+
+        }
+    }
+
+   .categories-container {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    
+
+    .categories__img {
+        display: none;
+    }
+
+    .categories__user-container {
+        display: none !important;
+
+    }
+
+    .categories__menu {
+        display: flex;
+        padding: 2rem;
+        background-color: rgba(237, 237, 237) !important;
+
+
+        .product-button {
+            width: 20rem !important;
+            height: 3.5rem !important;
+            font-size: 15px !important;
+        }
+    }
+
+   }
+
+}
+
+@media (max-width: 767px) {
+    /* Styles for smartphones in landscape mode */
+
+    .login-page__img {
+        display: none;
+    }
+
+    .login-page__form-container {
+
+        .login-page__form-text {
+
+            h3 {
+                font-size: 50px !important;
+            }
+
+            p {
+                font-size: 20px !important;
+            }
+
+        }
+
+        .login-page__form-input {
+            input {
+                height: 3rem !important;
+                font-size: 15px !important;
+            }
+
+            button {
+                height: 3rem !important;
+                font-size: 20px !important;
+            }
+        }
+
+    }
+
+}
