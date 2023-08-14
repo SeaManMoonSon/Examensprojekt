@@ -81,15 +81,26 @@ const Categories = () => {
   return (
     <div className="categories__container">
       <div className="categories__container-products">
+
+        {/* <button
+          className="cart-btn"
+          onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+        </button> */}
+
         {user.user.role === "personal" && (
           <>
-            <button onClick={handleCheckout}>Varukorg</button>
+            <button
+              className="cart-btn_personal"
+              onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+            </button>
+
             {products && (
               <>
                 {products.map((product) => {
                   if (product.role != 0) {
                     return (
                       <button
+                        className={`product-button ${selectedProducts.includes(product) ? 'selected' : ''}`}
                         onClick={() => handleSelectedProduct(product)}
                         key={product._id}
                       >
@@ -104,14 +115,14 @@ const Categories = () => {
           </>
         )}
 
-        <button
-          className="product-button"
-          onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
-        </button>
-
 
         {user.user.role === "deltagare" && (
           <>
+            <button
+              className="cart-btn"
+              onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+            </button>
+
             {products && !fika && (
               <>
                 {products.map((product) => {
