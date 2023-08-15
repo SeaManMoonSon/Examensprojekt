@@ -24,8 +24,9 @@
 	-webkit-animation: fade-in 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 	        animation: fade-in 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 
+            
     .categories__menu-welcome {
-        padding: 0 2rem 2rem 2rem;
+        padding: 2rem 0 0 0;
         font-family: $primary-font;
         font-size: 35px;
         letter-spacing: 2px;
@@ -95,9 +96,25 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        // width: 100vw;
 
 
     }
+
+    .cart-btn {
+        // background-color: deeppink;
+        margin: 0 0 2rem 0;
+        border: none;
+        font-size: 2rem;
+        // z-index: 100;
+    }
+
+    .cart-btn_personal {
+        margin: 1.2rem 0 1.2rem 0;
+        border: none;
+        font-size: 2rem;
+    }
+
 
     .user-change_pw {
         display: flex;
