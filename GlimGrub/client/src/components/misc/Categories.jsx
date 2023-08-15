@@ -96,10 +96,15 @@ const Categories = () => {
 
         {user.user.role === "personal" && (
           <>
-            <button
-              className="cart-btn_personal"
-              onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
-            </button>
+            <div className="cart-btn_container">
+              {selectedProducts.length > 0 && 
+              <div className="cart-btn_notification">{selectedProducts.length}</div>
+              }
+              <button
+                className="cart-btn"
+                onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+              </button>
+            </div>
 
             {products && (
               <>

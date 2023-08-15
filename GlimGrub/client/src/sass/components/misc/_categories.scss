@@ -29,7 +29,8 @@
           
           .product-button.selected {
             // background-color: #C7CA92;
-            background-color: #70a8a6;
+            background-color: #3d9390;
+            // background-color: #D19337;
           }
     }
 
@@ -41,7 +42,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: absolute;
+            position: fixed;
             // top: 0;
             left: 0;
             right: 0;
@@ -50,6 +51,9 @@
         }
 
         .categories__user-confirmation {
+
+            font-family: $secondary-font;
+            font-size: 20px;
         
             display: flex;
             justify-content: center;
@@ -167,6 +171,7 @@
 
     .cart-btn_notification {
         background-color: #feb03a;
+        font-family: $secondary-font;
         width: 1.5rem; 
         height: 1.5rem; 
         border-radius: 50%; 
@@ -179,6 +184,11 @@
         margin-top: -1rem;
         position: absolute;
         font-size: 12px;
+
+        
+            -webkit-animation: bounce-top 0.9s both;
+                    animation: bounce-top 0.9s both;
+        
 
     }
 }
