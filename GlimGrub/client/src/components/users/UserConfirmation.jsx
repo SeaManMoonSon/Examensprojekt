@@ -56,7 +56,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
           product_id: item._id,
           quantity: 1,
           price_one: item.price,
-          })),
+        })),
       };
 
       console.log("Items: ", data);
@@ -102,33 +102,33 @@ const UserConfirmation = ({ product, onDismiss }) => {
         <div>
           <div className="user-confirmation__container-text">
             <h2>Vänligen bekräfta ditt val</h2>
-             {product.length > 1 && 
-            <div className="user-confirmation__container-products">
-              {product.map((product) => (
-                <p key={product._id}>
-                  {product.name}, {product.price} kronor
-                  {/* {product.price_total} */}
-                  {/* {product.length > 1 && (
-                    <p>{product.price_total} kronor </p>
-                  )} */}
-                </p>
-        
-              ))}
-            </div>
-            } 
-             {product.length === 1 && (
+            {product.length > 1 &&
+              <div className="user-confirmation__container-products">
+                {product.map((product) => (
+                  <p key={product._id}>
+                    {product.name}, {product.price} kronor
+                    {/* {product.price_total} */}
+                    {/* {product.length > 1 && (
+<p>{product.price_total} kronor </p>
+)} */}
+                  </p>
+
+                ))}
+              </div>
+            }
+            {product.length === 1 && (
               <p>{product[0].name}, {product[0].price} kronor</p>
             )}
-          
+
             {/* {product.map((product) => (
-              <div className="user-confirmation__product">
-                <i className="fa-solid fa-utensils"></i>
-                <div className="user-confirmation__product-item">
-                  <p>{product.name}, {product.price} kronor</p>
-                </div>
-              </div>
-            ))} */}
-        
+<div className="user-confirmation__product">
+<i className="fa-solid fa-utensils"></i>
+<div className="user-confirmation__product-item">
+<p>{product.name}, {product.price} kronor</p>
+</div>
+</div>
+))} */}
+
           </div>
           <div className="user-confirmation__buttons">
             <button
