@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "init": "npm run init:backend && npm run init:frontend",
     "init:backend": "cd server && pm2 start npm --name backend -- start",
-    "init:frontend": "cd client && pm2 start npm --name frontend -- start",
+    "init:frontend": "cd client && pm2 start npm --name frontend -- start --port 80",
     "start": "npm run start:backend && npm run start:frontend",
     "start:backend": "pm2 start backend",
     "start:frontend": "pm2 start frontend"
