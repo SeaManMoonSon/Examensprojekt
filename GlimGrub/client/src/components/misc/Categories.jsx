@@ -18,6 +18,8 @@ const Categories = () => {
 
   const [showPopup, setShowPopup] = useState(false);
 
+  const [showCartNotification, setShowCartNotification] = useState(false);
+
 
   const [fika, setFika] = useState(false);
 
@@ -56,9 +58,14 @@ const Categories = () => {
 
   const handleSelectedProduct = (product) => {
     setSelectedProducts([...selectedProducts, product]);
+    setShowCartNotification(true);
 
     console.log("You have selected", selectedProducts);
   }
+
+  // const handleAddToCart = () => {
+  //   setShowCartNotification(!showCartNotification);
+  // }
 
   const handleCheckout = () => {
     setShowPopup(true);
@@ -89,10 +96,15 @@ const Categories = () => {
 
         {user.user.role === "personal" && (
           <>
-            <button
-              className="cart-btn_personal"
-              onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
-            </button>
+            <div className="cart-btn_container">
+              {selectedProducts.length > 0 && 
+              <div className="cart-btn_notification">{selectedProducts.length}</div>
+              }
+              <button
+                className="cart-btn"
+                onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+              </button>
+            </div>
 
             {products && (
               <>
@@ -118,10 +130,15 @@ const Categories = () => {
 
         {user.user.role === "deltagare" && (
           <>
-            <button
-              className="cart-btn"
-              onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
-            </button>
+            <div className="cart-btn_container">
+              {selectedProducts.length > 0 && 
+              <div className="cart-btn_notification">{selectedProducts.length}</div>
+              }
+              <button
+                className="cart-btn"
+                onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+              </button>
+            </div>
 
             {products && !fika && (
               <>
@@ -130,11 +147,15 @@ const Categories = () => {
                     return (
                       <button
                         className={`product-button ${selectedProducts.includes(product) ? 'selected' : ''}`}
-                        onClick={() => handleSelectedProduct(product)}
+                        onClick={() => {
+                          handleSelectedProduct(product);
+                          // handleAddToCart();
+                        }}
                         key={product._id}
                       >
                         {product.name}
                       </button>
+
                     );
                   }
                 })}
