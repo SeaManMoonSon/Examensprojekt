@@ -19,11 +19,14 @@
 
 .login-page__container {
     background-color: $bg-color;
-    display: grid;
-    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    // display: grid;
+    // justify-content: center;
 
-    grid-template-columns: 1fr 2fr;
-    height: 100%;
+    // grid-template-columns: 1fr 2fr;
+    // height: 100%;
 
     .login-page__img {
         background: url('../../../media/start-img.jpg') no-repeat center center;
@@ -36,6 +39,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        height: 100vh;
 
         .login-page__form-text {
             text-align: center;
@@ -61,8 +67,8 @@
         }
 
         .login-page__form-input {
-            display: grid;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
             grid-template-rows: 1fr 1fr 1fr;
             justify-content: center;
 

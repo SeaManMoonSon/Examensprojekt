@@ -5,14 +5,18 @@
     .user-confirmation__container {
         // background-color: rgba(255, 20, 147, 0.7); 
         background-color: $popup-color;
-        height: 440px;
-        width: 660px;
+        // height: 440px;
+        // width: 660px;
         padding: 2rem;
         position: absolute;
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 2;
+
+        div {
+            margin: 2.5rem 4rem 2rem 4rem;
+        }
 
         h2 {
             font-family: $primary-font;
@@ -40,6 +44,16 @@
                 font-size: 20px;
                 padding-left: 1.5rem;
                 text-transform: uppercase;
+            }
+        }
+
+        .user-confirmation__container-products {
+            margin: 2.5rem 0 2rem 0;
+
+            p {
+                font-family: $secondary-font;
+                font-size: 20px;
+                margin-top: 1.5rem;
             }
         }
 

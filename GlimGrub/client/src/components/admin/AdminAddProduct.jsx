@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 
+import MessagePopup from './AdminPopupMessage';
+
 const AddProductForm = ({ addProduct }) => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState("Mat");
     const [role, setRole] = useState(2);
+    const [messagePopup, setMessagePopup] = useState([]);
 
     console.log(role);
 
@@ -19,8 +22,17 @@ const AddProductForm = ({ addProduct }) => {
     const handleCategoryChange = (event) => {
         if (event.target.checked) {
             setCategory("Fika");
-        } 
+        }
     };
+
+    // POPUP MESSAGE
+    const openPopup = (message) => {
+        setMessagePopup([...messagePopup, message])
+    }
+
+    const closePopup = () => {
+        setMessagePopup(messagePopup.slice(1));
+    }
 
     const handleRoleChange = (event) => {
         const selectedRole = parseInt(event.target.value, 10);
@@ -56,35 +68,48 @@ const AddProductForm = ({ addProduct }) => {
                 {/* <label htmlFor="role">Roll: </label> */}
 
                 <div className="input-wrap">
-                <input
-                    type="number"
-                    id="price"
-                    value={price}
-                    onChange={handlePriceChange}
-                    placeholder="Pris"
-                    required
-                />
+                    <input
+                        type="number"
+                        id="price"
+                        value={price}
+                        onChange={handlePriceChange}
+                        placeholder="Pris"
+                        required
+                    />
 
-                <select id="role" name="role" value={role} onChange={handleRoleChange}>
-                    <option value={2}>Alla</option>
-                    <option value={0}>Deltagare</option>
-                    <option value={1}>Personal</option>
-                </select>
+                    <select id="role" name="role" value={role} onChange={handleRoleChange}>
+                        <option value={2}>Alla</option>
+                        <option value={0}>Deltagare</option>
+                        <option value={1}>Personal</option>
+                    </select>
                 </div>
 
                 <div className="admin__add-products-fika">
-                <label htmlFor="category">Markera produkten som fika</label>
-                <input
-                    type="checkbox"
-                    name="category"
-                    id="category"
-                    onChange={handleCategoryChange}
-                />
+                    <label htmlFor="category">Markera produkten som fika</label>
+                    <input
+                        type="checkbox"
+                        name="category"
+                        id="category"
+                        onChange={handleCategoryChange}
+                    />
                 </div>
 
-                <button type="submit">Lägg till produkt</button>
+                <button type="submit" onClick={() => openPopup("Product added")}>Lägg till produkt</button>
             </form>
+
+
+            {/* <div className="popup__overlay">
+
+                {messagePopup.map((message, index) => (
+                    <MessagePopup key={index} message={message} onClose={closePopup} />
+                ))}
+
+
+            </div> */}
+
         </div>
+
+
     )
 };
 

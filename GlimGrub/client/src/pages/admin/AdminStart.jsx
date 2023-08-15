@@ -50,7 +50,7 @@ const AdminStart = () => {
       <div className="admin-login-page__form-container">
         <form onSubmit={handleSubmit}>
           <div className="admin-login-page__form-text">
-            <h3>GlimCrub</h3>
+            <h3>GlimGrub</h3>
             <p>Välkommen Admin</p>
           </div>
 
