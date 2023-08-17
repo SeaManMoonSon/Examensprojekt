@@ -58,6 +58,7 @@ const AdminStart = () => {
             {/* <label>Personnummer:</label> */}
             <input
               type="text"
+              inputMode="numeric"
               name="ssn"
               onChange={(e) => setSsn(e.target.value)}
               value={ssn}
@@ -68,6 +69,7 @@ const AdminStart = () => {
             <input
               type="password"
               name="password"
+              inputMode="numeric"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               placeholder="Lösenord"

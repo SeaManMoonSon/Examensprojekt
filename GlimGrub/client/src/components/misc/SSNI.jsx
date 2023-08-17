@@ -17,6 +17,7 @@ function SSNInput() {
   return (
     <input
       type="text"
+      inputMode="numeric"
       name="ssn"
       value={ssn}
       placeholder="XXXX-XX-XX"
