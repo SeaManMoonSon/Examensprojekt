@@ -11,22 +11,21 @@ const AdminSearchResultList = ({ results }) => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
 
-  const handleSingleUser = () => {
-    navigate(`/admin/users/${results[0]._id}`);
-
-    console.log(results[0]._id);
+  const handleSingleUser = (userId) => {
+    console.log(userId);
+    navigate(`/admin/users/${userId}`);
   }
 
   return (
     <div className="admin__searchresult-container">
-        {
-            results.map((result, id) => {
-                return <div className="admin-searchresult-name" onClick={() => handleSingleUser(results[0]._id)} key={id}>{result.name}</div>
-            })
-        }
-        {/* <div>A</div>
-        <div>B</div>
-        <div>C</div> */}
+      {
+        results.map((result, id) => {
+          return <div className="admin-searchresult-name" onClick={() => handleSingleUser(result._id)} key={id}>{result.name} </div>
+        })
+      }
+      {/* <div>A</div>
+<div>B</div>
+<div>C</div> */}
     </div>
   )
 }
