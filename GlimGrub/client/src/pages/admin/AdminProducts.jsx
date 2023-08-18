@@ -53,23 +53,29 @@ const AdminProducts = () => {
     };
 
     const updateProduct = async (productId) => {
-        const updatedProduct = {
-            name: editedName,
-            price: editedPrice,
-            role: editedRole,
-            category: editedCategory
-        };
-
         try {
-            const response = await fetch(`${URL}/api/products/${productId}`, {
+            const response = await fetch(`${URL}/api/products/${productId}`);
+            const oldProduct = await response.json();
+            console.log(oldProduct);
+
+            const newProduct = {
+                ...oldProduct,
+                name: editedName !== "" ? editedName : oldProduct.name,
+                price: editedPrice !== "" ? editedPrice : oldProduct.price,
+                category: editedCategory !== "" ? editedCategory : oldProduct.category,
+                role: editedRole !== "" ? editedRole : oldProduct.role
+            };
+            console.log(newProduct);
+
+            const updatedProductData = await fetch(`${URL}/api/products/${productId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(updatedProduct),
+                body: JSON.stringify(newProduct),
             });
 
-            if (response.ok) {
+            if (updatedProductData.ok) {
                 console.log('Produkten är uppdaterad!');
                 setEditingProduct(null);
                 fetchProducts();
