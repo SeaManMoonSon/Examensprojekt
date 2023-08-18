@@ -49,6 +49,7 @@ const UserStart = () => {
             <input
               type="text"
               name="ssn"
+              inputMode="numeric"
               onChange={(e) => setSsn(e.target.value)}
               value={ssn}
               placeholder="Personnummer"
@@ -57,6 +58,7 @@ const UserStart = () => {
             {/* <label>PIN</label> */}
             <input
               type="password"
+              inputMode="numeric"
               name="password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
