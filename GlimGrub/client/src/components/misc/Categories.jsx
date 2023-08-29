@@ -31,8 +31,7 @@ const Categories = () => {
   // console.log("Roll: ", user.user.role);
 
   const handlePopup = (selectedProducts) => {
-    // setSelectedProduct(product);
-    console.log("You are buying this: ", selectedProducts)
+    // console.log("You are buying this: ", selectedProducts)
     setSelectedProducts(selectedProducts);
     setPopup(true);
     setShowPopup(false);
@@ -47,21 +46,34 @@ const Categories = () => {
   }
 
   const handleRemove = (productId) => {
-    console.log("Remove this: ");
-
-    const updateCart = selectedProducts.filter(
-      product => product._id !== productId
-    );
-    setSelectedProducts(updateCart);
-
-  }
+    const updatedProducts = selectedProducts.map((product) => {
+      if (product._id === productId) {
+        const decreasedQuantity = product.quantity -1;
+        return decreasedQuantity > 0 ? { ...product, quantity: decreasedQuantity } : null;
+      }
+      return product;
+    }).filter((product) => product !== null);
+  
+    setSelectedProducts(updatedProducts);
+  };
 
   const handleSelectedProduct = (product) => {
-    setSelectedProducts([...selectedProducts, product]);
+    // Find the index of the selected product in the array. -1 if not in the array
+    const productIndex = selectedProducts.findIndex((p) => p._id === product._id);
+    // console.log("productIndex: ", productIndex);
+  
+    if (productIndex !== -1) {
+      // If the product is already in the array, increase its quantity instead
+      const updatedProducts = [...selectedProducts];
+      updatedProducts[productIndex].quantity += 1;
+      setSelectedProducts(updatedProducts);
+    } else {
+      // If the product is not in the array, add it with quantity 1
+      setSelectedProducts([...selectedProducts, { ...product, quantity: 1 }]);
+    }
+  
     setShowCartNotification(true);
-
-    console.log("You have selected", selectedProducts);
-  }
+  };
 
   // const handleAddToCart = () => {
   //   setShowCartNotification(!showCartNotification);
@@ -69,7 +81,7 @@ const Categories = () => {
 
   const handleCheckout = () => {
     setShowPopup(true);
-    console.log("Popup info: ", selectedProducts);
+    // console.log("Popup info: ", selectedProducts);
   }
 
   useEffect(() => {
@@ -85,6 +97,13 @@ const Categories = () => {
     fetchMenu();
   }, []);
 
+  const calculateTotalProducts = (products) => {
+    return products.reduce((totalQuantity, product) => {
+      return totalQuantity + product.quantity;
+    }, 0);
+  };
+  const totalQuantity = calculateTotalProducts(selectedProducts)
+
   return (
     <div className="categories__container">
       <div className="categories__container-products">
@@ -98,7 +117,7 @@ const Categories = () => {
           <>
             <div className="cart-btn_container">
               {selectedProducts.length > 0 && 
-              <div className="cart-btn_notification">{selectedProducts.length}</div>
+              <div className="cart-btn_notification">{totalQuantity}</div>
               }
               <button
                 className="cart-btn"
@@ -132,7 +151,7 @@ const Categories = () => {
           <>
             <div className="cart-btn_container">
               {selectedProducts.length > 0 && 
-              <div className="cart-btn_notification">{selectedProducts.length}</div>
+              <div className="cart-btn_notification">{totalQuantity}</div>
               }
               <button
                 className="cart-btn"
@@ -206,10 +225,14 @@ const Categories = () => {
               {selectedProducts.map((product) => (
                 <div className="user-cart_item-container" key={product._id}>
                   <div className="user-cart_item-text">
-                    <li>{product.name}, {product.price} kr{' '}</li>
+                    <li>{product.quantity} {product.name}, {product.price} kr/st</li>
                   </div>
                   <div className="user-cart_item-button">
-                    <button className="button-remove" onClick={() => handleRemove(product._id)}>Ta bort</button>
+                    {product.quantity > 1 ? (
+                      <button className="button-remove" onClick={() => handleRemove(product._id)}>Minska antal</button>
+                    ) : (
+                      <button className="button-remove" onClick={() => handleRemove(product._id)}>Ta bort</button>
+                    )}
                   </div>
                 </div>
               ))}

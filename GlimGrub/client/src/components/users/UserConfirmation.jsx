@@ -54,7 +54,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
         price_total: 10,
         items: product.map(item => ({
           product_id: item._id,
-          quantity: 1,
+          quantity: item.quantity,
           price_one: item.price,
         })),
       };
@@ -106,7 +106,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
               <div className="user-confirmation__container-products">
                 {product.map((product) => (
                   <p key={product._id}>
-                    {product.name}, {product.price} kronor
+                    {product.name}, {product.price}, {product.quantity} kronor
                     {/* {product.price_total} */}
                     {/* {product.length > 1 && (
 <p>{product.price_total} kronor </p>
@@ -117,7 +117,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
               </div>
             }
             {product.length === 1 && (
-              <p>{product[0].name}, {product[0].price} kronor</p>
+              <p>{product[0].name}, {product[0].price}, {product[0].quantity} kronor</p>
             )}
 
             {/* {product.map((product) => (
