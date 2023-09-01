@@ -139,6 +139,27 @@ const AdminSingleUser = (props) => {
   //     setPopupSaldo(false);
   // }
 
+  const undoPurchase = async (purchaseId) => {
+    // console.log("Purchase ID: ", purchaseId);
+
+    try {
+      const response = await fetch(`${URL}/api/purchases/${purchaseId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(),
+      });
+
+      if (response.ok) {
+        // console.log("Köp togs bort");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="single-user__container">
       <AdminNavbar />
@@ -208,6 +229,7 @@ const AdminSingleUser = (props) => {
                         {JSON.stringify(purchase.user_id.name).replace(/\"/g,"")}
                       </b>{" "}handlade för totalt <b>{purchase.price_total} kr</b>
                     </p>
+                    <button onClick={() => undoPurchase(purchase._id)}>ångra</button>
                   </div>
                 );
               })}

@@ -12,6 +12,9 @@ router.get('/', PurchaseController.getPurchases);
 // Get one purchase
 router.get('/:id', PurchaseController.getPurchase);
 
+// Delete purchase
+router.delete('/:id', PurchaseController.deletePurchase);
+
 // Export purchases
 router.post('/export', PurchaseController.exportPurchases);
 
