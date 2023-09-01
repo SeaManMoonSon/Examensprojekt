@@ -22,21 +22,7 @@ const getPurchases = async (req, res) => {
   }
 };
 
-// Get purchases since last reset
-// const getPurchasesSinceLastReset = async (req, res) => {
-//   try {
-//     const sinceLastReset = req.query.since;
-//     const purchases = await Purchase.find({
-//       createdAt: { $gte: sinceLastReset },
-//     });
-
-//     res.status(200).json(purchases);
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// };
-
-// Get one purchase
+// Get purchases from specific user
 const getPurchase = async (req, res) => {
   const { id } = req.params;
 
@@ -102,6 +88,40 @@ const createPurchase = async (req, res) => {
   }
 };
 
+const deletePurchase = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No purchase found" });
+  }
+
+  // Find correct purchase
+  const purchase = await Purchase.findOneAndDelete({ _id: id });
+  // Find correct user
+  const user = await User.findById({ _id: purchase.user_id });
+
+  // console.log(purchase);
+  // console.log("Total price: ", purchase.price_total);
+  // console.log(user);
+  // console.log("User balance pre: ", user.balance); 
+
+  if (!purchase) {
+    return res.status(404).json({ error: "No purchase found" });
+  }
+
+  if (!user) {
+    return res.status(404).json({ error: "No user found" });
+  }
+
+  // If the user is a deltagare, reimbuse their balance
+  if (user.role === "deltagare") {
+    user.balance += purchase.price_total;
+    await user.save();
+  }
+
+  res.status(200).json(purchase);
+};
+
 const exportPurchases = async (req, res) => {
   const { startDate, endDate } = req.body;
 
@@ -139,9 +159,9 @@ const exportPurchases = async (req, res) => {
     res.set("Content-Type", "text/csv; charset=utf-8");
     res.status(200).send(csvData);
   } catch (error) {
-    console.error(error); // Log the error message for debugging purposes
+    console.error(error);
     res.status(500).json({ error: "Export failed" });
   }
 };
 
-export default { getPurchases, createPurchase, getPurchase, exportPurchases };
+export default { getPurchases, createPurchase, getPurchase, deletePurchase, exportPurchases };
