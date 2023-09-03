@@ -225,13 +225,13 @@ const Categories = () => {
               {selectedProducts.map((product) => (
                 <div className="user-cart_item-container" key={product._id}>
                   <div className="user-cart_item-text">
-                    <li>{product.quantity} {product.name}, {product.price} kr/st</li>
+                    <li><div className="product_quantity">{product.quantity}</div> {product.name}, {product.price} kr/st</li>
                   </div>
                   <div className="user-cart_item-button">
                     {product.quantity > 1 ? (
-                      <button className="button-remove" onClick={() => handleRemove(product._id)}>Minska antal</button>
+                      <button className="button-remove" onClick={() => handleRemove(product._id)}><i className="fa-solid fa-minus"></i></button>
                     ) : (
-                      <button className="button-remove" onClick={() => handleRemove(product._id)}>Ta bort</button>
+                      <button className="button-remove" onClick={() => handleRemove(product._id)}><i className="fa-solid fa-xmark"></i></button>
                     )}
                   </div>
                 </div>

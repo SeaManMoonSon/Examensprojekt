@@ -9,6 +9,7 @@ import UserBalance from "../../components/users/UserBalance";
 import UserConfirmation from "../../components/users/UserConfirmation";
 import { useAuthContext, userAuthContext } from "../../hooks/userAuthContext";
 import { useLogout } from '../../hooks/useLogout';
+import UserPurchases from '../../components/users/UserPurchases';
 
 import "../../sass/style.scss";
 
@@ -16,11 +17,13 @@ const UserLanding = () => {
   const { user } = useAuthContext();
   const [editedPassword, setEditedPassword] = useState("");
   const { logout } = useLogout();
+  const [showPurchases, setShowPurchases] = useState(false);
+  const [showPurchasesLabel, setShowPurchasesLabel] = useState("Visa tidigare köp");
 
   const pwChangePrompt = user.passwordChangePrompt;
 
   const resetUserPassword = async (test) => {
-    const updatedUserPassword = {password: editedPassword};
+    const updatedUserPassword = { password: editedPassword };
 
     try {
       const response = await fetch(`${URL}/api/users/${user.user._id}`, {
@@ -46,6 +49,13 @@ const UserLanding = () => {
     resetUserPassword();
     logout();
   };
+
+  // const toggleShowPurchases = () => {
+  //   console.log("purchases toggled");
+  //   setShowPurchases(!showPurchases);
+  //   setShowPurchasesLabel(showPurchases ? "Visa tidigare köp" : "Tillbaka till menyn");
+
+  // }
 
   return (
     <div className="categories-container">
@@ -89,19 +99,24 @@ const UserLanding = () => {
               </div>
             )}
             {user.user.role === "deltagare" && (
-              <p>Ditt saldo: {user.user.balance} sek</p>
+              <p className="user_balance">Ditt saldo: {user.user.balance} sek
+                {/* <button onClick={toggleShowPurchases}>{showPurchasesLabel}</button>{showPurchases && <UserPurchases />} */}
+              </p>
+
             )}
           </div>
-          
+
 
           <div className="categories__menu-items">
             <Categories />
+            {/* {showPurchases ? null : <Categories />} */}
+
             {/* <CategoriesFika /> */}
           </div>
           <Logout />
         </div>
       )}
-      
+
     </div>
   );
 };
