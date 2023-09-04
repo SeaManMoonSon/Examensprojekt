@@ -4,7 +4,7 @@ import { Parser } from "json2csv";
 import Purchase from "../models/purchase-model.js";
 import User from "../models/user-model.js";
 
-// Get all purchases
+// Get all purchases, sorting most recent first
 const getPurchases = async (req, res) => {
   try {
     const purchases = await Purchase.find({})
@@ -22,7 +22,7 @@ const getPurchases = async (req, res) => {
   }
 };
 
-// Get purchases from specific user
+// Get purchases from specific user, sorting most recent first
 const getPurchase = async (req, res) => {
   const { id } = req.params;
 
@@ -32,7 +32,7 @@ const getPurchase = async (req, res) => {
       path: "items.product_id",
       model: "Product",
       select: "name",
-    });
+    }).sort({ date: -1 });
 
   if (!purchase) {
     return res.status(404).json({ error: "No purchase found" });
