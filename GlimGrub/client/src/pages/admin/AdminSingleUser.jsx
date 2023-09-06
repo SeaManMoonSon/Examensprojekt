@@ -19,6 +19,7 @@ const AdminSingleUser = (props) => {
   const [editedPassword, setEditedPassword] = useState("");
   const [editedBalance, setEditedBalance] = useState("");
   const [newBalance, setNewBalance] = useState(false);
+  const [selectedPurchase, setSelectedPurchase] = useState(null);
   const [undoPurchasePopup, setUndoPurchasePopup] = useState(false);
   // const [popupSaldo, setPopupSaldo] = useState(false);
 
@@ -135,32 +136,40 @@ const AdminSingleUser = (props) => {
     resetPassword();
     console.log("klick");
   };
-  const handleUndoPurchase = () => {
+  const handleUndoPurchase = (purchase) => {
+    setSelectedPurchase(purchase);
     setUndoPurchasePopup(true);
+    console.log(purchase);
   };
 
   // const handleEditBalanceDismiss = () => {
   //     setPopupSaldo(false);
   // }
 
-  const undoPurchase = async (purchaseId) => {
-    // console.log("Purchase ID: ", purchaseId);
+  const undoPurchase = async () => {
+    if (!selectedPurchase) {
+      console.error("No selected purchase ID");
+      setUndoPurchasePopup(false);
+      return;
+    }
 
     try {
-      const response = await fetch(`${URL}/api/purchases/${purchaseId}`, {
+      const response = await fetch(`${URL}/api/purchases/${selectedPurchase}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(),
       });
 
       if (response.ok) {
-        // console.log("Köp togs bort");
         window.location.reload();
+      } else {
+        console.error("Failed to delete the purchase");
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setUndoPurchasePopup(false);
     }
   };
 
@@ -220,17 +229,49 @@ const AdminSingleUser = (props) => {
           )}
           {undoPurchasePopup && (
             <div className="popup__wrap">
-            <div className="overlay">
-              <div className="popup__balance-container">
-                <div className="popup__balance">
-                  <div className="popup__balance-info">
-                    <button onClick={() => undoPurchase()}>Ja</button>
-                    <button onClick={() => setUndoPurchasePopup(false)}>Nej</button>
+              <div className="overlay">
+                <div className="popup__undo-purchase_wrapper">
+                  <div className="popup__undo-purchase">
+                    <div className="pop__undo-purchase_header">
+                      <h3>Är du säker på att du vill ångra detta köp?</h3>
+                      <p>
+                        Totalsumman för köpet kommer då sättas tillbaka på
+                        kontot.
+                      </p>
+                    </div>
+                    {selectedPurchase.items && (
+                      <div className="popup__undo-purchase_body">
+                        <div className="popup__date_time">
+                          <div className="popup__purchase-date">
+                            <i class="fa-regular fa-calendar-days"></i>
+                            <p>{selectedPurchase.date.split("T")[0]}</p>
+                          </div>
+                          <div className="popup__purchase-time">
+                            <i class="fa-regular fa-clock"></i>
+                            <p>{selectedPurchase.date.split("T")[1].split("+")[0]}</p>
+                          </div>
+                        </div>
+                        {selectedPurchase.items.map((item, i) => (
+                          <div className="popup__purchase-items" key={i}>
+                            <i className="fa-solid fa-utensils"></i>
+                            <p>{item.quantity}x</p>
+                            <p>{item.product_id.name}</p>
+                            <p>{item.price_one}kr/st</p>
+                          </div>
+                        ))}
+                        <p>
+                          <b>Total kostnad: {selectedPurchase.price_total}</b>
+                        </p>
+                      </div>
+                    )}
+                    <div className="popup__undo-purchase__btn-div">
+                      <button onClick={undoPurchase}>Ja</button>
+                      <button onClick={() => setUndoPurchasePopup(false)}>Nej</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           )}
         </div>
 
@@ -252,7 +293,10 @@ const AdminSingleUser = (props) => {
                       handlade för totalt <b>{purchase.price_total} kr</b>
                     </p>
                     {/* <i className="fa-solid fa-rotate-left" onClick={() => undoPurchase(purchase._id)}></i> */}
-                    <i className="fa-solid fa-rotate-left" onClick={() => handleUndoPurchase()}></i>
+                    <i
+                      className="fa-solid fa-rotate-left"
+                      onClick={() => handleUndoPurchase(purchase)}
+                    ></i>
                   </div>
                 );
               })}
