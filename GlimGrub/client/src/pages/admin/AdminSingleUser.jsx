@@ -19,6 +19,7 @@ const AdminSingleUser = (props) => {
   const [editedPassword, setEditedPassword] = useState("");
   const [editedBalance, setEditedBalance] = useState("");
   const [newBalance, setNewBalance] = useState(false);
+  const [undoPurchasePopup, setUndoPurchasePopup] = useState(false);
   // const [popupSaldo, setPopupSaldo] = useState(false);
 
   const fetchUser = async () => {
@@ -134,6 +135,9 @@ const AdminSingleUser = (props) => {
     resetPassword();
     console.log("klick");
   };
+  const handleUndoPurchase = () => {
+    setUndoPurchasePopup(true);
+  };
 
   // const handleEditBalanceDismiss = () => {
   //     setPopupSaldo(false);
@@ -158,7 +162,7 @@ const AdminSingleUser = (props) => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   return (
     <div className="single-user__container">
@@ -214,6 +218,20 @@ const AdminSingleUser = (props) => {
               </div>
             </div>
           )}
+          {undoPurchasePopup && (
+            <div className="popup__wrap">
+            <div className="overlay">
+              <div className="popup__balance-container">
+                <div className="popup__balance">
+                  <div className="popup__balance-info">
+                    <button onClick={() => undoPurchase()}>Ja</button>
+                    <button onClick={() => setUndoPurchasePopup(false)}>Nej</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          )}
         </div>
 
         <div className="single-user__purchased">
@@ -226,10 +244,15 @@ const AdminSingleUser = (props) => {
                     <p>{purchase.date.split("T")[0]}</p>
                     <p>
                       <b>
-                        {JSON.stringify(purchase.user_id.name).replace(/\"/g,"")}
-                      </b>{" "}handlade för totalt <b>{purchase.price_total} kr</b>
+                        {JSON.stringify(purchase.user_id.name).replace(
+                          /\"/g,
+                          ""
+                        )}
+                      </b>{" "}
+                      handlade för totalt <b>{purchase.price_total} kr</b>
                     </p>
-                    <button onClick={() => undoPurchase(purchase._id)}>ångra</button>
+                    {/* <i className="fa-solid fa-rotate-left" onClick={() => undoPurchase(purchase._id)}></i> */}
+                    <i className="fa-solid fa-rotate-left" onClick={() => handleUndoPurchase()}></i>
                   </div>
                 );
               })}
