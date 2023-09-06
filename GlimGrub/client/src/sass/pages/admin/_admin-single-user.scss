@@ -166,6 +166,115 @@
             p {
                 margin-right: 4rem;
             }
+
+            i {
+                margin-left: auto;
+            }
+        }
+    }
+
+
+
+    .popup__undo-purchase_wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        .popup__undo-purchase {
+            background-color: $popup-color;
+            width: 35rem;
+            position: relative;
+            padding: 5rem;
+            text-align: center;
+
+
+            .pop__undo-purchase_header {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                h3 {
+                    color: black;
+                    font-family: $primary-font;
+                    font-size: 1.5rem;
+                }
+
+                p {
+                    font-family: $secondary-font;
+                }
+            }
+
+            .popup__undo-purchase_body{
+                display: flex;
+                flex-direction: column;
+
+                .popup__date_time {
+                    display: flex;
+                    justify-content: space-evenly;
+                    width: 100%;
+                    margin: 1rem;
+                    align-self: auto;
+
+                    .popup__purchase-date,
+                    .popup__purchase-time {
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        font-weight: 600;
+                        font-size: 1.1rem;
+
+                        i {
+                            margin-right: 10px;
+                        }
+                        p {
+                            font-family: $secondary-font;
+                        }
+                    }
+                }
+
+                .popup__purchase-items {
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    margin: 7px;
+                    font-size: 1.2rem;
+
+                    p {
+                        font-family: $secondary-font;
+                    }
+                }
+
+                b {
+                    font-family: $primary-font;
+                    font-size: 1.4rem;
+                    font-weight: 200;
+                }
+            }
+        }
+
+        .popup__undo-purchase__btn-div {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-evenly;
+            
+            button {
+                background-color: transparent;
+                border: none;
+                padding: 1rem;
+                margin-top: 2rem;
+                font-family: $secondary-font;
+                font-size: 15px;
+                border-radius: 2rem;
+                border: 2px solid $btn-color;
+                width: 10rem;
+            }
         }
     }
 }
