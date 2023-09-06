@@ -97,6 +97,22 @@
         align-items: center;
         flex-direction: column;
         // width: 100vw;
+       
+
+        .categories__menu-welcome {
+
+            .user_balance {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+
+                p {
+                    text-decoration: underline;
+                }
+            }
+
+        }
 
 
     }

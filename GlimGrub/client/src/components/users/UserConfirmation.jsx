@@ -16,6 +16,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const { logout } = useLogout();
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     if (confirmed) {
@@ -36,6 +37,14 @@ const UserConfirmation = ({ product, onDismiss }) => {
     }
   });
 
+  useEffect(() => {
+    const totalPrice = product.reduce((total, item) => total + item.price * item.quantity, 0);
+    console.log("Calculated Total Price:", totalPrice);
+
+    setTotalPrice(totalPrice);
+  }, [product]);
+
+
   const handleConfirmation = async () => {
     try {
       if (!product) {
@@ -47,19 +56,20 @@ const UserConfirmation = ({ product, onDismiss }) => {
 
       const now = new Date();
       const formattedDate = dateFormat(now, "isoDateTime");
-
+   
       const data = {
         user_id: user.user._id,
         date: formattedDate,
-        price_total: 10,
+        price_total: totalPrice,
         items: product.map(item => ({
           product_id: item._id,
-          quantity: 1,
+          quantity: item.quantity,
           price_one: item.price,
         })),
       };
 
       console.log("Items: ", data);
+      console.log("Price total: ", data.price_total);
       // console.log("Price total: ", data.price_total)
 
       if (user.user.balance - data.price_total >= 0 || user.user.role !== "deltagare") {
@@ -106,18 +116,26 @@ const UserConfirmation = ({ product, onDismiss }) => {
               <div className="user-confirmation__container-products">
                 {product.map((product) => (
                   <p key={product._id}>
-                    {product.name}, {product.price} kronor
+
+                    {/* <div className="product_quantity">{product.quantity}</div> */}
+                    <p><i className="fa-solid fa-utensils"></i>{product.name} {product.price} kr/st </p> <p>Antal: {product.quantity}</p>
                     {/* {product.price_total} */}
                     {/* {product.length > 1 && (
 <p>{product.price_total} kronor </p>
+<div className="product_quantity">{product.quantity}</div>
 )} */}
                   </p>
 
                 ))}
+
+                <p>
+                  Totalt: {totalPrice} kr
+                </p>
               </div>
             }
             {product.length === 1 && (
-              <p>{product[0].name}, {product[0].price} kronor</p>
+              <p className="single-product"><i className="fa-solid fa-utensils"></i>{product[0].name} {product[0].price} kr/st <p className="product-quantity_single">Antal: {product[0].quantity}</p></p>
+              
             )}
 
             {/* {product.map((product) => (

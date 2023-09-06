@@ -24,6 +24,8 @@ export { default as UserLogin } from './users/UserLogin';
 export { default as UserNavbar } from './users/UserNavbar';
 export { default as UserPassword } from './users/UserPassword';
 export { default as UserBalance } from './users/UserBalance';
+export { default as UserPurchases } from './users/UserPurchases';
+
 
 
 

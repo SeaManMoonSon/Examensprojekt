@@ -9,7 +9,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Dashboard, AdminProducts, AdminSingleUser, AdminStart, Users, Fika, UserStart, UserLanding } from './pages';
 
 // Components
-import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, Categories, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserSaldo } from './components';
+import { AdminLogin, AdminNavigation, AdminSaldo, Buttons, Categories, ListUsers, Products, UserAlert, UserConfirmation, UserLogin, UserNavbar, UserPassword, UserPurchases, UserSaldo } from './components';
 
 function App() {
   const { user } = useAuthContext()
@@ -24,6 +24,8 @@ function App() {
             <Route path="/login" element={<UserStart />}/>
             <Route path="/landing" element={user ? <UserLanding /> : <Navigate to="/login" />}/>
             <Route path="/fika" element={user ? <Fika /> : <Navigate to="/login" />} />
+            <Route path="/userpurchases" element={user ? <UserPurchases /> : <Navigate to="/login" />} />
+            {/* <Route path="/userpurchases" element={user ? <UserPurchases /> : <Navigate to="/login" />} /> */}
 
             <Route path="/admin/login" element={<AdminStart />} />
             <Route path="/admin/landing" element={user ? <Dashboard /> : <Navigate to="/admin/login"/>} />
