@@ -46,7 +46,7 @@ const getPurchase = async (req, res) => {
       path: "items.product_id",
       model: "Product",
       select: "name",
-    });
+    }).sort({ date: -1 });
 
   if (!purchase) {
     return res.status(404).json({ error: "No purchase found" });
