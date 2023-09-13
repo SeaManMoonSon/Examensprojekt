@@ -104,6 +104,10 @@ const UserLanding = () => {
               <p className="user_balance">Ditt saldo: {user.user.balance} sek |
               </p>
             )}
+            {user.user.role != "deltagare" && (
+              <p className="user_balance">Personal |
+              </p>
+            )}
             </div>
           </div>
  
