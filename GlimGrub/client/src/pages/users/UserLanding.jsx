@@ -98,15 +98,18 @@ const UserLanding = () => {
                 <h3>Välkommen, {user.user.name.split(" ")[0]}</h3>
               </div>
             )}
-            <button onClick={toggleShowPurchases}>{showPurchasesLabel}</button>{showPurchases && <UserPurchases user={user}/>}
+            <div className="balance__purchases-wrap">
+            <button onClick={toggleShowPurchases}>{showPurchasesLabel}</button>
             {user.user.role === "deltagare" && (
-              <p className="user_balance">Ditt saldo: {user.user.balance} sek
+              <p className="user_balance">Ditt saldo: {user.user.balance} sek |
               </p>
             )}
+            </div>
           </div>
  
 
           <div className="categories__menu-items"> 
+          {showPurchases && <UserPurchases user={user}/>}
             {/* <Categories /> */}
             {showPurchases ? null : <Categories />}
 

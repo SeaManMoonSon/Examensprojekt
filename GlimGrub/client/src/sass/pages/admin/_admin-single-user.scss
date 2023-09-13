@@ -116,6 +116,12 @@
             text-align: center;
             color: white;
 
+            .password__reset-btn {
+                border-radius: none;
+                border: none;
+                text-decoration: underline;
+            }
+
             i {
                 color: white;
                 font-size: 70px;

@@ -37,21 +37,23 @@ const UserPurchases = (props) => {
   // console.log("PURCHASES INFO: ", purchases);
 
   return (
-    <div>
+    <div className="purchase__wrap">
       <div>
-        <p>Dina tidigare köp</p>
+        <h2>Dina tidigare köp</h2>
       </div>
       <ul>
         {purchases &&
           purchases.map((purchase) => (
             <div className="user__show-purchases-list" key={purchase._id}>
-              <p>
-                {purchase.date.split("T")[0]}{" "}
-                {purchase.date.split("T")[1].split("+")[0]}
-              </p>
-              <p>
+              <div className="user_purchase-wrap">
+                <div className="user_purchase-date">
+                  {purchase.date.split("T")[0]}{" "}
+                  {purchase.date.split("T")[1].split("+")[0]}
+                </div>
+              </div>
+              <div className="user_purchase-total">
                 Handlade du för <b>{purchase.price_total} kr</b>
-              </p>
+              </div>
             </div>
           ))}
       </ul>

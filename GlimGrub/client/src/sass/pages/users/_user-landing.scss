@@ -172,3 +172,17 @@
     }
 
 }
+
+.balance__purchases-wrap {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row-reverse;
+
+    button {
+        background-color: transparent;
+        border: none;
+        text-decoration: underline;
+        font-size: 20px;
+        font-family: $secondary-font;
+    }
+}
