@@ -21,6 +21,7 @@ const AdminSingleUser = (props) => {
   const [newBalance, setNewBalance] = useState(false);
   const [selectedPurchase, setSelectedPurchase] = useState(null);
   const [undoPurchasePopup, setUndoPurchasePopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   // const [popupSaldo, setPopupSaldo] = useState(false);
 
   const fetchUser = async () => {
@@ -134,7 +135,11 @@ const AdminSingleUser = (props) => {
   };
   const handleEditPassword = () => {
     resetPassword();
+    setShowPopup(!showPopup);
     console.log("klick");
+  };
+  const closePopup = () => {
+    setShowPopup(false);
   };
   const handleUndoPurchase = (purchase) => {
     setSelectedPurchase(purchase);
@@ -274,6 +279,34 @@ const AdminSingleUser = (props) => {
             </div>
           )}
         </div>
+
+
+        {/* <div className="popup__overlay"> */}
+
+       
+
+          {showPopup && (
+
+<div className="overlay__popup-pw">
+
+            <div className="popup__wrap-pw">
+              <div className="popup__overlay">
+                <div className="popup__container">
+                  <div className="popup__info-pw">
+                  <h2>Lösenordet är återställt</h2>
+                  <p>Användaren får välja nytt vid nästa inloggning.</p>
+                  <div><button onClick={closePopup}>Ok, tack</button></div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </div>
+          )}
+
+
+
+
+        {/* </div> */}
 
         <div className="single-user__purchased">
           <h4>Senaste köpen</h4>
