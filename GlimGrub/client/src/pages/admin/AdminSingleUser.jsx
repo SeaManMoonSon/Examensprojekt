@@ -194,7 +194,7 @@ const AdminSingleUser = (props) => {
               </div>
               <h3>Kvar av saldo</h3>
               <button onClick={handleEditBalance}>Redigera saldo</button>
-              <button onClick={handleEditPassword}>Återställ lösenord</button>
+              <button className="password__reset-btn" onClick={handleEditPassword}>Återställ lösenord</button>
             </div>
           </div>
 

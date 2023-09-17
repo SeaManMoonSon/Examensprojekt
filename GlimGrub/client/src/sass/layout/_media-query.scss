@@ -199,6 +199,40 @@
 @media (max-width: 767px) {
     /* Styles for smartphones in landscape mode */
 
+    .user__show-purchases-list {
+        font-size: 12px;
+    
+        .user_purchase-wrap {
+            margin-right: 1rem;
+        }
+    }
+    
+    .purchase__wrap {
+        height: 450px;
+        width: 300px;
+        margin-top: 1rem;
+        overflow-y: scroll;
+    
+        h2 {
+        letter-spacing: 0.1rem;
+        padding: 1rem;
+        }
+    
+    }
+
+    .balance__purchases-wrap {
+    
+        p {
+            font-size: 15px !important;
+        }
+     
+         button {
+             font-size: 15px !important;   
+             padding-right: 0.8rem;
+        
+            }
+     }
+
     .login-page__img {
         display: none;
     }

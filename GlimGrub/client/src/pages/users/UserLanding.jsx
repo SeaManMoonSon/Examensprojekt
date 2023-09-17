@@ -50,12 +50,12 @@ const UserLanding = () => {
     logout();
   };
 
-  // const toggleShowPurchases = () => {
-  //   console.log("purchases toggled");
-  //   setShowPurchases(!showPurchases);
-  //   setShowPurchasesLabel(showPurchases ? "Visa tidigare köp" : "Tillbaka till menyn");
+  const toggleShowPurchases = () => {
+    console.log("purchases toggled");
+    setShowPurchases(!showPurchases);
+    setShowPurchasesLabel(showPurchases ? "Visa tidigare köp" : "Tillbaka till menyn");
 
-  // }
+  }
 
   return (
     <div className="categories-container">
@@ -98,18 +98,24 @@ const UserLanding = () => {
                 <h3>Välkommen, {user.user.name.split(" ")[0]}</h3>
               </div>
             )}
+            <div className="balance__purchases-wrap">
+            <button onClick={toggleShowPurchases}>{showPurchasesLabel}</button>
             {user.user.role === "deltagare" && (
-              <p className="user_balance">Ditt saldo: {user.user.balance} sek
-                {/* <button onClick={toggleShowPurchases}>{showPurchasesLabel}</button>{showPurchases && <UserPurchases />} */}
+              <p className="user_balance">Ditt saldo: {user.user.balance} sek |
               </p>
-
             )}
+            {user.user.role != "deltagare" && (
+              <p className="user_balance">Personal |
+              </p>
+            )}
+            </div>
           </div>
+ 
 
-
-          <div className="categories__menu-items">
-            <Categories />
-            {/* {showPurchases ? null : <Categories />} */}
+          <div className="categories__menu-items"> 
+          {showPurchases && <UserPurchases user={user}/>}
+            {/* <Categories /> */}
+            {showPurchases ? null : <Categories />}
 
             {/* <CategoriesFika /> */}
           </div>
