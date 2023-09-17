@@ -1,0 +1,32 @@
+@use '../../base/colors' as *;
+@use '../../base/typography' as *;
+
+.user__show-purchases-list {
+    padding: 1rem;
+    display: flex;
+    border-bottom: 1px solid black;
+    font-family: $secondary-font;
+    font-size: 17px;
+
+    .user_purchase-wrap {
+        margin-right: 1rem;
+    }
+}
+
+.purchase__wrap {
+    height: 450px;
+    width: 400px;
+    margin-top: 1rem;
+    overflow-y: scroll;
+
+    h2 {
+    font-family: $primary-font;
+    letter-spacing: 0.1rem;
+    padding: 1rem;
+    }
+
+}
+
+.popup__undo-purchase {
+    background-color: deeppink;
+}

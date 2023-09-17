@@ -167,7 +167,7 @@ const AdminProducts = () => {
                                             onChange={(e) => setEditedCategory(e.target.value)}
                                         />
                                         <input
-                                            type="text"
+                                            type="number"
                                             value={editedRole}
                                             placeholder={product.role}
                                             onChange={(e) => setEditedRole(e.target.value)}

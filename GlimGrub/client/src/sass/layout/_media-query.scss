@@ -150,11 +150,25 @@
    .user-confirmation__container {
     padding: 3rem 1rem 3rem 1rem;
     width: 20rem;
+    margin: 0;
+    padding: 0;
+
+    h2 {
+        font-size: 25px !important;
+    }
     
     .user-confirmation__container-products {
+        width: 15rem;
 
         p {
             font-size: 15px;
+            width: 100%;
+            text-align: left;
+            margin: 0 0 0.5rem 0;
+
+            i {
+                display: none;
+            }
         }
     }
 
@@ -169,12 +183,12 @@
 
     .user-confirmation__buttons-escape {
         width: 11rem !important;
-        padding: 0.7rem !important;
+        padding: 0.5rem !important;
     }
 
     .user-confirmation__buttons-ok {
         width: 11rem !important;
-        padding: 0.7rem !important;
+        padding: 0.5rem !important;
         margin-top: 0 !important;
     }
    }
@@ -184,6 +198,40 @@
 
 @media (max-width: 767px) {
     /* Styles for smartphones in landscape mode */
+
+    .user__show-purchases-list {
+        font-size: 12px;
+    
+        .user_purchase-wrap {
+            margin-right: 1rem;
+        }
+    }
+    
+    .purchase__wrap {
+        height: 450px;
+        width: 300px;
+        margin-top: 1rem;
+        overflow-y: scroll;
+    
+        h2 {
+        letter-spacing: 0.1rem;
+        padding: 1rem;
+        }
+    
+    }
+
+    .balance__purchases-wrap {
+    
+        p {
+            font-size: 15px !important;
+        }
+     
+         button {
+             font-size: 15px !important;   
+             padding-right: 0.8rem;
+        
+            }
+     }
 
     .login-page__img {
         display: none;
