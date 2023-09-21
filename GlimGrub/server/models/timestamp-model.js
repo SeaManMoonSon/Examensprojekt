@@ -14,4 +14,20 @@ const timestampSchema = new mongoose.Schema({
 
 const TimestampModel = mongoose.model("Timestamp", timestampSchema);
 
-export default TimestampModel;
+// Function to create a default timestamp in the timestamps collection to prevent
+// crash on admin page before a timestamp gets manually made.
+async function createDefaultTimestamp() {
+  try {
+    const count = await TimestampModel.countDocuments({}).exec();
+
+    if (count === 0) {
+      await TimestampModel.create({ timestamp: 0 });
+      console.log("Default timestamp document created");
+    }
+  } catch (error) {
+    console.log("Error creating default timestamp", error);
+  }
+}
+createDefaultTimestamp(); 
+
+export default TimestampModel;  
