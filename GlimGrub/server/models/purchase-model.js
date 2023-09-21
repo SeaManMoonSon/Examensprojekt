@@ -39,10 +39,4 @@ const purchaseSchema = new mongoose.Schema({
 
 const PurchaseModel = mongoose.model("Purchase", purchaseSchema);
 
-// userSchema.pre("remove", async function(next) {
-//   const user = this;
-//   await PurchaseModel.deleteMany({ user_id: user._id });
-//   next();
-// });
-
 export default PurchaseModel;

@@ -30,10 +30,14 @@ const userSchema = new mongoose.Schema({
 
 const UserModel = mongoose.model("User", userSchema);
 
-// userSchema.pre("remove", async function(next) {
-//   const user = this;
-//   await PurchaseModel.deleteMany({ user_id: user._id });
-//   next();
+// THIS NEEDS IN-APP USER DELETION FUNCTIONALITY TO WORK. Maybe add a User CRUD system on admin level at a later stage? Speak with the boss about this!
+// userSchema.pre("remove", async function (next) {
+//   try {
+//     await PurchaseModel.deleteMany({ user_id: this._id });
+//     next();
+//   } catch (error) {
+//     next(error);
+//   }
 // });
 
 export default UserModel;
