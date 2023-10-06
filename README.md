@@ -99,6 +99,13 @@ Om allt nu funkade som det skulle så kommer nu applikation att öppnas i ett ny
 Om den inte öppnades automatiskt så kan du prova att öppna din webbläsare och gå till <i>localhost:3000.</i> 
 Funkar det fortfarande inte så har något längs vägen blivit fel. Testa i så fall att göra om stegen eller kontakta mig så löser vi det ihop!
 
+## Hantera GlimGrub i servermiljö
+Både server- och clientappar körs med pm2. Dessa behöver startas om efter git pull
+
+* pm2 list visar aktiva processer
+* pm2 stop 0 1 respektive pm2 delete 0 1 stoppar/tar bort instanserna
+* npm run init skapar och startar processerna
+
 ## OBSERVERA INNAN ANVÄNDNING(20/9-23)
 ### Denna applikationen kräver att användare skapas på databasnivå, då möjligheten att skapa nya användare inte ska kunna gå att utnyttja. I framtiden kanske det blir aktuellt att lägga till den funktionaliteten som admin i admin-läget, men så är alltså inte fallet i nuläget. Såhär skapar du användare på databasnivå:
    * Navigera till dina collections i ditt cluster som du skapat tidigare.
