@@ -145,6 +145,7 @@ const AdminSingleUser = (props) => {
     setSelectedPurchase(purchase);
     setUndoPurchasePopup(true);
     console.log(purchase);
+    // console.log("selectedPurchaseID: ", selectedPurchase._id);
   };
 
   // const handleEditBalanceDismiss = () => {
@@ -159,7 +160,7 @@ const AdminSingleUser = (props) => {
     }
 
     try {
-      const response = await fetch(`${URL}/api/purchases/${selectedPurchase}`, {
+      const response = await fetch(`${URL}/api/purchases/${selectedPurchase._id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
