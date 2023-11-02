@@ -129,7 +129,7 @@ const AdminProducts = () => {
                                 <div className="popup__container">
 
 
-                                    <div><button className="popup__close" onClick={handleAddProductClose}><i class="fa-solid fa-xmark"></i></button>
+                                    <div><button className="popup__close" onClick={handleAddProductClose}><i className="fa-solid fa-xmark"></i></button>
                                         <AdminAddProduct addProduct={addProduct} /></div>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@ const AdminProducts = () => {
                                             onChange={(e) => setEditedRole(e.target.value)}
                                         />
                                         <div className="admin__products-list_item-wrap">
-                                            <button onClick={() => updateProduct(product._id)}><i class="fa-solid fa-check"></i></button>
+                                            <button onClick={() => updateProduct(product._id)}><i className="fa-solid fa-check"></i></button>
                                             <button onClick={() => setEditingProduct(null)}>Avbryt</button>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@ const AdminProducts = () => {
                                         {product.role === 0 ? (<p>Deltagare</p>) : product.role === 1 ? (<p>Personal</p>) : (<p>Alla</p>)}
                                         <div className="admin__products-list_item-wrap">
                                             <button onClick={() => setEditingProduct(product)}>Redigera</button>
-                                            <button onClick={() => deleteProduct(product._id)}><i class="fa-solid fa-trash"></i></button>
+                                            <button onClick={() => deleteProduct(product._id)}><i className="fa-solid fa-trash"></i></button>
                                         </div>
                                     </div>
                                 );

@@ -1,216 +1,182 @@
-@use '../../components/misc/buttons' as *;
-@use '../../base/colors' as *;
-@use '../../base/typography' as *;
+@use "../../components/misc/buttons" as *;
+@use "../../base/colors" as *;
+@use "../../base/typography" as *;
 
 .user-confirmation__container {
-    // background-color: rgba(255, 20, 147, 0.7); 
-    background-color: $popup-color;
-    // height: 440px;
-    // width: 660px;
-    padding: 2rem;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
+  background-color: $popup-color;
+  padding: 2rem;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
 
-    div {
-        margin: 2.5rem 4rem 2rem 4rem;
-    }
+  div {
+    margin: 2.5rem 4rem 2rem 4rem;
+  }
 
+  .user-confirmation__container-text {
     h2 {
         font-family: $primary-font;
         letter-spacing: 1px;
         font-size: 30px;
         margin: 1rem;
-    }
-
-    h3 {
-        background-color: deeppink;
-    }
-
-    .user-confirmation__product {
-        margin: 2.2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        i {
-            font-size: 25px;
-        }
-
-        .user-confirmation__product-item {
-            font-family: $secondary-font;
-            font-size: 20px;
-            padding-left: 1.5rem;
-            text-transform: uppercase;
-        }
-    }
+      }
 
     .user-confirmation__container-products {
-        margin: 2.5rem 2rem 2rem 2rem;
+      margin: 2.5rem 2rem 2rem 2rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+
+      .user-confirmation__product-div {
+        margin: 0.5rem;
+        display: flex;
+        min-width: max-content;
+        max-height: max-content;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        // .product-info {
+            
+        // }
+
+        // .product-quantity {
+            
+        // }
+      }
+
+      .product_quantity {
+        background-color: $btn-color;
+        font-family: $secondary-font;
+        color: white;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        padding: 0.7rem;
         display: flex;
         justify-content: center;
-        flex-direction: column;
         align-items: center;
+        font-size: 12px;
+        margin-right: 1rem;
+      }
 
+      p {
+        font-family: $secondary-font;
+        font-size: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0 1rem 0.5rem 1rem;
 
-        .product_quantity {
-            background-color: $btn-color;
-            font-family: $secondary-font;
-            color: white;
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 50%;
-            padding: 0.7rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-            margin-right: 1rem;
+        i {
+          margin-right: 1.5rem;
         }
-
-        p {
-            font-family: $secondary-font;
-            font-size: 20px;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin: 0 1rem 0.5rem 1rem;
-
-            i {
-                margin-right: 1.5rem;
-            }
-
-        }
+      }
     }
 
-    .user-confirmation__buttons {
+    .user-confirmation__timer {
+      font-family: $secondary-font;
+      font-size: 20px;
+    }
+  }
 
-        .user-confirmation__buttons-ok {
-            padding: 1.2rem;
-            width: 12rem;
-            margin: 1rem 0.5rem 1rem 0.5rem;
-            border: 2.5px solid $btn-color;
-            border-radius: 10rem;
-            font-family: $secondary-font;
-            text-transform: uppercase;
-            font-size: 15px;
-            background-color: $btn-color;
+  .user-confirmation__buttons {
+    .user-confirmation__buttons-ok {
+      padding: 1.2rem;
+      width: 12rem;
+      margin: 1rem 0.5rem 1rem 0.5rem;
+      border: 2.5px solid $btn-color;
+      border-radius: 10rem;
+      font-family: $secondary-font;
+      text-transform: uppercase;
+      font-size: 15px;
+      background-color: $btn-color;
 
-            p {
-                color: white;
-            }
-        }
-
-        .user-confirmation__buttons-escape {
-            padding: 1.2rem;
-            width: 12rem;
-            margin: 1rem 0.5rem 1rem 0.5rem;
-            border: 2.5px solid $btn-color;
-            border-radius: 10rem;
-            font-family: $secondary-font;
-            text-transform: uppercase;
-            font-size: 15px;
-            background-color: transparent;
-        }
+      p {
+        color: white;
+      }
     }
 
-    .user-confirmation__container-text {
-
-        .single-product {
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-
-            i {
-                margin-right: 1rem;
-            }
-
-            p p {
-                margin-top: 1rem;
-            }
-
-            .product-quantity_single {
-                margin-left: 2rem;
-            }
-        }
-
-        .user-confirmation__timer {
-            font-family: $secondary-font;
-            font-size: 20px;
-        }
+    .user-confirmation__buttons-escape {
+      padding: 1.2rem;
+      width: 12rem;
+      margin: 1rem 0.5rem 1rem 0.5rem;
+      border: 2.5px solid $btn-color;
+      border-radius: 10rem;
+      font-family: $secondary-font;
+      text-transform: uppercase;
+      font-size: 15px;
+      background-color: transparent;
     }
+  }
 }
 
 .popup__info {
-    padding: 0 4rem 4rem 4rem;
+  padding: 0 4rem 4rem 4rem;
 
-    h2 {
-        margin-bottom: 2rem;
-    }
+  h2 {
+    margin-bottom: 2rem;
+  }
 
-    .popup__form-submit {
-        background-color: transparent;
-        padding: 1rem;
-        width: 10rem;
-        margin-right: 0.7rem;
-        border-radius: 2rem;
-        border: 2px solid $btn-color;
-        font-family: $secondary-font;
-        font-size: 17px;
-    }
+  .popup__form-submit {
+    background-color: transparent;
+    padding: 1rem;
+    width: 10rem;
+    margin-right: 0.7rem;
+    border-radius: 2rem;
+    border: 2px solid $btn-color;
+    font-family: $secondary-font;
+    font-size: 17px;
+  }
 
-    .submit-yes {
-        background-color: $btn-color;
-        color: white;
-    }
-
+  .submit-yes {
+    background-color: $btn-color;
+    color: white;
+  }
 }
 
 .loading-overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .overlay__popup-pw {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    .popup__info-pw {
-        padding: 5rem;
+  .popup__info-pw {
+    padding: 5rem;
 
-        button {
-            padding: 1rem;
-            width: 14rem;
-            margin: 2rem 0.5rem 1rem 0.5rem;
-            border: 2.5px solid $btn-color;
-            border-radius: 10rem;
-            font-family: $secondary-font;
-            text-transform: uppercase;
-            font-size: 15px;
-            background-color: $btn-color;
-            color: white;
-        }
+    button {
+      padding: 1rem;
+      width: 14rem;
+      margin: 2rem 0.5rem 1rem 0.5rem;
+      border: 2.5px solid $btn-color;
+      border-radius: 10rem;
+      font-family: $secondary-font;
+      text-transform: uppercase;
+      font-size: 15px;
+      background-color: $btn-color;
+      color: white;
     }
-
+  }
 }

@@ -1,13 +1,13 @@
-import React from 'react';
+// import React from 'react';
 
-// styles
+// // styles
 
-const UserPassword = () => {
-    return (
-        <div>
-            <h1>UserPassword</h1>
-        </div>
-    )
-}
+// const UserPassword = () => {
+//     return (
+//         <div>
+//             <h1>UserPassword</h1>
+//         </div>
+//     )
+// }
 
-export default UserPassword
+// export default UserPassword

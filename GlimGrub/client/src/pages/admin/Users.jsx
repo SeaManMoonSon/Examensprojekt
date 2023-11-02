@@ -1,106 +1,104 @@
-import React from 'react';
-import { useEffect, useState } from "react"
-import URL from "../../proxyURL.js";
+// import React from "react";
+// import { useEffect, useState } from "react";
+// import URL from "../../proxyURL.js";
 
-// components
-import Logout from "../../components/misc/Logout";
-import AdminNavbar from "../../components/admin/AdminNavbar";
-import { useAuthContext, userAuthContext } from "../../hooks/userAuthContext";
-import { AdminSearchBar, AdminSearchResultList } from '../../components';
+// // components
+// import Logout from "../../components/misc/Logout";
+// import AdminNavbar from "../../components/admin/AdminNavbar";
+// import { useAuthContext, userAuthContext } from "../../hooks/userAuthContext";
+// import { AdminSearchBar, AdminSearchResultList } from "../../components";
 
-// styles
-import '../../sass/style.scss'
+// // styles
+// import "../../sass/style.scss";
 
-const Users = () => {
-    // const { user } = useAuthContext();
+// const Users = () => {
+//   // const { user } = useAuthContext();
 
-    const [users, setUsers] = useState(null)
-    const [filteredUsers, setFilteredUsers] = useState(null);
-    const [results, setResults] = useState([]);
+//   const [users, setUsers] = useState(null);
+//   const [filteredUsers, setFilteredUsers] = useState(null);
+//   const [results, setResults] = useState([]);
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            const response = await fetch(`${URL}/api/users`);
-            const json = await response.json()
+//   useEffect(() => {
+//     const fetchUsers = async () => {
+//       const response = await fetch(`${URL}/api/users`);
+//       const json = await response.json();
 
-            if (response.ok) {
-                setUsers(json)
-            }
-        }
+//       if (response.ok) {
+//         setUsers(json);
+//       }
+//     };
 
-        fetchUsers()
-    }, [])
+//     fetchUsers();
+//   }, []);
 
+//   // const handleStaff = () => {
+//   //     console.log("Personal");
 
-    // const handleStaff = () => {
-    //     console.log("Personal");
+//   //     const filterStaff = users.filter((user) => user.role === "personal")
 
-    //     const filterStaff = users.filter((user) => user.role === "personal")
-       
-    //     setFilteredUsers(filterStaff);
+//   //     setFilteredUsers(filterStaff);
 
-    //     console.log(filterStaff);
-    // }
+//   //     console.log(filterStaff);
+//   // }
 
-    // const handleParticipants = () => {
-    //     console.log("Användare")
+//   // const handleParticipants = () => {
+//   //     console.log("Användare")
 
-    //     const filterParticipants = users.filter((user) => user.role === "deltagare")
+//   //     const filterParticipants = users.filter((user) => user.role === "deltagare")
 
-    //     setFilteredUsers(filterParticipants);
-       
-    //     console.log(filterParticipants);
-    // }
+//   //     setFilteredUsers(filterParticipants);
 
-    // const handleShowAllUsers = () => {
-    //     setFilteredUsers(null); // 
-    //   };
+//   //     console.log(filterParticipants);
+//   // }
 
-    useEffect(() => {
-        // Show all users by default
-        setFilteredUsers(users);
-      }, [users]);
+//   // const handleShowAllUsers = () => {
+//   //     setFilteredUsers(null); //
+//   //   };
 
-    return (
-        <div className="admin__container">
-            <AdminNavbar />
-            <div className="admin__info-text">
-                <h1>Användare</h1>
-            </div>
+//   useEffect(() => {
+//     // Show all users by default
+//     setFilteredUsers(users);
+//   }, [users]);
 
-            <div className="admin__searchbar-container">
-                <AdminSearchBar setResults={setResults} />
-                <div className="admin__searchbar-result">
-                <AdminSearchResultList results={results}/>
-                </div>
-            </div>
+//   return (
+//     <div className="admin__container">
+//       <AdminNavbar />
+//       <div className="admin__info-text">
+//         <h1>Användare</h1>
+//       </div>
 
-            <div className="admin__user-btns">
-                {/* <button onClick={handleStaff}>Personal</button>
-                <button onClick={handleParticipants}>Deltagare</button> */}
-                {/* <button onClick={handleShowAllUsers}>Visa alla</button> */}
+//       <div className="admin__searchbar-container">
+//         <AdminSearchBar setResults={setResults} />
+//         <div className="admin__searchbar-result">
+//           <AdminSearchResultList results={results} />
+//         </div>
+//       </div>
 
-            </div>
-            <div className="admin__show-users">
-                <ul>
-                    {/* {users.users.name} */}
+//       <div className="admin__user-btns">
+//         {/* <button onClick={handleStaff}>Personal</button>
+//                 <button onClick={handleParticipants}>Deltagare</button> */}
+//         {/* <button onClick={handleShowAllUsers}>Visa alla</button> */}
+//       </div>
+//       <div className="admin__show-users">
+//         <ul>
+//           {/* {users.users.name} */}
 
-                    {filteredUsers && 
-                        
-                            filteredUsers.map((user) => {
-                                return <div className="admin__show-users_list" key={user._id}>
-                                    <p>{user.name}</p>
-                                    <p>{user.balance}</p>
-                                    <div className="admin__show-users_list-balance"><button>Redigera saldo</button></div>
-                                </div>;
-                            })}
+//           {filteredUsers &&
+//             filteredUsers.map((user) => {
+//               return (
+//                 <div className="admin__show-users_list" key={user._id}>
+//                   <p>{user.name}</p>
+//                   <p>{user.balance}</p>
+//                   <div className="admin__show-users_list-balance">
+//                     <button>Redigera saldo</button>
+//                   </div>
+//                 </div>
+//               );
+//             })}
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// };
 
-                    {/* <div className="admin__show-users_list"><p>Simon Månsson</p><div className="admin__show-users_list-balance"><button>Redigera saldo</button></div></div> */}
-                    {/* <div className="admin__show-users_list"><p>Veronica Selenwall</p><div className="admin__show-users_list-balance"><button>Redigera saldo</button></div></div> */}
-                </ul>
-            </div>
-        </div>
-    )
-}
-
-export default Users
+// export default Users;

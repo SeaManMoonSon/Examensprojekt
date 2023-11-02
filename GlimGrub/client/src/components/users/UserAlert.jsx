@@ -1,13 +1,13 @@
-import React from 'react';
+// import React from 'react';
 
-// styles
+// // styles
 
-const UserAlert = () => {
-    return (
-        <div>
-            <h1>UserAlert</h1>
-        </div>
-    )
-}
+// const UserAlert = () => {
+//     return (
+//         <div>
+//             <h1>UserAlert</h1>
+//         </div>
+//     )
+// }
 
-export default UserAlert
+// export default UserAlert

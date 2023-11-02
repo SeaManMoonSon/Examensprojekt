@@ -1,13 +1,13 @@
-import React from 'react';
+// import React from 'react';
 
-// styles
+// // styles
 
-const Buttons = () => {
-    return (
-        <div>
-            <h1>Buttons</h1>
-        </div>
-    )
-}
+// const Buttons = () => {
+//     return (
+//         <div>
+//             <h1>Buttons</h1>
+//         </div>
+//     )
+// }
 
-export default Buttons
+// export default Buttons

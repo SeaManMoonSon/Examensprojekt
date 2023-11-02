@@ -23,8 +23,8 @@ function App() {
             <Route path="/" element={<UserStart />} />
             <Route path="/login" element={<UserStart />}/>
             <Route path="/landing" element={user ? <UserLanding /> : <Navigate to="/login" />}/>
-            <Route path="/fika" element={user ? <Fika /> : <Navigate to="/login" />} />
-            <Route path="/userpurchases" element={user ? <UserPurchases /> : <Navigate to="/login" />} />
+            {/* <Route path="/fika" element={user ? <Fika /> : <Navigate to="/login" />} /> */}
+            {/* <Route path="/userpurchases" element={user ? <UserPurchases /> : <Navigate to="/login" />} /> */}
             {/* <Route path="/userpurchases" element={user ? <UserPurchases /> : <Navigate to="/login" />} /> */}
 
             <Route path="/admin/login" element={<AdminStart />} />

@@ -113,11 +113,13 @@ const UserLanding = () => {
  
 
           <div className="categories__menu-items"> 
-          {showPurchases && <UserPurchases user={user}/>}
-            {/* <Categories /> */}
-            {showPurchases ? null : <Categories />}
 
-            {/* <CategoriesFika /> */}
+            {showPurchases && 
+              <UserPurchases user={user}/>
+            }
+            
+            {/* {showPurchases ? null : <Categories />} */}
+            <Categories />
           </div>
           <Logout />
         </div>

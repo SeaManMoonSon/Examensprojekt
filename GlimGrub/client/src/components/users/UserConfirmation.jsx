@@ -18,32 +18,15 @@ const UserConfirmation = ({ product, onDismiss }) => {
   const { logout } = useLogout();
   const [totalPrice, setTotalPrice] = useState(0);
 
-  useEffect(() => {
-    if (confirmed) {
-      const timer = setInterval(() => {
-        setCountdown((oldTime) => {
-          if (oldTime <= 0) {
-            clearInterval(timer);
-            logout();
-          } else {
-            return oldTime - 1;
-          }
-        });
-      }, 1000);
-
-      return () => {
-        clearInterval(timer);
-      };
-    }
-  });
+  console.log("user confirmation comp log");
 
   useEffect(() => {
-    const totalPrice = product.reduce((total, item) => total + item.price * item.quantity, 0);
-    console.log("Calculated Total Price:", totalPrice);
-
+    const totalPrice = product.reduce(
+      (total, item) => total + item.price * item.quantity, 0
+    );
+    // console.log("price calc log", totalPrice);
     setTotalPrice(totalPrice);
   }, [product]);
-
 
   const handleConfirmation = async () => {
     try {
@@ -52,25 +35,20 @@ const UserConfirmation = ({ product, onDismiss }) => {
         return;
       }
 
-      console.log("Product: ", product);
-
       const now = new Date();
       const formattedDate = dateFormat(now, "isoDateTime");
-   
       const data = {
         user_id: user.user._id,
         date: formattedDate,
         price_total: totalPrice,
-        items: product.map(item => ({
+        items: product.map((item) => ({
           product_id: item._id,
           quantity: item.quantity,
           price_one: item.price,
         })),
       };
 
-      console.log("Items: ", data);
-      console.log("Price total: ", data.price_total);
-      // console.log("Price total: ", data.price_total)
+      // console.log("data: ", data);
 
       if (user.user.balance - data.price_total >= 0 || user.user.role !== "deltagare") {
         const response = await fetch(`${URL}/api/purchases`, {
@@ -79,32 +57,54 @@ const UserConfirmation = ({ product, onDismiss }) => {
           body: JSON.stringify(data),
         });
 
-        // console.log("Price total: ", product.price_total)
-
+        setConfirmed(true);
 
         const json = await response.json();
+        // console.log("json: ", json);
 
         if (!response.ok) {
-          onDismiss();
-          console.error(json.error);
+          // onDismiss();
+          console.log("Här smäller det: ", json.error);
+          logoutTimer();
         } else {
-          setConfirmed(true);
+          // setConfirmed(true);
           console.log("Purchase successful");
         }
-
       } else {
         onDismiss();
-        console.log("User balance is too low");
+        console.log("Purchase failed, user balance too low");
       }
-
     } catch (error) {
       console.error(error);
     }
   };
 
+  useEffect(() => {
+    if (confirmed) {
+      logoutTimer();
+    }
+  }, [confirmed]);
+
   const handleEscape = () => {
     onDismiss();
   };
+
+  const logoutTimer = () => {
+    const timer = setInterval(() => {
+      setCountdown((oldTime) => {
+        if (oldTime <= 0) {
+          clearInterval(timer);
+          logout();
+        } else {
+          return oldTime - 1;
+        }
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }
 
   return (
     <div className="user-confirmation__container">
@@ -112,48 +112,48 @@ const UserConfirmation = ({ product, onDismiss }) => {
         <div>
           <div className="user-confirmation__container-text">
             <h2>Vänligen bekräfta ditt val</h2>
-            {product.length > 1 &&
+
+            {product.length > 1 && (
               <div className="user-confirmation__container-products">
                 {product.map((product) => (
-                  <p key={product._id}>
-
-                    {/* <div className="product_quantity">{product.quantity}</div> */}
-                    <p><i className="fa-solid fa-utensils"></i>{product.name} {product.price} kr/st </p> <p>Antal: {product.quantity}</p>
-                    {/* {product.price_total} */}
-                    {/* {product.length > 1 && (
-<p>{product.price_total} kronor </p>
-<div className="product_quantity">{product.quantity}</div>
-)} */}
-                  </p>
-
+                  <div
+                    key={product._id}
+                    className="user-confirmation__product-div"
+                  >
+                    <p className="product-info">
+                      <i className="fa-solid fa-utensils"></i>
+                      {product.name} {product.price} kr/st{" "}
+                    </p>
+                    <p className="product-quantity">
+                      Antal: {product.quantity}
+                    </p>
+                  </div>
                 ))}
-
-                <p>
-                  Totalt: {totalPrice} kr
-                </p>
+                <p>Totalt: {totalPrice} kr</p>
               </div>
-            }
-            {product.length === 1 && (
-              <p className="single-product"><i className="fa-solid fa-utensils"></i>{product[0].name} {product[0].price} kr/st <p className="product-quantity_single">Antal: {product[0].quantity}</p></p>
-              
             )}
 
-            {/* {product.map((product) => (
-<div className="user-confirmation__product">
-<i className="fa-solid fa-utensils"></i>
-<div className="user-confirmation__product-item">
-<p>{product.name}, {product.price} kronor</p>
-</div>
-</div>
-))} */}
-
+            {product.length === 1 && (
+              <div className="user-confirmation__container-products">
+                <div className="user-confirmation__product-div">
+                  <p className="product-info">
+                    <i className="fa-solid fa-utensils"></i>
+                    {product[0].name} {product[0].price} kr/st
+                  </p>
+                  <p className="product-quantity">
+                    Antal: {product[0].quantity}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
+
           <div className="user-confirmation__buttons">
             <button
               className="user-confirmation__buttons-escape"
               onClick={handleEscape}
             >
-              Avbryt
+              <p>Avbryt</p>
             </button>
             <button
               className="user-confirmation__buttons-ok"

@@ -193,7 +193,7 @@ const AdminSingleUser = (props) => {
           <div className="balance-container">
             <div className="balance__balance">
               <div className="balance__icon">
-                <i class="fa-solid fa-money-check-dollar"></i>
+                <i className="fa-solid fa-money-check-dollar"></i>
               </div>
               <div>
                 <h2>{user.balance} sek</h2>
@@ -249,11 +249,11 @@ const AdminSingleUser = (props) => {
                       <div className="popup__undo-purchase_body">
                         <div className="popup__date_time">
                           <div className="popup__purchase-date">
-                            <i class="fa-regular fa-calendar-days"></i>
+                            <i className="fa-regular fa-calendar-days"></i>
                             <p>{selectedPurchase.date.split("T")[0]}</p>
                           </div>
                           <div className="popup__purchase-time">
-                            <i class="fa-regular fa-clock"></i>
+                            <i className="fa-regular fa-clock"></i>
                             <p>{selectedPurchase.date.split("T")[1].split("+")[0]}</p>
                           </div>
                         </div>

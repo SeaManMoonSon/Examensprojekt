@@ -78,8 +78,8 @@ const AdminDashboard = () => {
                     <h2>Senaste köpen</h2>
                 </div>
                 <div className="admin__dashboard-info_btn">
-                    <button onClick={handleExport}><i class="fa-solid fa-download"></i></button>
-                    <button onClick={() => setReset(true)}><i class="fa-solid fa-rotate-right"></i>Rensa flöde</button>
+                    <button onClick={handleExport}><i className="fa-solid fa-download"></i></button>
+                    <button onClick={() => setReset(true)}><i className="fa-solid fa-rotate-right"></i>Rensa flöde</button>
                 </div>
             </div>
 
@@ -113,7 +113,7 @@ const AdminDashboard = () => {
                                                 onChange={(e) => setStartDate(e.target.value)}
                                                 required />
 
-                                            <div className="popup__form-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                                            <div className="popup__form-arrow"><i className="fa-solid fa-arrow-right"></i></div>
 
                                             {/* <label htmlFor="endDate"><p>Till</p></label> */}
                                             <input

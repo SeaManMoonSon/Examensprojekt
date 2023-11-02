@@ -41,7 +41,7 @@ const AdminNavigation = () => {
                         <div className="navbar__toggle-menu">
 
                             <div className="navbar__toggle-menu_close">
-                                <button onClick={handleMenuClose}><i class="fa-solid fa-xmark"></i></button>
+                                <button onClick={handleMenuClose}><i className="fa-solid fa-xmark"></i></button>
                             </div>
 
                             <div className="navbar__toggle-menu_items">

@@ -31,10 +31,11 @@ const Categories = () => {
   // console.log("Roll: ", user.user.role);
 
   const handlePopup = (selectedProducts) => {
-    // console.log("You are buying this: ", selectedProducts)
+    // console.log("You are buying this: ", selectedProducts);
     setSelectedProducts(selectedProducts);
     setPopup(true);
     setShowPopup(false);
+    console.log("selectedProducts: ", selectedProducts);
   };
 
   const handlePopupDismiss = () => {
@@ -110,7 +111,7 @@ const Categories = () => {
 
         {/* <button
           className="cart-btn"
-          onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+          onClick={handleCheckout}><i className="fa-solid fa-cart-shopping"></i>
         </button> */}
 
         {user.user.role === "personal" && (
@@ -121,7 +122,7 @@ const Categories = () => {
               }
               <button
                 className="cart-btn"
-                onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+                onClick={handleCheckout}><i className="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
 
@@ -155,7 +156,7 @@ const Categories = () => {
               }
               <button
                 className="cart-btn"
-                onClick={handleCheckout}><i class="fa-solid fa-cart-shopping"></i>
+                onClick={handleCheckout}><i className="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
 
@@ -184,12 +185,10 @@ const Categories = () => {
               </>
             )}
 
-
-
             {fika && (
               <>
                 <div className="categories__btn-back" onClick={() => setFika(false)}>
-                  <i class="fa-solid fa-arrow-left-long"></i>
+                  <i className="fa-solid fa-arrow-left-long"></i>
                 </div>
 
                 {products.map((product) => {
@@ -225,7 +224,10 @@ const Categories = () => {
               {selectedProducts.map((product) => (
                 <div className="user-cart_item-container" key={product._id}>
                   <div className="user-cart_item-text">
-                    <li><div className="product_quantity">{product.quantity}</div> {product.name}, {product.price} kr/st</li>
+                    <li>
+                      <div className="product_quantity">{product.quantity}</div> 
+                      <p>{product.name}, {product.price} kr/st</p>
+                    </li>
                   </div>
                   <div className="user-cart_item-button">
                     {product.quantity > 1 ? (

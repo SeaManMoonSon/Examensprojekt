@@ -33,7 +33,7 @@ const UserPurchases = (props) => {
     fetchPayments();
   }, [userID]);
 
-  console.log("USER INFO: ", props.user.user);
+  // console.log("USER INFO: ", props.user.user);
   // console.log("PURCHASES INFO: ", purchases);
 
   return (
