@@ -16,26 +16,7 @@ const UserConfirmation = ({ product, onDismiss }) => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const { logout } = useLogout();
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  useEffect(() => {
-    if (confirmed) {
-      const timer = setInterval(() => {
-        setCountdown((oldTime) => {
-          if (oldTime <= 0) {
-            clearInterval(timer);
-            logout();
-          } else {
-            return oldTime - 1;
-          }
-        });
-      }, 1000);
-
-      return () => {
-        clearInterval(timer);
-      };
-    }
-  });
+  const [totalPrice, setTotalPrice] = useState(0); 
 
   useEffect(() => {
     const totalPrice = product.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -79,28 +60,50 @@ const UserConfirmation = ({ product, onDismiss }) => {
           body: JSON.stringify(data),
         });
 
-        // console.log("Price total: ", product.price_total)
-
+        setConfirmed(true);
 
         const json = await response.json();
+        // console.log("json: ", json);
 
         if (!response.ok) {
-          onDismiss();
-          console.error(json.error);
+          // onDismiss();
+          console.log("Här smäller det: ", json.error);
+          logoutTimer();
         } else {
-          setConfirmed(true);
+          // setConfirmed(true);
           console.log("Purchase successful");
         }
-
       } else {
         onDismiss();
-        console.log("User balance is too low");
+        console.log("Purchase failed, user balance too low");
       }
-
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (confirmed) {
+      logoutTimer();
+    }
+  }, [confirmed]);
+
+  const logoutTimer = () => {
+    const timer = setInterval(() => {
+      setCountdown((oldTime) => {
+        if (oldTime <= 0) {
+          clearInterval(timer);
+          logout();
+        } else {
+          return oldTime - 1;
+        }
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }
 
   const handleEscape = () => {
     onDismiss();
